@@ -76,3 +76,5 @@ rm -r [directory_name]
 rm -rf [directory_name]
 
 cat [file_name]
+
+git fetch
