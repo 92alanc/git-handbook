@@ -64,8 +64,7 @@ public class CommandRepository extends BaseRepository<Command>
                 id = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_ID));
                 title = cursor.getString(cursor.getColumnIndex(CommandsTable.COLUMN_TITLE));
                 params = ParameterRepository.getInstance(context)
-                                            .selectWhere(new String[] { ParametersTable.COLUMN_COMMAND },
-                                                         new Object[] { id });
+                                            .selectWhere(ParametersTable.COLUMN_COMMAND, id);
                 int meaningId = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_MEANING));
                 meaning = MeaningRepository.getInstance(context).select(meaningId);
                 command = new Command(id, title, params, meaning);
@@ -96,8 +95,8 @@ public class CommandRepository extends BaseRepository<Command>
             {
                 String title = cursor.getString(cursor.getColumnIndex(CommandsTable.COLUMN_TITLE));
                 ArrayList<String> params = ParameterRepository.getInstance(context)
-                                                              .selectWhere(new String[] { ParametersTable.COLUMN_COMMAND },
-                                                                           new Object[] { id });
+                                                              .selectWhere(ParametersTable.COLUMN_COMMAND,
+                                                                           id);
                 int meaningId = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_MEANING));
                 String meaning = MeaningRepository.getInstance(context).select(meaningId);
                 cursor.close();
@@ -115,13 +114,13 @@ public class CommandRepository extends BaseRepository<Command>
 
     /**
      * Selects all instances where a condition is met
-     * e.g.: SELECT * FROM [TABLE] WHERE columns = values
-     * @param columns - the columns
-     * @param values  - the values
+     * e.g.: SELECT * FROM [TABLE] WHERE column = value
+     * @param column - the column
+     * @param value  - the value
      * @return instances
      */
     @Override
-    public ArrayList<Command> selectWhere(Object[] columns, Object[] values)
+    public ArrayList<Command> selectWhere(String column, Object value)
     {
         // Not necessary
         return null;

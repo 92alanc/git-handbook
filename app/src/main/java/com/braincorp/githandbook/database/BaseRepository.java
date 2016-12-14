@@ -40,12 +40,12 @@ abstract class BaseRepository<T> implements Repository<T>
 
     /**
      * Selects all instances where a condition is met
-     * e.g.: SELECT * FROM [TABLE] WHERE columns = values
-     * @param columns - the columns
-     * @param values - the values
+     * e.g.: SELECT * FROM [TABLE] WHERE column = value
+     * @param column - the column
+     * @param value - the value
      * @return instances
      */
-    public abstract ArrayList<T> selectWhere(Object[] columns, Object[] values);
+    public abstract ArrayList<T> selectWhere(String column, Object value);
 
     /**
      * Gets the ID of the last instance

@@ -11,7 +11,7 @@ public interface Repository<T>
 
     ArrayList<T> selectAll();
     T select(int id);
-    ArrayList<T> selectWhere(Object[] columns, Object[] values);
+    ArrayList<T> selectWhere(String column, Object value);
     int getLastId();
 
 }

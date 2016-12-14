@@ -1,6 +1,7 @@
 package com.braincorp.githandbook.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class ParameterRepository extends BaseRepository<String>
     @Override
     public ArrayList<String> selectAll()
     {
+        // Not necessary
         return null;
     }
 
@@ -56,20 +58,43 @@ public class ParameterRepository extends BaseRepository<String>
     @Override
     public String select(int id)
     {
+        // Not necessary
         return null;
     }
 
     /**
      * Selects all instances where a condition is met
-     * e.g.: SELECT * FROM [TABLE] WHERE columns = values
-     * @param columns - the columns
-     * @param values  - the values
+     * e.g.: SELECT * FROM [TABLE] WHERE column = value
+     * @param column - the column
+     * @param value  - the value
      * @return instances
      */
     @Override
-    public ArrayList<String> selectWhere(Object[] columns, Object[] values)
+    public ArrayList<String> selectWhere(String column, Object value)
     {
-        return null;
+        if (column != null && value != null)
+        {
+            ArrayList<String> params = new ArrayList<>();
+            if (reader == null)
+                reader = databaseHelper.getReadableDatabase();
+            Cursor cursor = reader.query(ParametersTable.TABLE_NAME, null,
+                                         String.valueOf(column) + " = " + String.valueOf(value),
+                                         null, null,
+                                         null, null);
+            cursor.moveToFirst();
+            if (cursor.getCount() > 0)
+            {
+                do
+                {
+                    String param = cursor.getString(cursor.getColumnIndex(ParametersTable.COLUMN_CONTENT));
+                    params.add(param);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            return params;
+        }
+        else
+            return selectAll();
     }
 
     /**
@@ -79,6 +104,7 @@ public class ParameterRepository extends BaseRepository<String>
     @Override
     public int getLastId()
     {
+        // Not necessary
         return 0;
     }
 
