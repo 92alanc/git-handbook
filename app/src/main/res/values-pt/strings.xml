@@ -8,5 +8,59 @@
     <string name="any_message">Qualquer mensagem</string>
     <string name="commit_it">id_do_commit</string>
     <string name="stash_id">id_do_stash</string>
+    <string name="new_branch_name">nome_do_novo_branch</string>
+    <string name="item_name">nome_do_item</string>
+    <string name="item_value">valor_do_item</string>
+    <string name="directory_name">nome_do_diretório</string>
+    <string name="content_1">Mostra o status do seu repositório local</string>
+    <string name="content_2">Baixa todos os arquivos versionados do branch padrão, se o seu local estiver desatualizado
+    </string>
+    <string name="content_3">Baixa todos os arquivos versionados de um branch específico, se o seu local estiver desatualizado
+    </string>
+    <string name="content_4">Adiciona todos os arquivos modificados para serem colocados em um commit</string>
+    <string name="content_5">Adiciona um arquivo modificado específico para ser colocado em um commit</string>
+    <string name="content_7">Coloca todos os arquivos adicionados no commit e define a mensagem do commit</string>
+    <string name="content_10">Envia o(s) último(s) commit(s) para um branch no repositório remoto</string>
+    <string name="content_11">Exclui um branch no repositório remoto</string>
+    <string name="content_12">Salva todos os arquivos modificados na memória e os restaura para seu último estado
+        versionado
+    </string>
+    <string name="content_13">Recupera todos os arquivos modificados que foram salvos no último stash</string>
+    <string name="content_17">Inicializa um repositório local Git no diretório atual</string>
+    <string name="content_18">Adiciona um repositório remoto com nome e url, ou endereço ssh</string>
+    <string name="content_19">Restaura todos os arquivos modificados para seu último estado versionado</string>
+    <string name="content_20">Restaura um arquivo modificado específico para seu último estado versionado</string>
+    <string name="content_21">Transfere para um branch</string>
+    <string name="content_22">Cria um novo branch local</string>
+    <string name="content_23">Restaura o branch local para seu último estado versionado</string>
+    <string name="content_28">Mostra um log contendo todos os commits</string>
+    <string name="content_29">Cria um commit revertendo as alterações de um commit específico</string>
+    <string name="content_30">Mostra todos os branches locais</string>
+    <string name="content_27"></string>
+    <string name="content_31">Exclui um branch local de forma segura</string>
+    <string name="content_32">Exclui um branch local de forma forçada</string>
+    <string name="content_33">Mostra todos os branches, tanto locais quanto remotos</string>
+    <string name="content_34">Mostra todos os branches que foram integrados no branch principal</string>
+    <string name="content_35">Define um valor para um item de configuração específico no arquivo .config</string>
+    <string name="content_36">Exclui todos os arquivos novos do seu repositório local</string>
+    <string name="content_37">Exclui tanto os arquivos novos quanto diretórios novos do seu repositório local</string>
+    <string name="content_38">Exclui todos os arquivos e diretórios não versionados do seu repositório local</string>
+    <string name="content_39">Integra um branch específico ao seu branch atual</string>
+    <string name="content_40">Mostra em detalhes todas as modificações feitas até o momento</string>
+    <string name="content_41">Mostra em detalhes todas as modificações feitas até o momento em um arquivo específico</string>
+    <string name="content_42">Mostra em detalhes todas as modificações feitas até o momento, em comparação com um branch específico</string>
+    <string name="content_43">Mostra cada usuário responsável pelas mudanças feitas em um arquivo específico</string>
+    <string name="content_44">"Abre a ferramenta pré-definida para visualização das modificações feitas no repositório local"</string>
+    <string name="content_45">Abre a ferramenta pré-definida para resolver conflitos de integração no repositório
+        local
+    </string>
+    <string name="content_46">Abre a ferramenta pré-definida para usar o Git com uma interface gráfica de usuário
+    </string>
+    <string name="content_47">Cria um arquivo no diretório atual com um nome específico</string>
+    <string name="content_48">Exclui um arquivo</string>
+    <string name="content_49">Exclui um arquivo de forma forçada</string>
+    <string name="content_50">Exclui um diretório de forma recursiva</string>
+    <string name="content_51">Exclui um diretório de forma recursiva e forçada</string>
+    <string name="content_52">Abre o conteúdo de um arquivo</string>
 
 </resources>

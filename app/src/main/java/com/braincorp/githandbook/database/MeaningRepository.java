@@ -78,9 +78,9 @@ public class MeaningRepository extends BaseRepository<String>
             if (reader == null)
                 reader = databaseHelper.getReadableDatabase();
             Cursor cursor = reader.query(MeaningsTable.TABLE_NAME, null,
-                                         String.valueOf(column) + " = " + String.valueOf(value),
-                                         null, null,
-                                         null, null);
+                    String.valueOf(column) + " = " + String.valueOf(value),
+                    null, null,
+                    null, null);
             cursor.moveToFirst();
             if (cursor.getCount() > 0)
             {
@@ -103,7 +103,7 @@ public class MeaningRepository extends BaseRepository<String>
      * @param values - the values
      * @return instance
      */
-    public String selectWhere(String[] columns, Object[] values)
+    String selectWhere(String[] columns, Object[] values)
     {
         if (columns != null && values != null)
         {
@@ -111,10 +111,10 @@ public class MeaningRepository extends BaseRepository<String>
             if (reader == null)
                 reader = databaseHelper.getReadableDatabase();
             Cursor cursor = reader.query(MeaningsTable.TABLE_NAME, null,
-                                         String.valueOf(columns[0]) + " = " + String.valueOf(values[0])
-                                         + " AND " + String.valueOf(columns[1]) + " = " + String.valueOf(values[1]),
-                                         null, null,
-                                         null, null, "1");
+                    String.valueOf(columns[0]) + " = " + String.valueOf(values[0])
+                            + " AND " + String.valueOf(columns[1]) + " = " + String.valueOf(values[1]),
+                    null, null,
+                    null, null, "1");
             cursor.moveToFirst();
             if (cursor.getCount() > 0)
                 meaning = cursor.getString(cursor.getColumnIndex(MeaningsTable.COLUMN_CONTENT));
@@ -123,6 +123,35 @@ public class MeaningRepository extends BaseRepository<String>
         }
         else
             return null;
+    }
+
+    /**
+     * Selects the value of a specific column
+     * where a given condition is met
+     * @param columnToSelect - the column to select
+     * @param column - the column
+     * @param value - the value
+     * @return value
+     */
+    int selectWhere(String columnToSelect, String column, Object value)
+    {
+        if (column != null && value != null)
+        {
+            int ret = 0;
+            if (reader == null)
+                reader = databaseHelper.getReadableDatabase();
+            Cursor cursor = reader.query(MeaningsTable.TABLE_NAME, new String[] { columnToSelect },
+                    String.valueOf(column) + " = " + String.valueOf(value),
+                    null, null,
+                    null, null, "1");
+            cursor.moveToFirst();
+            if (cursor.getCount() > 0)
+                ret = cursor.getInt(cursor.getColumnIndex(columnToSelect));
+            cursor.close();
+            return ret;
+        }
+        else
+            return 0;
     }
 
     /**

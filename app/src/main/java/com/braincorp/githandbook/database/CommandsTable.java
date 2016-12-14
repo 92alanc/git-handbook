@@ -10,6 +10,5 @@ class CommandsTable
     static final String TABLE_NAME = "COMMANDS";
     static final String COLUMN_ID = "_id";
     static final String COLUMN_TITLE = "TITLE";
-    static final String COLUMN_PARAMETER = "PARAMETER"; // TODO: remove
 
 }

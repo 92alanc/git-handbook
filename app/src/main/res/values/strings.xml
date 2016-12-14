@@ -2,11 +2,71 @@
 
     <string name="app_name">Git Handbook</string>
 
+    <!-- Parameters -->
     <string name="any_message">Any message</string>
     <string name="branch_name">branch_name</string>
     <string name="commit_it">commit_id</string>
+    <string name="directory_name">directory_name</string>
     <string name="file_name">file_name</string>
+    <string name="item_name">item_name</string>
+    <string name="item_value">item_value</string>
+    <string name="new_branch_name">new_branch_name</string>
     <string name="remote_name">remote_name</string>
     <string name="stash_id">stash_id</string>
+
+    <!-- Meanings -->
+    <string name="content_1">Shows the status of your local repository</string>
+    <string name="content_2">Downloads all versioned files from the default branch, if your local one is out of date</string>
+    <string name="content_3">Downloads all versioned files from a specific branch, if your local one is out of date</string>
+    <string name="content_4">Adds all modified files to be committed</string>
+    <string name="content_5">Adds a specific modified file to be committed</string>
+    <string name="content_6"></string>
+    <string name="content_7">Commits all added files and sets the commit message</string>
+    <string name="content_8"></string>
+    <string name="content_9"></string>
+    <string name="content_10">Sends the latest commit(s) into a branch in the remote repository</string>
+    <string name="content_11">Deletes a branch in the remote repository</string>
+    <string name="content_12">Saves all modified files in the memory and restores them to their latest committed state</string>
+    <string name="content_13">Reloads all modified files that have been saved at the latest stash</string>
+    <string name="content_14"></string>
+    <string name="content_15"></string>
+    <string name="content_16"></string>
+    <string name="content_17">Initialises a local Git repository in the current directory</string>
+    <string name="content_18">Adds a remote repository with its name and url, or ssh address</string>
+    <string name="content_19">Restores all modified files to their latest committed state</string>
+    <string name="content_20">Restores a specific modified file to its latest committed state</string>
+    <string name="content_21">Moves into a branch</string>
+    <string name="content_22">Creates a new local branch</string>
+    <string name="content_23">Restores the current branch to its latest committed state</string>
+    <string name="content_24"></string>
+    <string name="content_25"></string>
+    <string name="content_26"></string>
+    <string name="content_27"></string>
+    <string name="content_28">Shows a log containing all commits</string>
+    <string name="content_29">Creates a commit reverting the changes of a specific commit</string>
+    <string name="content_30">Shows all local branches</string>
+    <string name="content_31">Safely deletes a local branch</string>
+    <string name="content_32">Force deletes a local branch</string>
+    <string name="content_33">Shows all branches, both local and remote</string>
+    <string name="content_34">Shows all branches that have been merged into the main branch</string>
+    <string name="content_35">Sets a value to a specific configuration item in the .config file</string>
+    <string name="content_36">Deletes all new files from your local repository</string>
+    <string name="content_37">Deletes both new files and new directories from your local repository</string>
+    <string name="content_38">Deletes all unversioned files and directories from your local repository</string>
+    <string name="content_39">Merges a specific branch into your current branch</string>
+    <string name="content_40">Shows in details all modifications done so far</string>
+    <string name="content_41">Shows in details all modifications done so far in a specific file</string>
+    <string name="content_42">Shows in details all modifications done so far, in comparison with a specific branch</string>
+    <string name="content_43">Shows each user responsible for the changes made in a specific file</string>
+    <string name="content_44">Launches the pre-defined tool for viewing modifications in the local repository</string>
+    <string name="content_45">Launches the pre-defined tool for handling merge conflicts in the local repository</string>
+    <string name="content_46">Launches the pre-defined tool for using Git with a graphic user interface</string>
+    <string name="content_47">Creates a file in the current directory with a specific name</string>
+    <string name="content_48">Deletes a file</string>
+    <string name="content_49">Force deletes a file</string>
+    <string name="content_50">Recursively deletes a directory</string>
+    <string name="content_51">Recursively force deletes a directory</string>
+    <string name="content_52">Opens the contents of a file</string>
+    <string name="content_53"></string>
 
 </resources>

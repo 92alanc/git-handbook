@@ -62,7 +62,8 @@ public class CommandRepository extends BaseRepository<Command>
             {
                 id = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_ID));
                 title = cursor.getString(cursor.getColumnIndex(CommandsTable.COLUMN_TITLE));
-                int parameterId = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_PARAMETER));
+                int parameterId = MeaningRepository.getInstance(context)
+                        .selectWhere(MeaningsTable.COLUMN_PARAMETER, MeaningsTable.COLUMN_COMMAND, id);
                 parameter = ParameterRepository.getInstance(context)
                                                .select(parameterId);
                 meaning = MeaningRepository.getInstance(context)
@@ -103,7 +104,8 @@ public class CommandRepository extends BaseRepository<Command>
             if (cursor.getCount() > 0)
             {
                 String title = cursor.getString(cursor.getColumnIndex(CommandsTable.COLUMN_TITLE));
-                int parameterId = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_PARAMETER));
+                int parameterId = MeaningRepository.getInstance(context)
+                        .selectWhere(MeaningsTable.COLUMN_PARAMETER, MeaningsTable.COLUMN_COMMAND, id);
                 String parameter = ParameterRepository.getInstance(context)
                                                .select(parameterId);
                 String meaning = MeaningRepository.getInstance(context)

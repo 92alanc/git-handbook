@@ -7,7 +7,7 @@ package com.braincorp.githandbook.database;
 class ParametersTable
 {
 
-    static final String TABLE_NAME = "PARAMETERS";
+    static final String TABLE_NAME = "PARAMS";
     static final String COLUMN_CONTENT = "CONTENT";
 
 }
