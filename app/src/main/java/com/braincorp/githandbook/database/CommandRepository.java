@@ -57,17 +57,26 @@ public class CommandRepository extends BaseRepository<Command>
         {
             Command command;
             int id;
-            String title, meaning;
-            ArrayList<String> params;
+            String title, meaning, parameter;
             do
             {
                 id = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_ID));
                 title = cursor.getString(cursor.getColumnIndex(CommandsTable.COLUMN_TITLE));
-                params = ParameterRepository.getInstance(context)
-                                            .selectWhere(ParametersTable.COLUMN_COMMAND, id);
-                int meaningId = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_MEANING));
-                meaning = MeaningRepository.getInstance(context).select(meaningId);
-                command = new Command(id, title, params, meaning);
+                int parameterId = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_PARAMETER));
+                parameter = ParameterRepository.getInstance(context)
+                                               .select(parameterId);
+                meaning = MeaningRepository.getInstance(context)
+                                           .selectWhere(new String[]
+                                                                {
+                                                                        MeaningsTable.COLUMN_COMMAND,
+                                                                        MeaningsTable.COLUMN_PARAMETER
+                                                                },
+                                                        new Object[]
+                                                                {
+                                                                        id,
+                                                                        parameterId
+                                                                });
+                command = new Command(id, title, parameter, meaning);
                 commands.add(command);
             } while (cursor.moveToNext());
         }
@@ -88,19 +97,28 @@ public class CommandRepository extends BaseRepository<Command>
             if (reader == null)
                 reader = databaseHelper.getReadableDatabase();
             Cursor cursor = reader.query(CommandsTable.TABLE_NAME, null, CommandsTable.COLUMN_ID
-                                                                          + " = " + String.valueOf(id),
+                                                                         + " = " + String.valueOf(id),
                                          null, null, null, null, "1");
             cursor.moveToFirst();
             if (cursor.getCount() > 0)
             {
                 String title = cursor.getString(cursor.getColumnIndex(CommandsTable.COLUMN_TITLE));
-                ArrayList<String> params = ParameterRepository.getInstance(context)
-                                                              .selectWhere(ParametersTable.COLUMN_COMMAND,
-                                                                           id);
-                int meaningId = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_MEANING));
-                String meaning = MeaningRepository.getInstance(context).select(meaningId);
+                int parameterId = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_PARAMETER));
+                String parameter = ParameterRepository.getInstance(context)
+                                               .select(parameterId);
+                String meaning = MeaningRepository.getInstance(context)
+                                           .selectWhere(new String[]
+                                                                {
+                                                                        MeaningsTable.COLUMN_COMMAND,
+                                                                        MeaningsTable.COLUMN_PARAMETER
+                                                                },
+                                                        new Object[]
+                                                                {
+                                                                        id,
+                                                                        parameterId
+                                                                });
                 cursor.close();
-                return new Command(id, title, params, meaning);
+                return new Command(id, title, parameter, meaning);
             }
             else
             {

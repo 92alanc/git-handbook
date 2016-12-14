@@ -1,7 +1,5 @@
 package com.braincorp.githandbook.model;
 
-import java.util.ArrayList;
-
 /**
  * Command class
  * Created by Alan Camargo - December 2016
@@ -10,21 +8,20 @@ public class Command
 {
 
     private int id;
-    private String title, meaning;
-    private ArrayList<String> params;
+    private String title, meaning, parameter;
 
     /**
      * Creates an instance of Command
      * @param id - the ID
      * @param title - the title
-     * @param params - the parameters, if any
+     * @param parameter - the parameter, if any
      * @param meaning - the meaning
      */
-    public Command(int id, String title, ArrayList<String> params, String meaning)
+    public Command(int id, String title, String parameter, String meaning)
     {
         this.id = id;
         this.title = title;
-        this.params = params;
+        this.parameter = parameter;
         this.meaning = meaning;
     }
 
@@ -56,21 +53,12 @@ public class Command
     }
 
     /**
-     * Gets the parameters
-     * @return parameters
+     * Gets the parameter
+     * @return parameter
      */
-    public ArrayList<String> getParams()
+    public String getParameter()
     {
-        return params;
-    }
-
-    /**
-     * Sets the parameters
-     * @param params - the parameters
-     */
-    public void setParams(ArrayList<String> params)
-    {
-        this.params = params;
+        return parameter;
     }
 
 }

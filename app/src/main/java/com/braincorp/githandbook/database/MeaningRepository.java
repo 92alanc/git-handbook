@@ -98,6 +98,34 @@ public class MeaningRepository extends BaseRepository<String>
     }
 
     /**
+     * Selects one instance where a given condition is met
+     * @param columns - the columns
+     * @param values - the values
+     * @return instance
+     */
+    public String selectWhere(String[] columns, Object[] values)
+    {
+        if (columns != null && values != null)
+        {
+            String meaning = null;
+            if (reader == null)
+                reader = databaseHelper.getReadableDatabase();
+            Cursor cursor = reader.query(MeaningsTable.TABLE_NAME, null,
+                                         String.valueOf(columns[0]) + " = " + String.valueOf(values[0])
+                                         + " AND " + String.valueOf(columns[1]) + " = " + String.valueOf(values[1]),
+                                         null, null,
+                                         null, null, "1");
+            cursor.moveToFirst();
+            if (cursor.getCount() > 0)
+                meaning = cursor.getString(cursor.getColumnIndex(MeaningsTable.COLUMN_CONTENT));
+            cursor.close();
+            return meaning;
+        }
+        else
+            return null;
+    }
+
+    /**
      * Gets the ID of the last instance
      * @return last ID
      */
