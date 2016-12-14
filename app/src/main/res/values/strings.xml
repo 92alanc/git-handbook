@@ -1,3 +1,12 @@
 <resources>
+
     <string name="app_name">Git Handbook</string>
+
+    <string name="any_message">Any message</string>
+    <string name="branch_name">branch_name</string>
+    <string name="commit_it">commit_id</string>
+    <string name="file_name">file_name</string>
+    <string name="remote_name">remote_name</string>
+    <string name="stash_id">stash_id</string>
+
 </resources>
