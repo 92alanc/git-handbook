@@ -68,5 +68,6 @@
     <string name="content_51">Recursively force deletes a directory</string>
     <string name="content_52">Opens the contents of a file</string>
     <string name="content_53"></string>
+    <string name="content_54">Links the local branch to a remote branch</string>
 
 </resources>

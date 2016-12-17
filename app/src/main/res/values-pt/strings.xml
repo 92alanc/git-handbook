@@ -62,5 +62,7 @@
     <string name="content_50">Exclui um diretório de forma recursiva</string>
     <string name="content_51">Exclui um diretório de forma recursiva e forçada</string>
     <string name="content_52">Abre o conteúdo de um arquivo</string>
+    <string name="content_53"></string>
+    <string name="content_54">Liga o branch local a um branch remoto</string>
 
 </resources>
