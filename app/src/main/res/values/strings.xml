@@ -1,6 +1,13 @@
 <resources>
 
+    <!-- Misc -->
+    <string name="about">About</string>
+    <string name="about_text">App developed by Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
     <string name="app_name">Git Handbook</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="reference">Reference</string>
+    <string name="search">Search</string>
+    <string name="git_url" translatable="false">https://git-scm.com/documentation</string>
 
     <!-- Parameters -->
     <string name="any_message">Any message</string>
@@ -20,17 +27,15 @@
     <string name="content_3">Downloads all versioned files from a specific branch, if your local one is out of date</string>
     <string name="content_4">Adds all modified files to be committed</string>
     <string name="content_5">Adds a specific modified file to be committed</string>
-    <string name="content_6"></string>
+    <string name="content_6">Commits all added files through a commit editor window</string>
     <string name="content_7">Commits all added files and sets the commit message</string>
-    <string name="content_8"></string>
-    <string name="content_9"></string>
+    <string name="content_8">Interactively adds files to be committed</string>
+    <string name="content_9">Adds and commits all modified files</string>
     <string name="content_10">Sends the latest commit(s) into a branch in the remote repository</string>
     <string name="content_11">Deletes a branch in the remote repository</string>
     <string name="content_12">Saves all modified files in the memory and restores them to their latest committed state</string>
     <string name="content_13">Reloads all modified files that have been saved at the latest stash</string>
-    <string name="content_14"></string>
-    <string name="content_15"></string>
-    <string name="content_16"></string>
+    <string name="content_14">Shows a list with all stash IDs</string>
     <string name="content_17">Initialises a local Git repository in the current directory</string>
     <string name="content_18">Adds a remote repository with its name and url, or ssh address</string>
     <string name="content_19">Restores all modified files to their latest committed state</string>
@@ -38,10 +43,8 @@
     <string name="content_21">Moves into a branch</string>
     <string name="content_22">Creates a new local branch</string>
     <string name="content_23">Restores the current branch to its latest committed state</string>
-    <string name="content_24"></string>
-    <string name="content_25"></string>
-    <string name="content_26"></string>
-    <string name="content_27"></string>
+    <string name="content_24">Appends all the contents of the current branch onto the target branch</string>
+    <string name="content_25">Interactively appends all the contents of the current branch into the target branch</string>
     <string name="content_28">Shows a log containing all commits</string>
     <string name="content_29">Creates a commit reverting the changes of a specific commit</string>
     <string name="content_30">Shows all local branches</string>
@@ -67,7 +70,8 @@
     <string name="content_50">Recursively deletes a directory</string>
     <string name="content_51">Recursively force deletes a directory</string>
     <string name="content_52">Opens the contents of a file</string>
-    <string name="content_53"></string>
+    <string name="content_53">Downloads all data available from the remote repository</string>
     <string name="content_54">Links the local branch to a remote branch</string>
+    <string name="content_55">Downloads all data available from the remote repository and shows a verbose log</string>
 
 </resources>

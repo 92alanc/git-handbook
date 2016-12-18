@@ -36,7 +36,6 @@
     <string name="content_28">Mostra um log contendo todos os commits</string>
     <string name="content_29">Cria um commit revertendo as alterações de um commit específico</string>
     <string name="content_30">Mostra todos os branches locais</string>
-    <string name="content_27"></string>
     <string name="content_31">Exclui um branch local de forma segura</string>
     <string name="content_32">Exclui um branch local de forma forçada</string>
     <string name="content_33">Mostra todos os branches, tanto locais quanto remotos</string>
@@ -62,7 +61,18 @@
     <string name="content_50">Exclui um diretório de forma recursiva</string>
     <string name="content_51">Exclui um diretório de forma recursiva e forçada</string>
     <string name="content_52">Abre o conteúdo de um arquivo</string>
-    <string name="content_53"></string>
+    <string name="content_53">Baixa todos os dados disponíveis do repositório remoto</string>
     <string name="content_54">Liga o branch local a um branch remoto</string>
+    <string name="about">Sobre</string>
+    <string name="content_6">Coloca todos os arquivos adicionados no commit através de uma janela editora de commit</string>
+    <string name="content_8">Adiciona arquivos de forma interativa para serem colocados em um commit</string>
+    <string name="content_9">Adiciona e coloca no commit todos os arquivos modificados</string>
+    <string name="content_14">Mostra uma lista com todos os IDs de stash</string>
+    <string name="content_24">Emenda todo o conteúdo do branch atual ao branch alvo</string>
+    <string name="content_25">Emenda todo o conteúdo do branch atual ao branch alvo de forma interativa</string>
+    <string name="content_55">Baixa todos os dados disponíveis do repositório remoto e mostra um log detalhado</string>
+    <string name="search">Pesquisar</string>
+    <string name="reference">Referência</string>
+    <string name="about_text">Aplicativo desenvolvido por Braincorp Apps\\ne-mail: alcam.ukdev@gmail.com</string>
 
 </resources>

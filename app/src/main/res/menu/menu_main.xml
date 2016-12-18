@@ -3,6 +3,23 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.braincorp.githandbook.activities.MainActivity">
 
+    <!-- About -->
+    <item
+        android:id="@+id/item_about"
+        android:title="@string/about"
+        app:showAsAction="never"/>
 
+    <!-- Reference -->
+    <item
+        android:id="@+id/item_reference"
+        android:title="@string/reference"
+        app:showAsAction="never"/>
+
+    <!-- Search -->
+    <item
+        android:id="@+id/item_search"
+        android:title="@string/search"
+        android:icon="@mipmap/ic_search_white_24dp"
+        app:showAsAction="ifRoom"/>
 
 </menu>
