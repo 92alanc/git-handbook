@@ -11,7 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import com.braincorp.githandbook.R;
+import com.braincorp.githandbook.database.CommandRepository;
+import com.braincorp.githandbook.frontend.CommandAdapter;
+import com.braincorp.githandbook.model.Command;
+
+import java.util.ArrayList;
 
 /**
  * Main activity class
@@ -27,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setListView();
     }
 
     @Override
@@ -90,6 +97,15 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(getString(R.string.git_url)));
         startActivity(intent);
+    }
+
+    private void setListView()
+    {
+        ListView listView = (ListView)findViewById(R.id.mainList);
+        ArrayList<Command> commands = CommandRepository.getInstance(this).selectAll();
+        CommandAdapter adapter = new CommandAdapter(this,
+                R.layout.list_view_item_command, commands);
+        listView.setAdapter(adapter);
     }
 
 }

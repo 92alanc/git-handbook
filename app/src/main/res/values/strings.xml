@@ -5,6 +5,8 @@
     <string name="about_text">App developed by Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
     <string name="app_name">Git Handbook</string>
     <string name="ok" translatable="false">OK</string>
+    <string name="parameter">1 parameter</string>
+    <string name="parameters">%1$s parameters</string>
     <string name="reference">Reference</string>
     <string name="search">Search</string>
     <string name="git_url" translatable="false">https://git-scm.com/documentation</string>
