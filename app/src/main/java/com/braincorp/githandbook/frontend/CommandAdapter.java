@@ -55,7 +55,7 @@ public class CommandAdapter extends ArrayAdapter<Command>
             holder = (CommandHolder)row.getTag();
         Command command = objects.get(position);
         holder.titleRow.setText(command.getTitle());
-        // TODO: set parameters
+        // TODO: set parameter
         return row;
     }
 

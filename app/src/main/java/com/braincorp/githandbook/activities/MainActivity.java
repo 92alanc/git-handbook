@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity
             });
             dialogue.setTitle(title);
             dialogue.setMessage(R.string.about_text);
+            dialogue.setIcon(R.mipmap.ic_launcher);
             dialogue.show();
         }
         catch (PackageManager.NameNotFoundException e)

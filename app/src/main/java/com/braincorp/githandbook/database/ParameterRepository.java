@@ -98,6 +98,18 @@ public class ParameterRepository extends BaseRepository<String>
     }
 
     /**
+     * Gets all parameters related to a command
+     * @param commandId - the command ID
+     * @return parameters
+     */
+    public ArrayList<Object> getParamsFromCommand(int commandId)
+    {
+        ArrayList<Object> params = new ArrayList<>();
+
+        return params;
+    }
+
+    /**
      * Gets the ID of the last instance
      * @return last ID
      */
