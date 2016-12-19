@@ -3,7 +3,8 @@
     <!-- Misc -->
     <string name="about">About</string>
     <string name="about_text">App developed by Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
-    <string name="adMobId" translatable="false">ca-app-pub-3993772572074236/7150690503</string>
+    <string name="adMobId_Home" translatable="false">ca-app-pub-3993772572074236/3499220106</string>
+    <string name="adMobId_Command" translatable="false">ca-app-pub-3993772572074236/7150690503</string>
     <string name="app_name">Git Handbook</string>
     <string name="command">1 command</string>
     <string name="commands">%1$d commands</string>

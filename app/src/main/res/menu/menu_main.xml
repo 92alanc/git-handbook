@@ -15,11 +15,4 @@
         android:title="@string/reference"
         app:showAsAction="never"/>
 
-    <!-- Search -->
-    <item
-        android:id="@+id/item_search"
-        android:title="@string/search"
-        android:icon="@mipmap/ic_search_white_24dp"
-        app:showAsAction="ifRoom"/>
-
 </menu>

@@ -61,9 +61,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.item_reference:
                 openGitWebPage();
                 break;
-            case R.id.item_search:
-                // TODO: search
-                break;
             default:
                 break;
         }
