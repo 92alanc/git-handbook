@@ -24,7 +24,9 @@ public class CommandActivity extends AppCompatActivity
     private ListView listView;
     private MeaningRepository meaningRepository;
     private ParameterRepository parameterRepository;
-    private int commandId;
+    private int commandId, paramId;
+    private TextView parameterText, meaningText;
+    private ArrayList<Integer> paramIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,6 +41,8 @@ public class CommandActivity extends AppCompatActivity
         commandTitle = getIntent().getStringExtra(AppConstants.EXTRA_COMMAND_TITLE);
         parameterRepository = ParameterRepository.getInstance(this);
         meaningRepository = MeaningRepository.getInstance(this);
+        parameterText = (TextView)findViewById(R.id.parameterText);
+        meaningText = (TextView)findViewById(R.id.meaningText);
         setListView();
         setTextViews();
     }
@@ -59,13 +63,13 @@ public class CommandActivity extends AppCompatActivity
         Command command = commandRepository.select(commandId);
 
         // Parameter
-        TextView paramText = (TextView)findViewById(R.id.parameterText);
         String param = (String)listView.getSelectedItem();
-        paramText.setText(param);
-        int paramId = parameterRepository.selectWhere(ParametersTable.COLUMN_ID, ParametersTable.COLUMN_CONTENT,
+        parameterText.setText(param);
+        paramId = parameterRepository.selectWhere(ParametersTable.COLUMN_ID, ParametersTable.COLUMN_CONTENT,
                 param);
 
         // Meaning
+        // FIXME: meaning is not currently being displayed
         String meaning = meaningRepository.selectWhere(new String[]
                                                         {
                                                                 MeaningsTable.COLUMN_COMMAND,
@@ -76,7 +80,6 @@ public class CommandActivity extends AppCompatActivity
                                                                         command.getId(),
                                                                         paramId
                                                                 });
-        TextView meaningText = (TextView)findViewById(R.id.meaningText);
         meaningText.setText(meaning);
     }
 
@@ -84,7 +87,7 @@ public class CommandActivity extends AppCompatActivity
     {
         listView = (ListView)findViewById(R.id.paramsListView);
         ArrayList<String> objects = new ArrayList<>();
-        ArrayList<Integer> paramIds = meaningRepository.selectWhere(commandId);
+        paramIds = meaningRepository.selectWhere(commandId);
         for (int paramId : paramIds)
             objects.add(parameterRepository.select(paramId));
         ParameterAdapter adapter = new ParameterAdapter(this,
@@ -96,7 +99,7 @@ public class CommandActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
-                // TODO: implement
+                parameterText.setText((String)listView.getItemAtPosition(i));
                 listView.setSelection(i);
             }
         });

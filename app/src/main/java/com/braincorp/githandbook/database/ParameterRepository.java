@@ -58,8 +58,25 @@ public class ParameterRepository extends BaseRepository<String>
     @Override
     public String select(int id)
     {
-        // Not necessary
-        return null;
+        if (id <= 0 || id > getLastId())
+            return null;
+        if (reader == null)
+            reader = databaseHelper.getReadableDatabase();
+        Cursor cursor = reader.query(ParametersTable.TABLE_NAME, null, ParametersTable.COLUMN_ID
+                                                                     + " = " + String.valueOf(id),
+                                     null, null, null, null, "1");
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0)
+        {
+            String param = cursor.getString(cursor.getColumnIndex(ParametersTable.COLUMN_CONTENT));
+            cursor.close();
+            return param;
+        }
+        else
+        {
+            cursor.close();
+            return null;
+        }
     }
 
     /**
@@ -126,8 +143,17 @@ public class ParameterRepository extends BaseRepository<String>
     @Override
     public int getLastId()
     {
-        // Not necessary
-        return 0;
+        if (reader == null)
+            reader = databaseHelper.getReadableDatabase();
+        Cursor cursor = reader.query(ParametersTable.TABLE_NAME, new String[] { ParametersTable.COLUMN_ID },
+                                     null, null, null, null,
+                                     ParametersTable.COLUMN_ID + " DESC", "1");
+        cursor.moveToFirst();
+        int lastId = 0;
+        if (cursor.getCount() > 0)
+            lastId = cursor.getInt(cursor.getColumnIndex(ParametersTable.COLUMN_ID));
+        cursor.close();
+        return lastId;
     }
 
 }
