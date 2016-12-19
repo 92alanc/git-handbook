@@ -74,7 +74,7 @@
     <string name="search">Pesquisar</string>
     <string name="reference">Referência</string>
     <string name="about_text">Aplicativo desenvolvido por Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
-    <string name="parameter">1 parâmetro</string>
-    <string name="parameters">%1$s parâmetros</string>
+    <string name="command">1 comando</string>
+    <string name="commands">%1$d comandos</string>
 
 </resources>

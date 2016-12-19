@@ -11,11 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import com.braincorp.githandbook.R;
+import com.braincorp.githandbook.backend.AppConstants;
 import com.braincorp.githandbook.database.CommandRepository;
 import com.braincorp.githandbook.frontend.CommandAdapter;
 import com.braincorp.githandbook.model.Command;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
 
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setListView();
+        showAds();
     }
 
     @Override
@@ -102,11 +108,31 @@ public class MainActivity extends AppCompatActivity
 
     private void setListView()
     {
-        ListView listView = (ListView)findViewById(R.id.mainList);
+        final ListView listView = (ListView)findViewById(R.id.mainList);
         ArrayList<Command> commands = CommandRepository.getInstance(this).selectAll();
         CommandAdapter adapter = new CommandAdapter(this,
                 R.layout.list_view_item_command, commands);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                Intent intent = new Intent(MainActivity.this, CommandActivity.class);
+                Object selected = listView.getItemAtPosition(i);
+                Command command = (Command)selected;
+                intent.putExtra(AppConstants.EXTRA_COMMAND_ID, command.getId());
+                intent.putExtra(AppConstants.EXTRA_COMMAND_TITLE, command.getTitle());
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void showAds()
+    {
+        AdView adView = (AdView)findViewById(R.id.homeAdView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
 }

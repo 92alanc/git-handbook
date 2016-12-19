@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.braincorp.githandbook.R;
+import com.braincorp.githandbook.database.MeaningRepository;
+import com.braincorp.githandbook.database.MeaningsTable;
 import com.braincorp.githandbook.model.Command;
 
 import java.util.ArrayList;
@@ -48,14 +50,23 @@ public class CommandAdapter extends ArrayAdapter<Command>
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(resource, parent, false);
             holder.titleRow = (TextView)row.findViewById(R.id.commandTitleRow);
-            holder.parametersRow = (TextView)row.findViewById(R.id.commandParamsRow);
+            holder.commandsRow = (TextView)row.findViewById(R.id.commandsRow);
             row.setTag(holder);
         }
         else
             holder = (CommandHolder)row.getTag();
         Command command = objects.get(position);
         holder.titleRow.setText(command.getTitle());
-        // TODO: set parameter
+        int commands = MeaningRepository.getInstance(context)
+                                      .selectWhere(MeaningsTable.COLUMN_COMMAND,
+                                                   command.getId()).size();
+        if (commands == 1)
+            holder.commandsRow.setText(R.string.command);
+        else
+        {
+            String text = String.format(context.getString(R.string.commands), commands);
+            holder.commandsRow.setText(text);
+        }
         return row;
     }
 
@@ -65,7 +76,7 @@ public class CommandAdapter extends ArrayAdapter<Command>
     private static class CommandHolder
     {
 
-        TextView titleRow, parametersRow;
+        TextView titleRow, commandsRow;
 
     }
 

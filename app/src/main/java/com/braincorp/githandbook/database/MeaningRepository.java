@@ -103,7 +103,7 @@ public class MeaningRepository extends BaseRepository<String>
      * @param values - the values
      * @return instance
      */
-    String selectWhere(String[] columns, Object[] values)
+    public String selectWhere(String[] columns, Object[] values)
     {
         if (columns != null && values != null)
         {
@@ -123,6 +123,29 @@ public class MeaningRepository extends BaseRepository<String>
         }
         else
             return null;
+    }
+
+    /**
+     * Gets all parameter IDs related to a command
+     * @param commandId - the command ID
+     * @return parameter IDs
+     */
+    public ArrayList<Integer> selectWhere(int commandId)
+    {
+        if (reader == null)
+            reader = databaseHelper.getReadableDatabase();
+        Cursor cursor = reader.query(MeaningsTable.TABLE_NAME, new String[] { MeaningsTable.COLUMN_PARAMETER },
+                                     MeaningsTable.COLUMN_COMMAND + " = " + commandId, null,
+                                     null, null, null);
+        cursor.moveToFirst();
+        ArrayList<Integer> paramIds = new ArrayList<>();
+        do
+        {
+            int id = cursor.getInt(cursor.getColumnIndex(MeaningsTable.COLUMN_PARAMETER));
+            paramIds.add(id);
+        } while (cursor.moveToNext());
+        cursor.close();
+        return paramIds;
     }
 
     /**

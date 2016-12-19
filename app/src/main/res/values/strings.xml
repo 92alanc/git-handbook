@@ -3,10 +3,11 @@
     <!-- Misc -->
     <string name="about">About</string>
     <string name="about_text">App developed by Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
+    <string name="adMobId" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="app_name">Git Handbook</string>
+    <string name="command">1 command</string>
+    <string name="commands">%1$d commands</string>
     <string name="ok" translatable="false">OK</string>
-    <string name="parameter">1 parameter</string>
-    <string name="parameters">%1$s parameters</string>
     <string name="reference">Reference</string>
     <string name="search">Search</string>
     <string name="git_url" translatable="false">https://git-scm.com/documentation</string>
@@ -25,8 +26,10 @@
 
     <!-- Meanings -->
     <string name="content_1">Shows the status of your local repository</string>
-    <string name="content_2">Downloads all versioned files from the default branch, if your local one is out of date</string>
-    <string name="content_3">Downloads all versioned files from a specific branch, if your local one is out of date</string>
+    <string name="content_2">Downloads all versioned files from the default branch, if your local one is out of date
+    </string>
+    <string name="content_3">Downloads all versioned files from a specific branch, if your local one is out of date
+    </string>
     <string name="content_4">Adds all modified files to be committed</string>
     <string name="content_5">Adds a specific modified file to be committed</string>
     <string name="content_6">Commits all added files through a commit editor window</string>
@@ -35,7 +38,8 @@
     <string name="content_9">Adds and commits all modified files</string>
     <string name="content_10">Sends the latest commit(s) into a branch in the remote repository</string>
     <string name="content_11">Deletes a branch in the remote repository</string>
-    <string name="content_12">Saves all modified files in the memory and restores them to their latest committed state</string>
+    <string name="content_12">Saves all modified files in the memory and restores them to their latest committed state
+    </string>
     <string name="content_13">Reloads all modified files that have been saved at the latest stash</string>
     <string name="content_14">Shows a list with all stash IDs</string>
     <string name="content_17">Initialises a local Git repository in the current directory</string>
@@ -46,7 +50,8 @@
     <string name="content_22">Creates a new local branch</string>
     <string name="content_23">Restores the current branch to its latest committed state</string>
     <string name="content_24">Appends all the contents of the current branch onto the target branch</string>
-    <string name="content_25">Interactively appends all the contents of the current branch into the target branch</string>
+    <string name="content_25">Interactively appends all the contents of the current branch into the target branch
+    </string>
     <string name="content_28">Shows a log containing all commits</string>
     <string name="content_29">Creates a commit reverting the changes of a specific commit</string>
     <string name="content_30">Shows all local branches</string>
@@ -61,10 +66,12 @@
     <string name="content_39">Merges a specific branch into your current branch</string>
     <string name="content_40">Shows in details all modifications done so far</string>
     <string name="content_41">Shows in details all modifications done so far in a specific file</string>
-    <string name="content_42">Shows in details all modifications done so far, in comparison with a specific branch</string>
+    <string name="content_42">Shows in details all modifications done so far, in comparison with a specific branch
+    </string>
     <string name="content_43">Shows each user responsible for the changes made in a specific file</string>
     <string name="content_44">Launches the pre-defined tool for viewing modifications in the local repository</string>
-    <string name="content_45">Launches the pre-defined tool for handling merge conflicts in the local repository</string>
+    <string name="content_45">Launches the pre-defined tool for handling merge conflicts in the local repository
+    </string>
     <string name="content_46">Launches the pre-defined tool for using Git with a graphic user interface</string>
     <string name="content_47">Creates a file in the current directory with a specific name</string>
     <string name="content_48">Deletes a file</string>

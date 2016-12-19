@@ -98,15 +98,25 @@ public class ParameterRepository extends BaseRepository<String>
     }
 
     /**
-     * Gets all parameters related to a command
-     * @param commandId - the command ID
-     * @return parameters
+     * Selects the value of a specific column
+     * @param columnToSelect - the column to select
+     * @param column - the column
+     * @param value - the value
+     * @return instance
      */
-    public ArrayList<Object> getParamsFromCommand(int commandId)
+    public int selectWhere(String columnToSelect, String column, Object value)
     {
-        ArrayList<Object> params = new ArrayList<>();
-
-        return params;
+        if (reader == null)
+            reader = databaseHelper.getReadableDatabase();
+        Cursor cursor = reader.query(ParametersTable.TABLE_NAME, new String[] { columnToSelect },
+                                     column + " = " + value, null, null,
+                                      null, null, "1");
+        cursor.moveToFirst();
+        int id = 0;
+        if (cursor.getCount() > 0)
+            id = cursor.getInt(cursor.getColumnIndex(columnToSelect));
+        cursor.close();
+        return id;
     }
 
     /**
