@@ -57,27 +57,12 @@ public class CommandRepository extends BaseRepository<Command>
         {
             Command command;
             int id;
-            String title, meaning, parameter;
+            String title;
             do
             {
                 id = cursor.getInt(cursor.getColumnIndex(CommandsTable.COLUMN_ID));
                 title = cursor.getString(cursor.getColumnIndex(CommandsTable.COLUMN_TITLE));
-                int parameterId = MeaningRepository.getInstance(context)
-                        .selectWhere(MeaningsTable.COLUMN_PARAMETER, MeaningsTable.COLUMN_COMMAND, id);
-                parameter = ParameterRepository.getInstance(context)
-                                               .select(parameterId);
-                meaning = MeaningRepository.getInstance(context)
-                                           .selectWhere(new String[]
-                                                                {
-                                                                        MeaningsTable.COLUMN_COMMAND,
-                                                                        MeaningsTable.COLUMN_PARAMETER
-                                                                },
-                                                        new Object[]
-                                                                {
-                                                                        id,
-                                                                        parameterId
-                                                                });
-                command = new Command(id, title, parameter, meaning);
+                command = new Command(id, title);
                 commands.add(command);
             } while (cursor.moveToNext());
         }
@@ -104,23 +89,8 @@ public class CommandRepository extends BaseRepository<Command>
             if (cursor.getCount() > 0)
             {
                 String title = cursor.getString(cursor.getColumnIndex(CommandsTable.COLUMN_TITLE));
-                int parameterId = MeaningRepository.getInstance(context)
-                        .selectWhere(MeaningsTable.COLUMN_PARAMETER, MeaningsTable.COLUMN_COMMAND, id);
-                String parameter = ParameterRepository.getInstance(context)
-                                               .select(parameterId);
-                String meaning = MeaningRepository.getInstance(context)
-                                           .selectWhere(new String[]
-                                                                {
-                                                                        MeaningsTable.COLUMN_COMMAND,
-                                                                        MeaningsTable.COLUMN_PARAMETER
-                                                                },
-                                                        new Object[]
-                                                                {
-                                                                        id,
-                                                                        parameterId
-                                                                });
                 cursor.close();
-                return new Command(id, title, parameter, meaning);
+                return new Command(id, title);
             }
             else
             {

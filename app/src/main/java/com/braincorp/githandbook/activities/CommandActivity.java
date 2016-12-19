@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.braincorp.githandbook.R;
 import com.braincorp.githandbook.backend.AppConstants;
+import com.braincorp.githandbook.backend.BackEndTools;
 import com.braincorp.githandbook.database.*;
 import com.braincorp.githandbook.frontend.ParameterAdapter;
 import com.braincorp.githandbook.model.Command;
@@ -20,13 +21,13 @@ import java.util.ArrayList;
 public class CommandActivity extends AppCompatActivity
 {
 
-    private String commandTitle;
+    private String meaning;
+    private Command command;
     private ListView listView;
     private MeaningRepository meaningRepository;
     private ParameterRepository parameterRepository;
-    private int commandId, paramId;
+    private int paramId;
     private TextView parameterText, meaningText;
-    private ArrayList<Integer> paramIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,14 +38,20 @@ public class CommandActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         showAds();
-        commandId = getIntent().getIntExtra(AppConstants.EXTRA_COMMAND_ID, AppConstants.DEFAULT_INT_EXTRA);
-        commandTitle = getIntent().getStringExtra(AppConstants.EXTRA_COMMAND_TITLE);
+        buildCommand();
         parameterRepository = ParameterRepository.getInstance(this);
         meaningRepository = MeaningRepository.getInstance(this);
         parameterText = (TextView)findViewById(R.id.parameterText);
         meaningText = (TextView)findViewById(R.id.meaningText);
         setListView();
         setTextViews();
+    }
+
+    private void buildCommand()
+    {
+        int commandId = getIntent().getIntExtra(AppConstants.EXTRA_COMMAND_ID, AppConstants.DEFAULT_INT_EXTRA);
+        String commandTitle = getIntent().getStringExtra(AppConstants.EXTRA_COMMAND_TITLE);
+        command = new Command(commandId, commandTitle);
     }
 
     private void showAds()
@@ -58,28 +65,26 @@ public class CommandActivity extends AppCompatActivity
     {
         // Command
         TextView commandText = (TextView)findViewById(R.id.commandText);
-        commandText.setText(commandTitle);
-        CommandRepository commandRepository = CommandRepository.getInstance(this);
-        Command command = commandRepository.select(commandId);
+        commandText.setText(command.getTitle());
 
         // Parameter
-        String param = (String)listView.getSelectedItem();
+        String param = (String)listView.getItemAtPosition(0);
         parameterText.setText(param);
         paramId = parameterRepository.selectWhere(ParametersTable.COLUMN_ID, ParametersTable.COLUMN_CONTENT,
-                param);
+                                                  param);
 
         // Meaning
-        // FIXME: meaning is not currently being displayed
-        String meaning = meaningRepository.selectWhere(new String[]
+        meaning = meaningRepository.selectWhere(new String[]
                                                         {
                                                                 MeaningsTable.COLUMN_COMMAND,
                                                                 MeaningsTable.COLUMN_PARAMETER
                                                         },
-                                                        new Object[]
-                                                                {
-                                                                        command.getId(),
-                                                                        paramId
-                                                                });
+                                                new Object[]
+                                                        {
+                                                                command.getId(),
+                                                                paramId
+                                                        });
+        meaning = getString(BackEndTools.getStringResourceKey(getBaseContext(), meaning));
         meaningText.setText(meaning);
     }
 
@@ -87,7 +92,7 @@ public class CommandActivity extends AppCompatActivity
     {
         listView = (ListView)findViewById(R.id.paramsListView);
         ArrayList<String> objects = new ArrayList<>();
-        paramIds = meaningRepository.selectWhere(commandId);
+        ArrayList<Integer> paramIds = meaningRepository.selectWhere(command.getId());
         for (int paramId : paramIds)
             objects.add(parameterRepository.select(paramId));
         ParameterAdapter adapter = new ParameterAdapter(this,
@@ -99,8 +104,22 @@ public class CommandActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
-                parameterText.setText((String)listView.getItemAtPosition(i));
-                listView.setSelection(i);
+                String param = (String)listView.getItemAtPosition(i);
+                parameterText.setText(param);
+                paramId = parameterRepository.selectWhere(ParametersTable.COLUMN_ID, ParametersTable.COLUMN_CONTENT,
+                                                          param);
+                meaning = meaningRepository.selectWhere(new String[]
+                                                                       {
+                                                                               MeaningsTable.COLUMN_COMMAND,
+                                                                               MeaningsTable.COLUMN_PARAMETER
+                                                                       },
+                                                               new Object[]
+                                                                       {
+                                                                               command.getId(),
+                                                                               paramId
+                                                                       });
+                meaning = getString(BackEndTools.getStringResourceKey(getBaseContext(), meaning));
+                meaningText.setText(meaning);
             }
         });
     }

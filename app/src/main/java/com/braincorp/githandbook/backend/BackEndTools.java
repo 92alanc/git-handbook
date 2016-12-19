@@ -17,9 +17,21 @@ public class BackEndTools
      * @param resId - the resource ID
      * @return key
      */
-    private static String convertResourceIdToStringKey(Context context, int resId)
+    public static String convertResourceIdToStringKey(Context context, int resId)
     {
         return context.getResources().getResourceName(resId);
+    }
+
+    /**
+     * Converts a string
+     * @param context - the context
+     * @param str - the string to be converted
+     * @return resource key
+     */
+    public static int getStringResourceKey(Context context, String str)
+    {
+        return context.getResources().getIdentifier(str, "string",
+                                                    context.getPackageName());
     }
 
     //public static ArrayList<String>

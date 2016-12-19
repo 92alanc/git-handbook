@@ -3,11 +3,12 @@
     <!-- Misc -->
     <string name="about">About</string>
     <string name="about_text">App developed by Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
-    <string name="adMobId" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="adMobId" translatable="false">ca-app-pub-3993772572074236/7150690503</string>
     <string name="app_name">Git Handbook</string>
     <string name="command">1 command</string>
     <string name="commands">%1$d commands</string>
     <string name="ok" translatable="false">OK</string>
+    <string name="parameters">Parameters</string>
     <string name="reference">Reference</string>
     <string name="search">Search</string>
     <string name="git_url" translatable="false">https://git-scm.com/documentation</string>

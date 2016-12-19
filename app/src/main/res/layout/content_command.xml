@@ -44,12 +44,26 @@
             android:textSize="16sp"
             android:textColor="@color/white"/>
 
+    <!-- Parameters text view -->
+    <TextView
+            android:id="@+id/paramsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/meaningText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="@string/parameters"/>
+
     <!-- Parameters list view -->
     <ListView
             android:id="@+id/paramsListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/meaningText"
+            android:layout_below="@id/paramsTextView"
             android:layout_marginBottom="50dp"/>
 
     <!-- Ad View -->

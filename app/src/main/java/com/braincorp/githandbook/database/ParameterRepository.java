@@ -126,7 +126,7 @@ public class ParameterRepository extends BaseRepository<String>
         if (reader == null)
             reader = databaseHelper.getReadableDatabase();
         Cursor cursor = reader.query(ParametersTable.TABLE_NAME, new String[] { columnToSelect },
-                                     column + " = " + value, null, null,
+                                     column + " = '" + value + "'", null, null,
                                       null, null, "1");
         cursor.moveToFirst();
         int id = 0;

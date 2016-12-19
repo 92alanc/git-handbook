@@ -76,5 +76,6 @@
     <string name="about_text">Aplicativo desenvolvido por Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
     <string name="command">1 comando</string>
     <string name="commands">%1$d comandos</string>
+    <string name="parameters">Parâmetros</string>
 
 </resources>

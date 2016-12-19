@@ -51,6 +51,8 @@ public class ParameterAdapter extends ArrayAdapter<String>
         else
             holder = (ParameterHolder)row.getTag();
         String param = objects.get(position);
+        if (param == null)
+            param = "<NULL>";
         holder.parameterRow.setText(param);
         return row;
     }

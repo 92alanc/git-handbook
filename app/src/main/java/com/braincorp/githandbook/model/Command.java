@@ -8,21 +8,17 @@ public class Command
 {
 
     private int id;
-    private String title, meaning, parameter;
+    private String title;
 
     /**
      * Creates an instance of Command
      * @param id - the ID
      * @param title - the title
-     * @param parameter - the parameter, if any
-     * @param meaning - the meaning
      */
-    public Command(int id, String title, String parameter, String meaning)
+    public Command(int id, String title)
     {
         this.id = id;
         this.title = title;
-        this.parameter = parameter;
-        this.meaning = meaning;
     }
 
     /**
@@ -41,24 +37,6 @@ public class Command
     public String getTitle()
     {
         return title;
-    }
-
-    /**
-     * Gets the meaning
-     * @return meaning
-     */
-    public String getMeaning()
-    {
-        return meaning;
-    }
-
-    /**
-     * Gets the parameter
-     * @return parameter
-     */
-    public String getParameter()
-    {
-        return parameter;
     }
 
 }
