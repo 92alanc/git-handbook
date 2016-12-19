@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.braincorp.githandbook.R;
+import com.braincorp.githandbook.backend.BackEndTools;
 
 import java.util.ArrayList;
 
@@ -53,6 +54,8 @@ public class ParameterAdapter extends ArrayAdapter<String>
         String param = objects.get(position);
         if (param == null)
             param = "<NULL>";
+        else
+            param = context.getString(BackEndTools.getStringResourceKey(context, param));
         holder.parameterRow.setText(param);
         return row;
     }

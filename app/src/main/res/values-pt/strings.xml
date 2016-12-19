@@ -2,16 +2,6 @@
 <resources>
 
     <string name="app_name">Manual do Git</string>
-    <string name="branch_name">nome_do_branch</string>
-    <string name="remote_name">nome_do_remoto</string>
-    <string name="file_name">nome_do_arquivo</string>
-    <string name="any_message">Qualquer mensagem</string>
-    <string name="commit_it">id_do_commit</string>
-    <string name="stash_id">id_do_stash</string>
-    <string name="new_branch_name">nome_do_novo_branch</string>
-    <string name="item_name">nome_do_item</string>
-    <string name="item_value">valor_do_item</string>
-    <string name="directory_name">nome_do_diretório</string>
     <string name="content_1">Mostra o status do seu repositório local</string>
     <string name="content_2">Baixa todos os arquivos versionados do branch padrão, se o seu local estiver desatualizado
     </string>
@@ -90,5 +80,76 @@
     <string name="example_51">rm -rf diretorio_teimoso/</string>
     <string name="example_7">git commit -m \"Implementei 5 metodos novos\"</string>
     <string name="example">Exemplo</string>
+    <string name="param_1">[nome_do_remoto] [nome_do_branch]</string>
+    <string name="param_12">add [nome_do_remoto] [url/ssh]</string>
+    <string name="param_13">[nome_do_branch]</string>
+    <string name="param_14">-b [nome_do_novo_branch]</string>
+    <string name="param_16">-i [nome_do_branch]</string>
+    <string name="param_17">[id_do_commit]</string>
+    <string name="param_19">-d [nome_do_branch]</string>
+    <string name="param_20">-D [nome_do_branch]</string>
+    <string name="param_22">--global [nome_do_item] [valor_do_item]</string>
+    <string name="param_26">-f [nome_do_arquivo]</string>
+    <string name="param_27">-r [nome_do_diretório]</string>
+    <string name="param_3">[nome_do_arquivo]</string>
+    <string name="param_31">--global alias.[nome_do_atalho] [título_do_comando]</string>
+    <string name="param_4">-m \"Sua mensagem de commit\"</string>
+    <string name="param_7">[nome_do_remoto] --delete [nome_do_branch]</string>
+    <string name="content_56">Cria um atalho para um comando</string>
+    <string name="param_29">--set upstream-to=[nome_do_remoto]/[branch_remoto] [branch_local]</string>
+    <string name="param_28">-rf [nome_do_diretório]</string>
+    <string name="example_1">git status</string>
+    <string name="example_10">git push origin master</string>
+    <string name="example_12">git stash</string>
+    <string name="example_13">git stash pop</string>
+    <string name="example_14">git stash list</string>
+    <string name="example_17">git init</string>
+    <string name="example_19">git checkout .</string>
+    <string name="example_2">git pull</string>
+    <string name="example_20">git checkout RandomClass.cs</string>
+    <string name="example_23">git reset --hard HEAD</string>
+    <string name="example_28">git log</string>
+    <string name="example_29">git revert db85d169c9daa90061f3a32857fddf7a0087a789</string>
+    <string name="example_3">git pull origin master</string>
+    <string name="example_30">git branch</string>
+    <string name="example_33">git branch -a</string>
+    <string name="example_34">git branch --merged</string>
+    <string name="example_35">git config --global user.name steve.harris</string>
+    <string name="example_36">git clean -f</string>
+    <string name="example_37">git clean -df</string>
+    <string name="example_38">git clean -xdf</string>
+    <string name="example_4">git add .</string>
+    <string name="example_40">git diff</string>
+    <string name="example_41">git diff AceOfSpades.xml</string>
+    <string name="example_42">git diff aqueleBranchLegal</string>
+    <string name="example_43">git blame AcesHigh.js</string>
+    <string name="example_44">git difftool</string>
+    <string name="example_45">git mergetool</string>
+    <string name="example_46">git gui</string>
+    <string name="example_47">touch MasterOfPuppets.txt</string>
+    <string name="example_48">rm Trooper.cpp</string>
+    <string name="example_49">rm -f Overkill.c</string>
+    <string name="example_5">git add MinhaClasse.java</string>
+    <string name="example_52">cat Powerslave.java</string>
+    <string name="example_53">git fetch</string>
+    <string name="example_54">git branch --set-upstream-to=origin/master master</string>
+    <string name="example_55">git fetch -v</string>
+    <string name="example_56">git config --global alias.co checkout</string>
+    <string name="example_6">git commit</string>
+    <string name="example_8">git add -i</string>
+    <string name="example_9">git commit -a</string>
+    <string name="git_url">https://git-scm.com/documentation</string>
+    <string name="ok">OK</string>
+    <string name="param_15">--hard HEAD</string>
+    <string name="param_2">.</string>
+    <string name="param_21">--merged</string>
+    <string name="param_23">-f</string>
+    <string name="param_24">-df</string>
+    <string name="param_25">-xdf</string>
+    <string name="param_30">-v</string>
+    <string name="param_5">-i</string>
+    <string name="param_6">-a</string>
+    <string name="param_8">pop</string>
+    <string name="param_9">list</string>
 
 </resources>

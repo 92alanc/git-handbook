@@ -70,9 +70,11 @@ public class CommandActivity extends AppCompatActivity
 
         // Parameter
         String param = (String)listView.getItemAtPosition(0);
-        parameterText.setText(param);
         paramId = parameterRepository.selectWhere(ParametersTable.COLUMN_ID, ParametersTable.COLUMN_CONTENT,
                                                   param);
+        if (param != null)
+            param = getString(BackEndTools.getStringResourceKey(getBaseContext(), param));
+        parameterText.setText(param);
 
         // Meaning
         meaning = meaningRepository.selectWhere(new String[]
@@ -110,9 +112,12 @@ public class CommandActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
                 String param = (String)listView.getItemAtPosition(i);
-                parameterText.setText(param);
                 paramId = parameterRepository.selectWhere(ParametersTable.COLUMN_ID, ParametersTable.COLUMN_CONTENT,
                                                           param);
+                if (param != null)
+                    param = getString(BackEndTools.getStringResourceKey(getBaseContext(), param));
+                parameterText.setText(param);
+
                 meaning = meaningRepository.selectWhere(new String[]
                                                                        {
                                                                                MeaningsTable.COLUMN_COMMAND,
