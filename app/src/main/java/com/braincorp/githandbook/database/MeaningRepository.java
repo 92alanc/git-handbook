@@ -98,6 +98,42 @@ public class MeaningRepository extends BaseRepository<String>
     }
 
     /**
+     * Selects all instances where a condition is met
+     * e.g.: SELECT * FROM [TABLE] WHERE column = value
+     * @param columnToSelect - the column to select
+     * @param column - the column
+     * @param value  - the value
+     * @return instances
+     */
+    public ArrayList<String> selectWhere(String columnToSelect, String column, Object value)
+    {
+        if (column != null && value != null)
+        {
+            value = String.format("'%1$s'", String.valueOf(value));
+            ArrayList<String> objects = new ArrayList<>();
+            if (reader == null)
+                reader = databaseHelper.getReadableDatabase();
+            Cursor cursor = reader.query(MeaningsTable.TABLE_NAME, new String[] { columnToSelect },
+                    String.valueOf(column) + " = " + String.valueOf(value),
+                    null, null,
+                    null, null);
+            cursor.moveToFirst();
+            if (cursor.getCount() > 0)
+            {
+                do
+                {
+                    String meaning = cursor.getString(cursor.getColumnIndex(columnToSelect));
+                    objects.add(meaning);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            return objects;
+        }
+        else
+            return selectAll();
+    }
+
+    /**
      * Selects one instance where a given condition is met
      * @param columns - the columns
      * @param values - the values

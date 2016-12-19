@@ -76,6 +76,19 @@
     <string name="about_text">Aplicativo desenvolvido por Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
     <string name="command">1 comando</string>
     <string name="commands">%1$d comandos</string>
-    <string name="parameters">Parâmetros</string>
+    <string name="parameters">Parâmetros (clique para selecionar)</string>
+    <string name="example_11">git push origin --delete meuBranch</string>
+    <string name="example_18">Usando URL: git remote add origin "http://www.braincorp.com/meu-nome-de-usuario/meu-repositorio.git"\nUsando SSH: git remote add origin git@braincorp.com:meu-nome-de-usuario/meu-repositorio.git</string>
+    <string name="example_21">git checkout outroBranch</string>
+    <string name="example_22">git checkout -b meuNovoBranch</string>
+    <string name="example_24">git rebase branchAlvo</string>
+    <string name="example_25">git rebase -i aqueleBranch</string>
+    <string name="example_31">git branch -d branchVelho</string>
+    <string name="example_32">git branch -D branchInutil</string>
+    <string name="example_39">git merge branchAlfa</string>
+    <string name="example_50">rm -r diretorio/</string>
+    <string name="example_51">rm -rf diretorio_teimoso/</string>
+    <string name="example_7">git commit -m \"Implementei 5 metodos novos\"</string>
+    <string name="example">Exemplo</string>
 
 </resources>

@@ -8,8 +8,9 @@ public class MeaningsTable
 {
 
     static final String TABLE_NAME = "MEANINGS";
-    static final String COLUMN_CONTENT = "CONTENT";
+    public static final String COLUMN_CONTENT = "CONTENT";
     public static final String COLUMN_COMMAND = "COMMAND";
     public static final String COLUMN_PARAMETER = "PARAM";
+    public static final String COLUMN_EXAMPLE = "EXAMPLE";
 
 }

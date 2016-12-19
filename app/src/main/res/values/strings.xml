@@ -8,11 +8,65 @@
     <string name="app_name">Git Handbook</string>
     <string name="command">1 command</string>
     <string name="commands">%1$d commands</string>
+    <string name="example">Example</string>
     <string name="ok" translatable="false">OK</string>
-    <string name="parameters">Parameters</string>
+    <string name="parameters">Parameters (tap to select)</string>
     <string name="reference">Reference</string>
     <string name="search">Search</string>
     <string name="git_url" translatable="false">https://git-scm.com/documentation</string>
+
+    <!-- Examples -->
+    <string name="example_1" translatable="false">git status</string>
+    <string name="example_2" translatable="false">git pull</string>
+    <string name="example_3" translatable="false">git pull origin master</string>
+    <string name="example_4" translatable="false">git add .</string>
+    <string name="example_5" translatable="false">git add MyClass.java</string>
+    <string name="example_6" translatable="false">git commit</string>
+    <string name="example_7">git commit -m "Implemented 5 new methods"</string>
+    <string name="example_8" translatable="false">git add -i</string>
+    <string name="example_9" translatable="false">git commit -a</string>
+    <string name="example_10" translatable="false">git push origin master</string>
+    <string name="example_11">git push origin --delete myBranch</string>
+    <string name="example_12" translatable="false">git stash</string>
+    <string name="example_13" translatable="false">git stash pop</string>
+    <string name="example_14" translatable="false">git stash list</string>
+    <string name="example_17" translatable="false">git init</string>
+    <string name="example_18">Using URL: git remote add origin \"http://www.braincorp.com/my-user-name/my-repository.git\"\nUsing SSH: git remote add origin git@braincorp.com:my-user-name/my-repository.git</string>
+    <string name="example_19" translatable="false">git checkout .</string>
+    <string name="example_20" translatable="false">git checkout RandomClass.cs</string>
+    <string name="example_21">git checkout anotherBranch</string>
+    <string name="example_22">git checkout -b myNewBranch</string>
+    <string name="example_23" translatable="false">git reset --hard HEAD</string>
+    <string name="example_24">git rebase targetBranch</string>
+    <string name="example_25">git rebase -i thatOneBranch</string>
+    <string name="example_28" translatable="false">git log</string>
+    <string name="example_29" translatable="false">git revert db85d169c9daa90061f3a32857fddf7a0087a789</string>
+    <string name="example_30" translatable="false">git branch</string>
+    <string name="example_31">git branch -d oldBranch</string>
+    <string name="example_32">git branch -D uselessBranch</string>
+    <string name="example_33" translatable="false">git branch -a</string>
+    <string name="example_34" translatable="false">git branch --merged</string>
+    <string name="example_35" translatable="false">git config --global user.name steve.harris</string>
+    <string name="example_36" translatable="false">git clean -f</string>
+    <string name="example_37" translatable="false">git clean -df</string>
+    <string name="example_38" translatable="false">git clean -xdf</string>
+    <string name="example_39">git merge alphaBranch</string>
+    <string name="example_40" translatable="false">git diff</string>
+    <string name="example_41" translatable="false">git diff AceOfSpades.xml</string>
+    <string name="example_42" translatable="false">git diff thatCoolBranch</string>
+    <string name="example_43" translatable="false">git blame Trooper.js</string>
+    <string name="example_44" translatable="false">git difftool</string>
+    <string name="example_45" translatable="false">git mergetool</string>
+    <string name="example_46" translatable="false">git gui</string>
+    <string name="example_47" translatable="false">touch MasterOfPuppets.txt</string>
+    <string name="example_48" translatable="false">rm Trooper.cpp</string>
+    <string name="example_49" translatable="false">rm -f Overkill.c</string>
+    <string name="example_50">rm -r directory/</string>
+    <string name="example_51">rm -rf stubborn_directory/</string>
+    <string name="example_52" translatable="false">cat Powerslave.aspx</string>
+    <string name="example_53" translatable="false">git fetch</string>
+    <string name="example_54" translatable="false">git branch --set-upstream-to=origin/master master</string>
+    <string name="example_55" translatable="false">git fetch -v</string>
 
     <!-- Parameters -->
     <string name="any_message">Any message</string>

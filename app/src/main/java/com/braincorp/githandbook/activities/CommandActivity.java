@@ -21,13 +21,13 @@ import java.util.ArrayList;
 public class CommandActivity extends AppCompatActivity
 {
 
-    private String meaning;
+    private String meaning, example;
     private Command command;
     private ListView listView;
     private MeaningRepository meaningRepository;
     private ParameterRepository parameterRepository;
     private int paramId;
-    private TextView parameterText, meaningText;
+    private TextView parameterText, meaningText, exampleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +43,7 @@ public class CommandActivity extends AppCompatActivity
         meaningRepository = MeaningRepository.getInstance(this);
         parameterText = (TextView)findViewById(R.id.parameterText);
         meaningText = (TextView)findViewById(R.id.meaningText);
+        exampleText = (TextView)findViewById(R.id.exampleText);
         setListView();
         setTextViews();
     }
@@ -84,6 +85,10 @@ public class CommandActivity extends AppCompatActivity
                                                                 command.getId(),
                                                                 paramId
                                                         });
+        example = meaningRepository.selectWhere(MeaningsTable.COLUMN_EXAMPLE,
+                MeaningsTable.COLUMN_CONTENT, meaning).get(0);
+        example = getString(BackEndTools.getStringResourceKey(getBaseContext(), example));
+        exampleText.setText(example);
         meaning = getString(BackEndTools.getStringResourceKey(getBaseContext(), meaning));
         meaningText.setText(meaning);
     }
@@ -118,6 +123,10 @@ public class CommandActivity extends AppCompatActivity
                                                                                command.getId(),
                                                                                paramId
                                                                        });
+                example = meaningRepository.selectWhere(MeaningsTable.COLUMN_EXAMPLE,
+                        MeaningsTable.COLUMN_CONTENT, meaning).get(0);
+                example = getString(BackEndTools.getStringResourceKey(getBaseContext(), example));
+                exampleText.setText(example);
                 meaning = getString(BackEndTools.getStringResourceKey(getBaseContext(), meaning));
                 meaningText.setText(meaning);
             }
