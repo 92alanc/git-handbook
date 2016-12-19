@@ -51,7 +51,7 @@ public class CommandRepository extends BaseRepository<Command>
         if (reader == null)
             reader = databaseHelper.getReadableDatabase();
         Cursor cursor = reader.query(CommandsTable.TABLE_NAME, null, null, null, null,
-                                     null, null);
+                                     null, CommandsTable.COLUMN_TITLE + " ASC");
         cursor.moveToFirst();
         if (cursor.getCount() > 0)
         {
