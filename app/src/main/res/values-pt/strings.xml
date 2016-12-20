@@ -151,5 +151,18 @@
     <string name="param_6">-a</string>
     <string name="param_8">pop</string>
     <string name="param_9">list</string>
+    <string name="param_32">[url/ssh] [nome_do_diretório]</string>
+    <string name="param_33">--global --unset alias.[nome_do_atalho]</string>
+    <string name="param_34">[url_ssh]</string>
+    <string name="content_57">Clona um repositório remoto na sua máquina local</string>
+    <string name="example_57">Usando URL: git clone \"http://www.braincorp.com/meu-nome-de-usuario/meu-repositorio.git\"\nUsando SSH: git clone git@braincorp.com:meu-nome-de-usuario/meu-repositorio.git</string>
+    <string name="example_58">Usando URL: git clone \"http://www.braincorp.com/meu-nome-de-usuario/meu-repositorio.git\" meu_diretorio\nUsando SSH: git clone git@braincorp.com:meu-nome-de-usuario/meu-repositorio.git meu_diretorio</string>
+    <string name="content_58">Clona um repositório remoto para um diretório específico na sua máquina local</string>
+    <string name="content_59">Remove um atalho de comando</string>
+    <string name="example_59">git config --global --unset alias.co</string>
+    <string name="example_60">git commit -a -m \"Implementei 5 metodos novos\"</string>
+    <string name="param_35">-a -m \"Sua mensagem de commit\"</string>
+    <string name="content_60">Adiciona todos os arquivos modificados no commit, cria o commit e define a mensagem
+    </string>
 
 </resources>

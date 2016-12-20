@@ -22,7 +22,7 @@
     <string name="example_4">git add .</string>
     <string name="example_5">git add MyClass.java</string>
     <string name="example_6">git commit</string>
-    <string name="example_7">git commit -m "Implemented 5 new methods"</string>
+    <string name="example_7">git commit -m \"Implemented 5 new methods\"</string>
     <string name="example_8">git add -i</string>
     <string name="example_9">git commit -a</string>
     <string name="example_10">git push origin master</string>
@@ -68,12 +68,16 @@
     <string name="example_54">git branch --set-upstream-to=origin/master master</string>
     <string name="example_55">git fetch -v</string>
     <string name="example_56">git config --global alias.co checkout</string>
+    <string name="example_57">Using URL: git clone \"http://www.braincorp.com/my-user-name/my-repository.git\"\nUsing SSH: git clone git@braincorp.com:my-user-name/my-repository.git</string>
+    <string name="example_58">Using URL: git clone \"http://www.braincorp.com/my-user-name/my-repository.git\" my_directory\nUsing SSH: git clone git@braincorp.com:my-user-name/my-repository.git my_directory</string>
+    <string name="example_59">git config --global --unset alias.co</string>
+    <string name="example_60">git commit -a -m \"Implemented 5 new methods\"</string>
 
     <!-- Parameters -->
     <string name="param_1">[remote_name] [branch_name]</string>
     <string name="param_2">.</string>
     <string name="param_3">[file_name]</string>
-    <string name="param_4">-m "Your commit message"</string>
+    <string name="param_4">-m \"Your commit message\"</string>
     <string name="param_5">-i</string>
     <string name="param_6">-a</string>
     <string name="param_7">[remote_name] --delete [branch_name]</string>
@@ -98,6 +102,10 @@
     <string name="param_29">--set-upstream-to=[remote_name]/[remote_branch] [local_branch]</string>
     <string name="param_30">-v</string>
     <string name="param_31">--global alias.[alias_name] [command_title]</string>
+    <string name="param_32">[url/ssh] [directory_name]</string>
+    <string name="param_33">--global --unset alias.[alias_name]</string>
+    <string name="param_34">[url/ssh]</string>
+    <string name="param_35">-a -m \"Your commit message\"</string>
 
     <!-- Meanings -->
     <string name="content_1">Shows the status of your local repository</string>
@@ -158,5 +166,9 @@
     <string name="content_54">Links the local branch to a remote branch</string>
     <string name="content_55">Downloads all data available from the remote repository and shows a verbose log</string>
     <string name="content_56">Creates an alias for a command</string>
+    <string name="content_57">Clones a remote repository in your local machine</string>
+    <string name="content_58">Clones a remote repository into a specific directory in your local machine</string>
+    <string name="content_59">Removes a command alias</string>
+    <string name="content_60">Adds and commits all modified files and sets the commit message</string>
 
 </resources>
