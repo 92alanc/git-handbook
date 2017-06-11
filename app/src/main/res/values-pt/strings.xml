@@ -164,5 +164,11 @@
     <string name="param_35">-a -m \"Sua mensagem de commit\"</string>
     <string name="content_60">Adiciona todos os arquivos modificados no commit, cria o commit e define a mensagem
     </string>
+    <string name="content_61">Cria uma tag anotada</string>
+    <string name="example_61">git tag -a 1.0</string>
+    <string name="param_36">-a [nome_da_tag]</string>
+    <string name="content_62">Cria uma tag anotada com uma mensagem</string>
+    <string name="example_62">Git tag -a 1.0 -m \"Terminado por Alan\"</string>
+    <string name="param_37">-a [nome_da_tag] -m \"Mensagem da tag\"</string>
 
 </resources>
