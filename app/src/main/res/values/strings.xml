@@ -74,6 +74,7 @@
     <string name="example_60">git commit -a -m \"Implemented 5 new methods\"</string>
     <string name="example_61">git tag -a 1.0</string>
     <string name="example_62">git tag -a 1.0 -m \"Finished by Alan\"</string>
+    <string name="example_63">git push origin 1.0</string>
 
     <!-- Parameters -->
     <string name="param_1">[remote_name] [branch_name]</string>
@@ -110,6 +111,7 @@
     <string name="param_35">-a -m \"Your commit message\"</string>
     <string name="param_36">-a [tag_name]</string>
     <string name="param_37">-a [tag_name] -m \"Tag message\"</string>
+    <string name="param_38">[remote_name] [tag_name]</string>
 
     <!-- Meanings -->
     <string name="content_1">Shows the status of your local repository</string>
@@ -176,5 +178,6 @@
     <string name="content_60">Adds and commits all modified files and sets the commit message</string>
     <string name="content_61">Creates an annotated tag</string>
     <string name="content_62">Creates an annotated tag with a message</string>
+    <string name="content_63">Saves the tag into the remote repository</string>
 
 </resources>

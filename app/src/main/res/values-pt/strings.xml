@@ -170,5 +170,8 @@
     <string name="content_62">Cria uma tag anotada com uma mensagem</string>
     <string name="example_62">Git tag -a 1.0 -m \"Terminado por Alan\"</string>
     <string name="param_37">-a [nome_da_tag] -m \"Mensagem da tag\"</string>
+    <string name="content_63">Salva a tag no repositório remoto</string>
+    <string name="example_63">git push origin 1.0</string>
+    <string name="param_38">[nome_do_remoto] [nome_da_tag]</string>
 
 </resources>
