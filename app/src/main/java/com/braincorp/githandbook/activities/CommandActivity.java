@@ -18,8 +18,7 @@ import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
 
-public class CommandActivity extends AppCompatActivity
-{
+public class CommandActivity extends AppCompatActivity {
 
     private String meaning, example;
     private Command command;
@@ -30,8 +29,7 @@ public class CommandActivity extends AppCompatActivity
     private TextView parameterText, meaningText, exampleText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_command);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,22 +46,19 @@ public class CommandActivity extends AppCompatActivity
         setTextViews();
     }
 
-    private void buildCommand()
-    {
+    private void buildCommand() {
         int commandId = getIntent().getIntExtra(AppConstants.EXTRA_COMMAND_ID, AppConstants.DEFAULT_INT_EXTRA);
         String commandTitle = getIntent().getStringExtra(AppConstants.EXTRA_COMMAND_TITLE);
         command = new Command(commandId, commandTitle);
     }
 
-    private void showAds()
-    {
+    private void showAds() {
         AdView adView = (AdView)findViewById(R.id.commandAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
     }
 
-    private void setTextViews()
-    {
+    private void setTextViews() {
         // Command
         TextView commandText = (TextView)findViewById(R.id.commandText);
         commandText.setText(command.getTitle());
@@ -77,26 +72,23 @@ public class CommandActivity extends AppCompatActivity
         parameterText.setText(param);
 
         // Meaning
-        meaning = meaningRepository.selectWhere(new String[]
-                                                        {
-                                                                MeaningsTable.COLUMN_COMMAND,
-                                                                MeaningsTable.COLUMN_PARAMETER
-                                                        },
-                                                new Object[]
-                                                        {
-                                                                command.getId(),
-                                                                paramId
-                                                        });
+        meaning = meaningRepository.selectWhere(new String[] {
+                                                        MeaningsTable.COLUMN_COMMAND,
+                                                        MeaningsTable.COLUMN_PARAMETER
+                                                },
+                                                new Object[] {
+                                                        command.getId(),
+                                                        paramId
+                                                });
         example = meaningRepository.selectWhere(MeaningsTable.COLUMN_EXAMPLE,
-                MeaningsTable.COLUMN_CONTENT, meaning).get(0);
+                                                MeaningsTable.COLUMN_CONTENT, meaning).get(0);
         example = getString(BackEndTools.getStringResourceKey(getBaseContext(), example));
         exampleText.setText(example);
         meaning = getString(BackEndTools.getStringResourceKey(getBaseContext(), meaning));
         meaningText.setText(meaning);
     }
 
-    private void setListView()
-    {
+    private void setListView() {
         listView = (ListView)findViewById(R.id.paramsListView);
         ArrayList<String> objects = new ArrayList<>();
         ArrayList<Integer> paramIds = meaningRepository.selectWhere(command.getId());
@@ -106,11 +98,9 @@ public class CommandActivity extends AppCompatActivity
                                                         R.layout.list_view_item_param,
                                                         objects);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-            {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String param = (String)listView.getItemAtPosition(i);
                 paramId = parameterRepository.selectWhere(ParametersTable.COLUMN_ID, ParametersTable.COLUMN_CONTENT,
                                                           param);
@@ -118,18 +108,16 @@ public class CommandActivity extends AppCompatActivity
                     param = getString(BackEndTools.getStringResourceKey(getBaseContext(), param));
                 parameterText.setText(param);
 
-                meaning = meaningRepository.selectWhere(new String[]
-                                                                       {
-                                                                               MeaningsTable.COLUMN_COMMAND,
-                                                                               MeaningsTable.COLUMN_PARAMETER
-                                                                       },
-                                                               new Object[]
-                                                                       {
-                                                                               command.getId(),
-                                                                               paramId
-                                                                       });
+                meaning = meaningRepository.selectWhere(new String[] {
+                                                                MeaningsTable.COLUMN_COMMAND,
+                                                                MeaningsTable.COLUMN_PARAMETER
+                                                        },
+                                                        new Object[] {
+                                                                command.getId(),
+                                                                paramId
+                                                        });
                 example = meaningRepository.selectWhere(MeaningsTable.COLUMN_EXAMPLE,
-                        MeaningsTable.COLUMN_CONTENT, meaning).get(0);
+                                                        MeaningsTable.COLUMN_CONTENT, meaning).get(0);
                 example = getString(BackEndTools.getStringResourceKey(getBaseContext(), example));
                 exampleText.setText(example);
                 meaning = getString(BackEndTools.getStringResourceKey(getBaseContext(), meaning));

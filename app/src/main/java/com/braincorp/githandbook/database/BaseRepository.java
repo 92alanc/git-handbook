@@ -9,8 +9,7 @@ import java.util.ArrayList;
  * Base DB repository class
  * Created by Alan Camargo - December 2016
  */
-abstract class BaseRepository<T> implements Repository<T>
-{
+abstract class BaseRepository<T> implements Repository<T> {
 
     Context context;
     DatabaseHelper databaseHelper;
@@ -19,8 +18,7 @@ abstract class BaseRepository<T> implements Repository<T>
      * Creates an instance of BaseRepository
      * @param context - the context
      */
-    BaseRepository(Context context)
-    {
+    BaseRepository(Context context) {
         this.context = context;
         databaseHelper = new DatabaseHelper(context);
     }

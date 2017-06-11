@@ -28,12 +28,10 @@ import java.util.ArrayList;
  * Main activity class
  * Created by Alan Camargo - December 2016
  */
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -43,18 +41,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id)
-        {
+        switch (id) {
             case R.id.item_about:
                 showAppInfo();
                 break;
@@ -67,20 +62,16 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void showAppInfo()
-    {
-        try
-        {
+    private void showAppInfo() {
+        try {
             PackageManager manager = getPackageManager();
             PackageInfo info = manager.getPackageInfo(getPackageName(), 0);
             String version = info.versionName;
             String title = String.format("%1$s %2$s", getString(R.string.app_name), version);
             AlertDialog.Builder dialogue = new AlertDialog.Builder(this);
-            dialogue.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener()
-            {
+            dialogue.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i)
-                {
+                public void onClick(DialogInterface dialogInterface, int i) {
                     // Do nothing
                 }
             });
@@ -88,33 +79,27 @@ public class MainActivity extends AppCompatActivity
             dialogue.setMessage(R.string.about_text);
             dialogue.setIcon(R.mipmap.ic_launcher);
             dialogue.show();
-        }
-        catch (PackageManager.NameNotFoundException e)
-        {
+        } catch (PackageManager.NameNotFoundException e) {
             // Damn! Something really wrong happened here
             e.printStackTrace();
         }
     }
 
-    private void openGitWebPage()
-    {
+    private void openGitWebPage() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(getString(R.string.git_url)));
         startActivity(intent);
     }
 
-    private void setListView()
-    {
+    private void setListView() {
         final ListView listView = (ListView)findViewById(R.id.mainList);
         ArrayList<Command> commands = CommandRepository.getInstance(this).selectAll();
         CommandAdapter adapter = new CommandAdapter(this,
                 R.layout.list_view_item_command, commands);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-            {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this, CommandActivity.class);
                 Object selected = listView.getItemAtPosition(i);
                 Command command = (Command)selected;
@@ -125,8 +110,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void showAds()
-    {
+    private void showAds() {
         AdView adView = (AdView)findViewById(R.id.homeAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);

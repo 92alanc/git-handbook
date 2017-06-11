@@ -15,8 +15,7 @@ import java.io.OutputStream;
  * Database helper class
  * Created by Alan Camargo - December 2016
  */
-class DatabaseHelper extends SQLiteOpenHelper
-{
+class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_PATH = "/data/data/com.braincorp.githandbook/databases/";
     private static final String DB_NAME = "database.db";
@@ -27,17 +26,13 @@ class DatabaseHelper extends SQLiteOpenHelper
      * Creates an instance of DatabaseHelper
      * @param context - the context
      */
-    DatabaseHelper(Context context)
-    {
+    DatabaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.context = context;
-        try
-        {
+        try {
             createDatabase();
             openDatabase();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -46,18 +41,13 @@ class DatabaseHelper extends SQLiteOpenHelper
      * Creates an empty database and rewrites it with our own data
      * @throws IOException - if there's an error copying the database
      */
-    private void createDatabase() throws IOException
-    {
+    private void createDatabase() throws IOException {
         boolean dbExists = checkDatabase();
-        if (!dbExists)
-        {
+        if (!dbExists) {
             getReadableDatabase();
-            try
-            {
+            try {
                 copyDatabase();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 throw new Error("Error copying database");
             }
         }
@@ -67,16 +57,12 @@ class DatabaseHelper extends SQLiteOpenHelper
      * Checks if the database exists
      * @return true if exists, otherwise false
      */
-    private boolean checkDatabase()
-    {
+    private boolean checkDatabase() {
         SQLiteDatabase db = null;
-        try
-        {
+        try {
             String path = DB_PATH + DB_NAME;
             db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
-        }
-        catch (SQLiteException e)
-        {
+        } catch (SQLiteException e) {
             e.printStackTrace();
         }
         if (db != null)
@@ -90,8 +76,7 @@ class DatabaseHelper extends SQLiteOpenHelper
      * can be accessed and handled
      * @throws IOException - if there's an error copying the file
      */
-    private void copyDatabase() throws IOException
-    {
+    private void copyDatabase() throws IOException {
         InputStream input = context.getAssets().open(DB_NAME);
         String outFileName = DB_PATH + DB_NAME;
         OutputStream output = new FileOutputStream(outFileName);
@@ -110,30 +95,22 @@ class DatabaseHelper extends SQLiteOpenHelper
      * Opens the database
      * @throws SQLException - if there's an SQL exception
      */
-    private void openDatabase() throws SQLException
-    {
+    private void openDatabase() throws SQLException {
         String path = DB_PATH + DB_NAME;
         database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
     }
 
     @Override
-    public synchronized void close()
-    {
+    public synchronized void close() {
         if (database != null)
             database.close();
         super.close();
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db)
-    {
-
-    }
+    public void onCreate(SQLiteDatabase db) { }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
-    {
-
-    }
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { }
 
 }

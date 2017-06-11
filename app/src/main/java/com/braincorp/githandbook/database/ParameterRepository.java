@@ -10,8 +10,7 @@ import java.util.ArrayList;
  * Parameter repository class
  * Created by Alan Camargo - December 2016
  */
-public class ParameterRepository extends BaseRepository<String>
-{
+public class ParameterRepository extends BaseRepository<String> {
 
     private static ParameterRepository instance;
 
@@ -20,8 +19,7 @@ public class ParameterRepository extends BaseRepository<String>
      * a single instance of ParameterRepository
      * @return instance
      */
-    public static ParameterRepository getInstance(Context context)
-    {
+    public static ParameterRepository getInstance(Context context) {
         if (instance == null)
             instance = new ParameterRepository(context);
         return instance;
@@ -33,8 +31,7 @@ public class ParameterRepository extends BaseRepository<String>
      * Default constructor
      * @param context - the context
      */
-    private ParameterRepository(Context context)
-    {
+    private ParameterRepository(Context context) {
         super(context);
         databaseHelper = new DatabaseHelper(context);
     }
@@ -44,8 +41,7 @@ public class ParameterRepository extends BaseRepository<String>
      * @return all instances
      */
     @Override
-    public ArrayList<String> selectAll()
-    {
+    public ArrayList<String> selectAll() {
         // Not necessary
         return null;
     }
@@ -56,8 +52,7 @@ public class ParameterRepository extends BaseRepository<String>
      * @return instance
      */
     @Override
-    public String select(int id)
-    {
+    public String select(int id) {
         if (id <= 0 || id > getLastId())
             return null;
         if (reader == null)
@@ -66,14 +61,11 @@ public class ParameterRepository extends BaseRepository<String>
                                                                      + " = " + String.valueOf(id),
                                      null, null, null, null, "1");
         cursor.moveToFirst();
-        if (cursor.getCount() > 0)
-        {
+        if (cursor.getCount() > 0) {
             String param = cursor.getString(cursor.getColumnIndex(ParametersTable.COLUMN_CONTENT));
             cursor.close();
             return param;
-        }
-        else
-        {
+        } else {
             cursor.close();
             return null;
         }
@@ -87,10 +79,8 @@ public class ParameterRepository extends BaseRepository<String>
      * @return instances
      */
     @Override
-    public ArrayList<String> selectWhere(String column, Object value)
-    {
-        if (column != null && value != null)
-        {
+    public ArrayList<String> selectWhere(String column, Object value) {
+        if (column != null && value != null) {
             ArrayList<String> params = new ArrayList<>();
             if (reader == null)
                 reader = databaseHelper.getReadableDatabase();
@@ -99,18 +89,15 @@ public class ParameterRepository extends BaseRepository<String>
                                          null, null,
                                          null, null);
             cursor.moveToFirst();
-            if (cursor.getCount() > 0)
-            {
-                do
-                {
+            if (cursor.getCount() > 0) {
+                do {
                     String param = cursor.getString(cursor.getColumnIndex(ParametersTable.COLUMN_CONTENT));
                     params.add(param);
                 } while (cursor.moveToNext());
             }
             cursor.close();
             return params;
-        }
-        else
+        } else
             return selectAll();
     }
 
@@ -121,8 +108,7 @@ public class ParameterRepository extends BaseRepository<String>
      * @param value - the value
      * @return instance
      */
-    public int selectWhere(String columnToSelect, String column, Object value)
-    {
+    public int selectWhere(String columnToSelect, String column, Object value) {
         if (reader == null)
             reader = databaseHelper.getReadableDatabase();
         Cursor cursor = reader.query(ParametersTable.TABLE_NAME, new String[] { columnToSelect },
@@ -141,8 +127,7 @@ public class ParameterRepository extends BaseRepository<String>
      * @return last ID
      */
     @Override
-    public int getLastId()
-    {
+    public int getLastId() {
         if (reader == null)
             reader = databaseHelper.getReadableDatabase();
         Cursor cursor = reader.query(ParametersTable.TABLE_NAME, new String[] { ParametersTable.COLUMN_ID },

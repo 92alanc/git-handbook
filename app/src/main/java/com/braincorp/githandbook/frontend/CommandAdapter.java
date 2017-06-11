@@ -18,8 +18,7 @@ import java.util.ArrayList;
  * Command adapter class
  * Created by Alan Camargo - December 2016
  */
-public class CommandAdapter extends ArrayAdapter<Command>
-{
+public class CommandAdapter extends ArrayAdapter<Command> {
 
     private Context context;
     private int resource;
@@ -31,9 +30,7 @@ public class CommandAdapter extends ArrayAdapter<Command>
      * @param resource - the resource ID
      * @param objects - the objects
      */
-    public CommandAdapter(Context context, int resource,
-                          ArrayList<Command> objects)
-    {
+    public CommandAdapter(Context context, int resource, ArrayList<Command> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -41,19 +38,16 @@ public class CommandAdapter extends ArrayAdapter<Command>
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         CommandHolder holder = new CommandHolder();
         View row = convertView;
-        if (row == null)
-        {
+        if (row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(resource, parent, false);
             holder.titleRow = (TextView)row.findViewById(R.id.commandTitleRow);
             holder.commandsRow = (TextView)row.findViewById(R.id.commandsRow);
             row.setTag(holder);
-        }
-        else
+        } else
             holder = (CommandHolder)row.getTag();
         Command command = objects.get(position);
         holder.titleRow.setText(command.getTitle());
@@ -62,8 +56,7 @@ public class CommandAdapter extends ArrayAdapter<Command>
                                                    command.getId()).size();
         if (commands == 1)
             holder.commandsRow.setText(R.string.command);
-        else
-        {
+        else {
             String text = String.format(context.getString(R.string.commands), commands);
             holder.commandsRow.setText(text);
         }
@@ -73,8 +66,7 @@ public class CommandAdapter extends ArrayAdapter<Command>
     /**
      * Command holder class
      */
-    private static class CommandHolder
-    {
+    private static class CommandHolder {
 
         TextView titleRow, commandsRow;
 

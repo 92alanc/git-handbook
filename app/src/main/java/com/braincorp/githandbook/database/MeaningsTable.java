@@ -4,8 +4,7 @@ package com.braincorp.githandbook.database;
  * Meanings database table
  * Created by Alan Camargo - December 2016
  */
-public class MeaningsTable
-{
+public class MeaningsTable {
 
     static final String TABLE_NAME = "MEANINGS";
     public static final String COLUMN_CONTENT = "CONTENT";

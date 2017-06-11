@@ -4,8 +4,7 @@ package com.braincorp.githandbook.model;
  * Command class
  * Created by Alan Camargo - December 2016
  */
-public class Command
-{
+public class Command {
 
     private int id;
     private String title;
@@ -15,8 +14,7 @@ public class Command
      * @param id - the ID
      * @param title - the title
      */
-    public Command(int id, String title)
-    {
+    public Command(int id, String title) {
         this.id = id;
         this.title = title;
     }
@@ -25,8 +23,7 @@ public class Command
      * Gets the ID
      * @return ID
      */
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
@@ -34,8 +31,7 @@ public class Command
      * Gets the title
      * @return title
      */
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 

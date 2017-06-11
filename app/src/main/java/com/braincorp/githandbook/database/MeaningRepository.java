@@ -10,8 +10,7 @@ import java.util.ArrayList;
  * Meaning repository class
  * Created by Alan Camargo - December 2016
  */
-public class MeaningRepository extends BaseRepository<String>
-{
+public class MeaningRepository extends BaseRepository<String> {
 
     private static MeaningRepository instance;
 
@@ -20,8 +19,7 @@ public class MeaningRepository extends BaseRepository<String>
      * a single instance of MeaningRepository
      * @return instance
      */
-    public static MeaningRepository getInstance(Context context)
-    {
+    public static MeaningRepository getInstance(Context context) {
         if (instance == null)
             instance = new MeaningRepository(context);
         return instance;
@@ -33,8 +31,7 @@ public class MeaningRepository extends BaseRepository<String>
      * Default constructor
      * @param context - the context
      */
-    private MeaningRepository(Context context)
-    {
+    private MeaningRepository(Context context) {
         super(context);
         databaseHelper = new DatabaseHelper(context);
     }
@@ -44,8 +41,7 @@ public class MeaningRepository extends BaseRepository<String>
      * @return all instances
      */
     @Override
-    public ArrayList<String> selectAll()
-    {
+    public ArrayList<String> selectAll() {
         // Not necessary
         return null;
     }
@@ -56,8 +52,7 @@ public class MeaningRepository extends BaseRepository<String>
      * @return instance
      */
     @Override
-    public String select(int id)
-    {
+    public String select(int id) {
         // Not necessary
         return null;
     }
@@ -70,10 +65,8 @@ public class MeaningRepository extends BaseRepository<String>
      * @return instances
      */
     @Override
-    public ArrayList<String> selectWhere(String column, Object value)
-    {
-        if (column != null && value != null)
-        {
+    public ArrayList<String> selectWhere(String column, Object value) {
+        if (column != null && value != null) {
             ArrayList<String> meanings = new ArrayList<>();
             if (reader == null)
                 reader = databaseHelper.getReadableDatabase();
@@ -82,18 +75,15 @@ public class MeaningRepository extends BaseRepository<String>
                     null, null,
                     null, null);
             cursor.moveToFirst();
-            if (cursor.getCount() > 0)
-            {
-                do
-                {
+            if (cursor.getCount() > 0) {
+                do {
                     String meaning = cursor.getString(cursor.getColumnIndex(MeaningsTable.COLUMN_CONTENT));
                     meanings.add(meaning);
                 } while (cursor.moveToNext());
             }
             cursor.close();
             return meanings;
-        }
-        else
+        } else
             return selectAll();
     }
 
@@ -105,10 +95,8 @@ public class MeaningRepository extends BaseRepository<String>
      * @param value  - the value
      * @return instances
      */
-    public ArrayList<String> selectWhere(String columnToSelect, String column, Object value)
-    {
-        if (column != null && value != null)
-        {
+    public ArrayList<String> selectWhere(String columnToSelect, String column, Object value) {
+        if (column != null && value != null) {
             value = String.format("'%1$s'", String.valueOf(value));
             ArrayList<String> objects = new ArrayList<>();
             if (reader == null)
@@ -118,18 +106,15 @@ public class MeaningRepository extends BaseRepository<String>
                     null, null,
                     null, null);
             cursor.moveToFirst();
-            if (cursor.getCount() > 0)
-            {
-                do
-                {
+            if (cursor.getCount() > 0) {
+                do {
                     String meaning = cursor.getString(cursor.getColumnIndex(columnToSelect));
                     objects.add(meaning);
                 } while (cursor.moveToNext());
             }
             cursor.close();
             return objects;
-        }
-        else
+        } else
             return selectAll();
     }
 
@@ -139,10 +124,8 @@ public class MeaningRepository extends BaseRepository<String>
      * @param values - the values
      * @return instance
      */
-    public String selectWhere(String[] columns, Object[] values)
-    {
-        if (columns != null && values != null)
-        {
+    public String selectWhere(String[] columns, Object[] values) {
+        if (columns != null && values != null) {
             String meaning = null;
             String v0 = String.valueOf(values[0]).equals("<NULL>") ? "IS NULL" : "= '" + values[0] + "'";
             String v1 = String.valueOf(values[1]).equals("<NULL>") ? "IS NULL" : "= '" + values[1] + "'";
@@ -162,8 +145,7 @@ public class MeaningRepository extends BaseRepository<String>
                 meaning = cursor.getString(cursor.getColumnIndex(MeaningsTable.COLUMN_CONTENT));
             cursor.close();
             return meaning;
-        }
-        else
+        } else
             return null;
     }
 
@@ -172,8 +154,7 @@ public class MeaningRepository extends BaseRepository<String>
      * @param commandId - the command ID
      * @return parameter IDs
      */
-    public ArrayList<Integer> selectWhere(int commandId)
-    {
+    public ArrayList<Integer> selectWhere(int commandId) {
         if (reader == null)
             reader = databaseHelper.getReadableDatabase();
         Cursor cursor = reader.query(MeaningsTable.TABLE_NAME, new String[] { MeaningsTable.COLUMN_PARAMETER },
@@ -181,8 +162,7 @@ public class MeaningRepository extends BaseRepository<String>
                                      null, null, null);
         cursor.moveToFirst();
         ArrayList<Integer> paramIds = new ArrayList<>();
-        do
-        {
+        do {
             int id = cursor.getInt(cursor.getColumnIndex(MeaningsTable.COLUMN_PARAMETER));
             paramIds.add(id);
         } while (cursor.moveToNext());
@@ -195,8 +175,7 @@ public class MeaningRepository extends BaseRepository<String>
      * @return last ID
      */
     @Override
-    public int getLastId()
-    {
+    public int getLastId() {
         // Not necessary
         return 0;
     }

@@ -16,8 +16,7 @@ import java.util.ArrayList;
  * Parameter adapter
  * Created by Alan Camargo - December 2016
  */
-public class ParameterAdapter extends ArrayAdapter<String>
-{
+public class ParameterAdapter extends ArrayAdapter<String> {
 
     private Context context;
     private int resource;
@@ -29,8 +28,7 @@ public class ParameterAdapter extends ArrayAdapter<String>
      * @param resource - the resource ID
      * @param objects - the objects
      */
-    public ParameterAdapter(Context context, int resource, ArrayList<String> objects)
-    {
+    public ParameterAdapter(Context context, int resource, ArrayList<String> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -38,18 +36,15 @@ public class ParameterAdapter extends ArrayAdapter<String>
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         ParameterHolder holder = new ParameterHolder();
         View row = convertView;
-        if (row == null)
-        {
+        if (row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(resource, parent, false);
             holder.parameterRow = (TextView)row.findViewById(R.id.paramRow);
             row.setTag(holder);
-        }
-        else
+        } else
             holder = (ParameterHolder)row.getTag();
         String param = objects.get(position);
         if (param == null)
@@ -60,8 +55,7 @@ public class ParameterAdapter extends ArrayAdapter<String>
         return row;
     }
 
-    private static class ParameterHolder
-    {
+    private static class ParameterHolder {
 
         TextView parameterRow;
 
