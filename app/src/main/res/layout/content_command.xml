@@ -122,9 +122,9 @@
             android:textSize="18sp"
             android:text="@string/parameters"/>
 
-    <!-- Parameters list view -->
-    <ListView
-            android:id="@+id/paramsListView"
+    <!-- Parameters recycler view -->
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_params"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/paramsTextView"

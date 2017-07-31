@@ -8,21 +8,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+
 import com.braincorp.githandbook.R;
+import com.braincorp.githandbook.adapters.CommandAdapter;
 import com.braincorp.githandbook.backend.AppConstants;
 import com.braincorp.githandbook.database.CommandRepository;
-import com.braincorp.githandbook.frontend.CommandAdapter;
+import com.braincorp.githandbook.listeners.OnItemClickListener;
 import com.braincorp.githandbook.model.Command;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Main activity class
@@ -34,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setListView();
+        populateRecyclerView();
         showAds();
     }
 
@@ -91,27 +92,27 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void setListView() {
-        final ListView listView = (ListView)findViewById(R.id.mainList);
-        ArrayList<Command> commands = CommandRepository.getInstance(this).selectAll();
-        CommandAdapter adapter = new CommandAdapter(this,
-                R.layout.list_view_item_command, commands);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    private void populateRecyclerView() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_main);
+        recyclerView.setLayoutManager(layoutManager);
+        final List<Command> commands = CommandRepository.getInstance(this).selectAll();
+        OnItemClickListener onItemClickListener = new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(int position) {
                 Intent intent = new Intent(MainActivity.this, CommandActivity.class);
-                Object selected = listView.getItemAtPosition(i);
-                Command command = (Command)selected;
+                Command command = commands.get(position);
                 intent.putExtra(AppConstants.EXTRA_COMMAND_ID, command.getId());
                 intent.putExtra(AppConstants.EXTRA_COMMAND_TITLE, command.getTitle());
                 startActivity(intent);
             }
-        });
+        };
+        CommandAdapter adapter = new CommandAdapter(this, commands, onItemClickListener);
+        recyclerView.setAdapter(adapter);
     }
 
     private void showAds() {
-        AdView adView = (AdView)findViewById(R.id.homeAdView);
+        AdView adView = findViewById(R.id.homeAdView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
     }

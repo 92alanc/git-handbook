@@ -13,6 +13,7 @@
     <item
         android:id="@+id/item_reference"
         android:title="@string/reference"
-        app:showAsAction="never"/>
+        android:icon="@drawable/ic_reference"
+        app:showAsAction="ifRoom"/>
 
 </menu>

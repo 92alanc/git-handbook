@@ -11,9 +11,9 @@
         tools:showIn="@layout/activity_main"
         tools:context="com.braincorp.githandbook.activities.MainActivity">
 
-    <!-- Main list -->
-    <ListView
-            android:id="@+id/mainList"
+    <!-- Recycler view -->
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="50dp"/>
