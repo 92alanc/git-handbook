@@ -43,3 +43,9 @@ captures/
 
 # app folder
 /app/build/
+
+# Release properties
+app/release.properties
+
+# Play Store files
+play_store_files/
