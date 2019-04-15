@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- Misc -->
+    <!-- region General -->
     <string name="about">About</string>
     <string name="about_text">App developed by Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
     <string name="adMobId_Home" translatable="false">ca-app-pub-3993772572074236/3499220106</string>
@@ -14,8 +14,9 @@
     <string name="reference">Reference</string>
     <string name="search">Search</string>
     <string name="git_url">https://git-scm.com/documentation</string>
+    <!-- endregion -->
 
-    <!-- Examples -->
+    <!-- region Examples -->
     <string name="example_1">git status</string>
     <string name="example_2">git pull</string>
     <string name="example_3">git pull origin master</string>
@@ -75,8 +76,9 @@
     <string name="example_61">git tag -a 1.0</string>
     <string name="example_62">git tag -a 1.0 -m \"Finished by Alan\"</string>
     <string name="example_63">git push origin 1.0</string>
+    <!-- endregion -->
 
-    <!-- Parameters -->
+    <!-- region Parameters -->
     <string name="param_1">[remote_name] [branch_name]</string>
     <string name="param_2">.</string>
     <string name="param_3">[file_name]</string>
@@ -112,8 +114,9 @@
     <string name="param_36">-a [tag_name]</string>
     <string name="param_37">-a [tag_name] -m \"Tag message\"</string>
     <string name="param_38">[remote_name] [tag_name]</string>
+    <!-- endregion -->
 
-    <!-- Meanings -->
+    <!-- region Meanings -->
     <string name="content_1">Shows the status of your local repository</string>
     <string name="content_2">Downloads all versioned files from the default branch, if your local one is out of date
     </string>
@@ -179,5 +182,6 @@
     <string name="content_61">Creates an annotated tag</string>
     <string name="content_62">Creates an annotated tag with a message</string>
     <string name="content_63">Saves the tag into the remote repository</string>
+    <!-- endregion -->
 
 </resources>
