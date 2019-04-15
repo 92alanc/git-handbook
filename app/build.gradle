@@ -5,12 +5,10 @@ android {
 
     signingConfigs {
         config {
-            def properties = new Properties()
-            file("release.properties").withInputStream { properties.load(it) }
-            keyAlias properties.getProperty("key.alias")
-            keyPassword properties.getProperty("key.password")
-            storeFile file(properties.getProperty("store.file"))
-            storePassword properties.getProperty("store.password")
+            keyAlias System.getenv("KEY_ALIAS_GIT_HANDBOOK")
+            keyPassword System.getenv("KEY_PASSWORD_GIT_HANDBOOK")
+            storeFile file(System.getenv("STORE_FILE_GIT_HANDBOOK"))
+            storePassword System.getenv("STORE_PASSWORD_GIT_HANDBOOK")
         }
     }
 
