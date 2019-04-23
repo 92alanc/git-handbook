@@ -1,7 +1,8 @@
-package com.braincorp.githandbook
+package com.braincorp.githandbook.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.braincorp.githandbook.R
 
 class MainActivity : AppCompatActivity() {
 
