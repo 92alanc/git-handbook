@@ -17,6 +17,7 @@
         app:layout_constraintBottom_toTopOf="@+id/ad_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_command"/>
 
     <com.google.android.gms.ads.AdView
