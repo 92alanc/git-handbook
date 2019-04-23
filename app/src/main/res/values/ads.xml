@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="admob_app_id" translatable="false">ca-app-pub-3993772572074236~5673957306</string>
+    <string name="ad_unit_id_home" translatable="false">ca-app-pub-3993772572074236/3499220106</string>
+    <string name="ad_unit_id_command" translatable="false">ca-app-pub-3993772572074236/7150690503</string>
+</resources>
