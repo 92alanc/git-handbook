@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.braincorp.githandbook.R
-import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.model.CommandHeader
 
-class CommandAdapter : ListAdapter<Command, CommandViewHolder>(DiffCallback) {
+class CommandAdapter : ListAdapter<CommandHeader, CommandViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommandViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,14 +20,13 @@ class CommandAdapter : ListAdapter<Command, CommandViewHolder>(DiffCallback) {
         holder.bindTo(command)
     }
 
-    private companion object DiffCallback : DiffUtil.ItemCallback<Command>() {
-        override fun areItemsTheSame(oldItem: Command, newItem: Command): Boolean {
+    private companion object DiffCallback : DiffUtil.ItemCallback<CommandHeader>() {
+        override fun areItemsTheSame(oldItem: CommandHeader, newItem: CommandHeader): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Command, newItem: Command): Boolean {
-            return oldItem.name == newItem.name
-                    && oldItem.params.contentEquals(newItem.params)
+        override fun areContentsTheSame(oldItem: CommandHeader, newItem: CommandHeader): Boolean {
+            return oldItem.name == newItem.name && oldItem.paramsCount == newItem.paramsCount
         }
     }
 
