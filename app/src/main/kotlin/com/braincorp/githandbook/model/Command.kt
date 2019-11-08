@@ -8,7 +8,8 @@ import kotlinx.android.parcel.Parcelize
 @Entity
 @Parcelize
 data class Command(
-        @PrimaryKey var name: String,
+        @PrimaryKey var id: Int,
+        var name: String,
         var parameter: String?,
         var description: String,
         var example: String
