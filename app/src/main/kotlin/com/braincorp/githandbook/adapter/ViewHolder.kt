@@ -11,6 +11,4 @@ abstract class ViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     protected fun <V: View> bindView(@IdRes id: Int) = lazy { itemView.findViewById<V>(id) }
 
-    abstract fun bindTo(item: T)
-
 }
