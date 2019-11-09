@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="param_1">[nome_do_remoto] [nome_do_branch]</string>
+    <string name="param_12">add [nome_do_remoto] [url/ssh]</string>
+    <string name="param_13">[nome_do_branch]</string>
+    <string name="param_14">-b [nome_do_novo_branch]</string>
+    <string name="param_16">-i [nome_do_branch]</string>
+    <string name="param_17">[id_do_commit]</string>
+    <string name="param_19">-d [nome_do_branch]</string>
+    <string name="param_20">-D [nome_do_branch]</string>
+    <string name="param_22">--global [nome_do_item] [valor_do_item]</string>
+    <string name="param_31">--global alias.[nome_do_atalho] [título_do_comando]</string>
+    <string name="param_4">-m \"Sua mensagem de commit\"</string>
+    <string name="param_7" tools:ignore="TypographyDashes">[nome_do_remoto] --delete [nome_do_branch]</string>
+    <string name="param_29">--set upstream-to=[nome_do_remoto]/[branch_remoto] [branch_local]</string>
+    <string name="param_15">--hard HEAD</string>
+    <string name="param_2">.</string>
+    <string name="param_21">--merged</string>
+    <string name="param_23">-f</string>
+    <string name="param_24">-df</string>
+    <string name="param_25">-xdf</string>
+    <string name="param_30">-v</string>
+    <string name="param_5">-i</string>
+    <string name="param_6">-a</string>
+    <string name="param_8">pop</string>
+    <string name="param_9">list</string>
+    <string name="param_32">[url/ssh] [nome_do_diretório]</string>
+    <string name="param_33">--global --unset alias.[nome_do_atalho]</string>
+    <string name="param_34">[url_ssh]</string>
+    <string name="param_35">-a -m \"Sua mensagem de commit\"</string>
+    <string name="param_36">-a [nome_da_tag]</string>
+    <string name="param_37">-a [nome_da_tag] -m \"Mensagem da tag\"</string>
+    <string name="param_38">[nome_do_remoto] [nome_da_tag]</string>
 </resources>
