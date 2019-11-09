@@ -1,31 +1,9 @@
 package com.braincorp.githandbook.repository
 
-import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.braincorp.githandbook.database.CommandDao
-import com.braincorp.githandbook.database.CommandDatabase
 import com.braincorp.githandbook.model.Command
-import com.braincorp.githandbook.util.getString
+import kotlinx.coroutines.Deferred
 
-class CommandRepository(private val context: Context) {
-
-    private val database: CommandDao = CommandDatabase.getInstance(context).commandDao()
-
-    fun getCommands(): LiveData<List<Command>> {
-        return MutableLiveData<List<Command>>().apply {
-            value = database.select().map {
-                val dbParameter = it.parameter
-                val parameter = if (dbParameter != null)
-                    context.getString(dbParameter)
-                else
-                    null
-                val description = context.getString(it.description)
-                val example = context.getString(it.example)
-
-                it.copy(parameter = parameter, description = description, example = example)
-            }
-        }
-    }
-
+interface CommandRepository {
+    suspend fun getCommandsAsync(): Deferred<LiveData<List<Command>>>
 }
