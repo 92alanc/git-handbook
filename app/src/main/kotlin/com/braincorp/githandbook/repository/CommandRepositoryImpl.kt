@@ -23,8 +23,8 @@ class CommandRepositoryImpl(private val context: Context) : CommandRepository {
                         context.getString(dbParameter)
                     else
                         null
-                    val description = context.getString(it.description)
-                    val example = context.getString(it.example)
+                    val description = context.getString(it.description) ?: ""
+                    val example = context.getString(it.example) ?: ""
 
                     it.copy(parameter = parameter, description = description, example = example)
                 }

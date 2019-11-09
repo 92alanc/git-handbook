@@ -9,7 +9,11 @@ fun AdView.loadAnnoyingAds() {
     loadAd(adRequest)
 }
 
-fun Context.getString(resourceName: String): String {
-    val resId = resources.getIdentifier(resourceName, "string", packageName)
-    return getString(resId)
+fun Context.getString(resourceName: String): String? {
+    return try {
+        val resId = resources.getIdentifier(resourceName, "string", packageName)
+        getString(resId)
+    } catch (ex: Exception) {
+        null
+    }
 }
