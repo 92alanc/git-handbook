@@ -1,6 +1,5 @@
 package com.braincorp.githandbook.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.braincorp.githandbook.model.Command
@@ -9,6 +8,6 @@ import com.braincorp.githandbook.model.Command
 interface CommandDao {
 
     @Query("SELECT * FROM Command ORDER BY name")
-    fun select(): LiveData<List<Command>>
+    fun select(): List<Command>
 
 }

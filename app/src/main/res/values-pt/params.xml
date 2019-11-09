@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="param_1">[nome_do_remoto] [nome_do_branch]</string>
+</resources>
