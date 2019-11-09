@@ -18,11 +18,7 @@ class CommandRepositoryImpl(private val context: Context) : CommandRepository {
         async {
             MutableLiveData<List<Command>>().apply {
                 value = database.select().map {
-                    val dbParameter = it.parameter
-                    val parameter = if (dbParameter != null)
-                        context.getString(dbParameter)
-                    else
-                        null
+                    val parameter = context.getString(it.parameter)
                     val description = context.getString(it.description) ?: ""
                     val example = context.getString(it.example) ?: ""
 
