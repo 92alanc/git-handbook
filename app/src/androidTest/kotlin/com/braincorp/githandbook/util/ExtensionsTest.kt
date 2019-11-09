@@ -16,4 +16,9 @@ class ExtensionsTest {
         assertThat(context.getString("param_1")).isEqualTo(expected)
     }
 
+    @Test
+    fun withNonExistentResourceName_shouldReturnNull() {
+        assertThat(context.getString("non_existent")).isNull()
+    }
+
 }
