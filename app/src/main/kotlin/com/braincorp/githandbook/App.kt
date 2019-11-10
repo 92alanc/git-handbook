@@ -50,5 +50,4 @@ class App : Application() {
         viewModel { CommandViewModel(get(), get()) }
     }
 
-
 }
