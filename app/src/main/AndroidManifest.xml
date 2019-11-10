@@ -24,6 +24,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.CommandActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

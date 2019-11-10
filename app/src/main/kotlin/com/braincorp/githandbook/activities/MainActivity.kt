@@ -14,7 +14,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class MainActivity : AppCompatActivity(), CoroutineScope, CommandAdapter.OnItemClickListener {
+class MainActivity : AppCompatActivity(R.layout.activity_main),
+        CoroutineScope,
+        CommandAdapter.OnItemClickListener {
 
     private val job = Job()
 
@@ -25,7 +27,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope, CommandAdapter.OnItemC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         viewModel = ViewModelProviders.of(this).get(CommandViewModel::class.java)
         ad_view.loadAnnoyingAds()
         recycler_view.adapter = adapter
@@ -38,7 +39,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope, CommandAdapter.OnItemC
     }
 
     override fun onItemClick(command: Command) {
-        // TODO: open CommandActivity
+        val intent = CommandActivity.newIntent(this, command.name)
+        startActivity(intent)
     }
 
     private fun fetchData() {
