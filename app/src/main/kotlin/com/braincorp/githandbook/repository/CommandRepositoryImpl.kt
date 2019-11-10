@@ -3,7 +3,6 @@ package com.braincorp.githandbook.repository
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
-import com.braincorp.githandbook.database.CommandDao
 import com.braincorp.githandbook.database.CommandDatabase
 import com.braincorp.githandbook.model.Command
 import com.braincorp.githandbook.util.getString
@@ -13,7 +12,13 @@ import kotlinx.coroutines.withContext
 
 class CommandRepositoryImpl(private val context: Context) : CommandRepository {
 
-    private val database = buildDatabase()
+    private val database by lazy {
+        Room.databaseBuilder(context, CommandDatabase::class.java, "commands-db")
+                .createFromAsset("database.db")
+                .fallbackToDestructiveMigration()
+                .build()
+                .commandDao()
+    }
 
     override suspend fun getCommandsAsync() = withContext(Dispatchers.IO) {
         async {
@@ -31,14 +36,6 @@ class CommandRepositoryImpl(private val context: Context) : CommandRepository {
                 postValue(commands)
             }
         }
-    }
-
-    private fun buildDatabase(): CommandDao {
-        return Room.databaseBuilder(context, CommandDatabase::class.java, "commands-db")
-                .createFromAsset("database.db")
-                .fallbackToDestructiveMigration()
-                .build()
-                .commandDao()
     }
 
     private fun buildCommandFromDb(dbCommand: Command): Command {
