@@ -5,19 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.braincorp.githandbook.R
+import kotlinx.android.synthetic.main.activity_command.*
 
 class CommandActivity : AppCompatActivity(R.layout.activity_command) {
 
-    private lateinit var commandName: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        parseIntent()
-        title = commandName
+        configureToolbar()
     }
 
-    private fun parseIntent() {
-        commandName = intent.getStringExtra(EXTRA_COMMAND_NAME) ?: ""
+    private fun configureToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        title = intent.getStringExtra(EXTRA_COMMAND_NAME)
     }
 
     companion object {
