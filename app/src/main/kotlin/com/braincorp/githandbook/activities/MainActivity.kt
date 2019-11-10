@@ -42,7 +42,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun observeData(data: LiveData<List<Command>>) {
-        data.observe(this, Observer(adapter::submitList))
+        data.observe(this, Observer { commands ->
+            adapter.submitList(commands.distinctBy { it.name })
+        })
     }
 
 }
