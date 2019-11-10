@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.braincorp.githandbook.R
+import com.braincorp.githandbook.util.loadAnnoyingAds
 import kotlinx.android.synthetic.main.activity_command.*
 
 class CommandActivity : AppCompatActivity(R.layout.activity_command) {
@@ -12,6 +13,7 @@ class CommandActivity : AppCompatActivity(R.layout.activity_command) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         configureToolbar()
+        ad_view.loadAnnoyingAds()
     }
 
     private fun configureToolbar() {
