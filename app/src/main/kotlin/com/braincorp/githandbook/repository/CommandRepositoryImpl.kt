@@ -2,23 +2,17 @@ package com.braincorp.githandbook.repository
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Room
-import com.braincorp.githandbook.database.CommandDatabase
+import com.braincorp.githandbook.database.CommandDao
 import com.braincorp.githandbook.model.Command
 import com.braincorp.githandbook.util.getString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
-class CommandRepositoryImpl(private val context: Context) : CommandRepository {
-
-    private val database by lazy {
-        Room.databaseBuilder(context, CommandDatabase::class.java, "commands-db")
-                .createFromAsset("database.db")
-                .fallbackToDestructiveMigration()
-                .build()
-                .commandDao()
-    }
+class CommandRepositoryImpl(
+        private val context: Context,
+        private val database: CommandDao
+) : CommandRepository {
 
     override suspend fun getCommandsAsync() = withContext(Dispatchers.IO) {
         async {
