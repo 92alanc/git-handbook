@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            tools:title="git add" />
+            tools:title="@sample/commands.json/data/title" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.gms.ads.AdView
