@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(toolbar)
         viewModel = ViewModelProviders.of(this).get(CommandViewModel::class.java)
         ad_view.loadAnnoyingAds()
         recycler_view.adapter = adapter
