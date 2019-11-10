@@ -6,4 +6,5 @@ import kotlinx.coroutines.Deferred
 
 interface CommandRepository {
     suspend fun getCommandsAsync(): Deferred<LiveData<List<Command>>>
+    suspend fun getCommandsByNameAsync(name: String): Deferred<LiveData<List<Command>>>
 }

@@ -10,4 +10,7 @@ interface CommandDao {
     @Query("SELECT * FROM Command ORDER BY name")
     fun select(): List<Command>
 
+    @Query("SELECT * FROM Command WHERE name = :commandName")
+    fun select(commandName: String): List<Command>
+
 }

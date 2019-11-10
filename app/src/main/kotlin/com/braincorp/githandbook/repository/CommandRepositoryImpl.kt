@@ -17,17 +17,27 @@ class CommandRepositoryImpl(private val context: Context) : CommandRepository {
     override suspend fun getCommandsAsync() = withContext(Dispatchers.IO) {
         async {
             MutableLiveData<List<Command>>().apply {
-                val commands = database.select().map {
-                    val parameter = context.getString(it.parameter)
-                    val description = context.getString(it.description) ?: ""
-                    val example = context.getString(it.example) ?: ""
-
-                    it.copy(parameter = parameter, description = description, example = example)
-                }
-
+                val commands = database.select().map(::buildCommandFromDb)
                 postValue(commands)
             }
         }
+    }
+
+    override suspend fun getCommandsByNameAsync(name: String) = withContext(Dispatchers.IO) {
+        async {
+            MutableLiveData<List<Command>>().apply {
+                val commands = database.select(name).map(::buildCommandFromDb)
+                postValue(commands)
+            }
+        }
+    }
+
+    private fun buildCommandFromDb(dbCommand: Command): Command {
+        val parameter = context.getString(dbCommand.parameter)
+        val description = context.getString(dbCommand.description) ?: ""
+        val example = context.getString(dbCommand.example) ?: ""
+
+        return dbCommand.copy(parameter = parameter, description = description, example = example)
     }
 
 }

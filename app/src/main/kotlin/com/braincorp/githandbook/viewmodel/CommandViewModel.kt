@@ -11,4 +11,6 @@ class CommandViewModel(application: Application) : AndroidViewModel(application)
 
     suspend fun getCommandsAsync() = repository.getCommandsAsync()
 
+    suspend fun getCommandsByNameAsync(name: String) = repository.getCommandsByNameAsync(name)
+
 }
