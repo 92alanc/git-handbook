@@ -53,9 +53,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     }
 
     private fun observeData(data: LiveData<List<Command>>) {
-        data.observe(this, Observer { commands ->
-            adapter.submitList(commands.distinctBy { it.name })
-        })
+        data.observe(this, Observer(adapter::submitList))
     }
 
 }

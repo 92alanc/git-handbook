@@ -2,14 +2,22 @@ package com.braincorp.githandbook.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.braincorp.githandbook.R
 import com.braincorp.githandbook.model.Command
 
 class CommandAdapter(
         private val onItemClickListener: OnItemClickListener
-) : ListAdapter<Command, CommandViewHolder>(DiffCallback) {
+) : RecyclerView.Adapter<CommandViewHolder>() {
+
+    private var allCommands: List<Command> = emptyList()
+    private var data: List<Command> = emptyList()
+
+    fun submitList(commands: List<Command>) {
+        this.allCommands = commands
+        data = commands.distinctBy { it.name }
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommandViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -18,23 +26,12 @@ class CommandAdapter(
     }
 
     override fun onBindViewHolder(holder: CommandViewHolder, position: Int) {
-        val command = getItem(position)
-        val paramsCount = currentList.count { it.name == command.name }
+        val command = data[position]
+        val paramsCount = allCommands.count { it.name == command.name }
         holder.bindTo(command, paramsCount)
     }
 
-    private companion object DiffCallback : DiffUtil.ItemCallback<Command>() {
-        override fun areItemsTheSame(oldItem: Command, newItem: Command): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Command, newItem: Command): Boolean {
-            return oldItem.name == newItem.name
-                    && oldItem.parameter == newItem.parameter
-                    && oldItem.description == newItem.description
-                    && oldItem.example == newItem.example
-        }
-    }
+    override fun getItemCount() = data.size
 
     interface OnItemClickListener {
         fun onItemClick(command: Command)
