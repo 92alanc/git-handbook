@@ -14,14 +14,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class MainActivity : AppCompatActivity(), CoroutineScope {
+class MainActivity : AppCompatActivity(), CoroutineScope, CommandAdapter.OnItemClickListener {
 
     private val job = Job()
 
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
 
     private lateinit var viewModel: CommandViewModel
-    private val adapter = CommandAdapter()
+    private val adapter = CommandAdapter(onItemClickListener = this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +30,15 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         ad_view.loadAnnoyingAds()
         recycler_view.adapter = adapter
         fetchData()
+    }
+
+    override fun onDestroy() {
+        job.cancel()
+        super.onDestroy()
+    }
+
+    override fun onItemClick(command: Command) {
+        // TODO: open CommandActivity
     }
 
     private fun fetchData() {

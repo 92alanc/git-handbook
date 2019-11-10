@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.braincorp.githandbook.R
 import com.braincorp.githandbook.model.Command
 
-class CommandAdapter : ListAdapter<Command, CommandViewHolder>(DiffCallback) {
+class CommandAdapter(
+        private val onItemClickListener: OnItemClickListener
+) : ListAdapter<Command, CommandViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommandViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(R.layout.item_command, parent, false)
-        return CommandViewHolder(itemView)
+        return CommandViewHolder(itemView, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: CommandViewHolder, position: Int) {
@@ -32,6 +34,10 @@ class CommandAdapter : ListAdapter<Command, CommandViewHolder>(DiffCallback) {
                     && oldItem.description == newItem.description
                     && oldItem.example == newItem.example
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(command: Command)
     }
 
 }

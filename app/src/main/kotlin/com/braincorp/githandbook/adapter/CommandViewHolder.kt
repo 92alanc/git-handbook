@@ -5,7 +5,10 @@ import android.widget.TextView
 import com.braincorp.githandbook.R
 import com.braincorp.githandbook.model.Command
 
-class CommandViewHolder(itemView: View) : ViewHolder<Command>(itemView) {
+class CommandViewHolder(
+        itemView: View,
+        private val onItemClickListener: CommandAdapter.OnItemClickListener
+) : ViewHolder<Command>(itemView) {
 
     private val txtName by bindView<TextView>(R.id.txt_name)
     private val txtParams by bindView<TextView>(R.id.txt_params)
@@ -17,6 +20,9 @@ class CommandViewHolder(itemView: View) : ViewHolder<Command>(itemView) {
                 paramsCount,
                 paramsCount
         )
+        itemView.setOnClickListener {
+            onItemClickListener.onItemClick(item)
+        }
     }
 
 }
