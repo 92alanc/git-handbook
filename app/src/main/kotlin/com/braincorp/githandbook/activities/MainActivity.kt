@@ -1,5 +1,7 @@
 package com.braincorp.githandbook.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -61,6 +63,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
+            R.id.item_reference -> showReference()
             R.id.item_privacy -> showPrivacyPolicy()
             R.id.item_about -> showAppInfo()
             else -> false
@@ -93,6 +96,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
         })
     }
 
+    private fun showReference(): Boolean {
+        AlertDialog.Builder(this).setTitle(R.string.reference)
+                .setMessage(R.string.reference_message)
+                .setPositiveButton(R.string.ok) { _, _ ->
+                    openGitReferencePage()
+                }.setNegativeButton(R.string.cancel, null)
+                .show()
+        return true
+    }
+
     private fun showPrivacyPolicy(): Boolean {
         AlertDialog.Builder(this).setView(R.layout.dialogue_privacy_terms)
                 .setNeutralButton(R.string.ok, null)
@@ -108,6 +121,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
                 .setIcon(R.mipmap.ic_launcher)
                 .show()
         return true
+    }
+
+    private fun openGitReferencePage() {
+        val url = getString(R.string.git_url)
+        val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))
+        startActivity(intent)
     }
 
 }
