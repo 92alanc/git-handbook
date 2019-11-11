@@ -33,8 +33,4 @@ class CommandAdapter(
 
     override fun getItemCount() = data.size
 
-    interface OnItemClickListener {
-        fun onItemClick(command: Command)
-    }
-
 }

@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.CommandActivity"
+            android:name=".activities.CommandDetailsActivity"
             android:parentActivityName=".activities.MainActivity" />
 
         <meta-data

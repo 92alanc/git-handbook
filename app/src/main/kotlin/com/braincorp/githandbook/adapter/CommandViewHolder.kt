@@ -7,7 +7,7 @@ import com.braincorp.githandbook.model.Command
 
 class CommandViewHolder(
         itemView: View,
-        private val onItemClickListener: CommandAdapter.OnItemClickListener
+        private val onItemClickListener: OnItemClickListener
 ) : ViewHolder<Command>(itemView) {
 
     private val txtName by bindView<TextView>(R.id.txt_name)
