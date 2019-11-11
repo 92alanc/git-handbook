@@ -97,7 +97,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     }
 
     private fun showReference(): Boolean {
-        AlertDialog.Builder(this).setTitle(R.string.reference)
+        AlertDialog.Builder(this)
+                .setTitle(R.string.reference)
                 .setMessage(R.string.reference_message)
                 .setPositiveButton(R.string.ok) { _, _ ->
                     openGitReferencePage()
@@ -107,7 +108,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     }
 
     private fun showPrivacyPolicy(): Boolean {
-        AlertDialog.Builder(this).setView(R.layout.dialogue_privacy_terms)
+        AlertDialog.Builder(this)
+                .setView(R.layout.dialogue_privacy_terms)
                 .setNeutralButton(R.string.ok, null)
                 .show()
         return true
@@ -115,7 +117,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
 
     private fun showAppInfo(): Boolean {
         val title = getString(R.string.app_info, getAppName(), getAppVersion())
-        AlertDialog.Builder(this).setTitle(title)
+        AlertDialog.Builder(this)
+                .setTitle(title)
                 .setMessage(R.string.developer_info)
                 .setNeutralButton(R.string.ok, null)
                 .setIcon(R.mipmap.ic_launcher)
