@@ -15,7 +15,11 @@ class ParameterViewHolder(
 
     @SuppressLint("SetTextI18n")
     fun bindTo(command: Command) {
-        txtParameter.text = "${command.name} ${command.parameter}".trim()
+        txtParameter.text = if (command.parameter == null)
+            command.name
+        else
+            "${command.name} ${command.parameter}"
+
         itemView.setOnClickListener {
             onItemClickListener.onItemClick(command)
         }
