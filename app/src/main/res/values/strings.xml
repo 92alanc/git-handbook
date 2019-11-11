@@ -1,6 +1,7 @@
 <resources>
+    <string name="app_info" translatable="false">%1$s %2$s</string>"
     <string name="about">About</string>
-    <string name="about_text">App developed by Alan Camargo</string>
+    <string name="developer_info">App developed by Alan Camargo</string>
     <string name="app_name">Git Handbook</string>
     <string name="example">Example</string>
     <string name="ok">OK</string>

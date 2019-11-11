@@ -1,13 +1,20 @@
 package com.braincorp.githandbook.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.braincorp.githandbook.R
 import com.braincorp.githandbook.adapter.CommandAdapter
 import com.braincorp.githandbook.adapter.OnItemClickListener
+import com.braincorp.githandbook.adapter.QueryListener
 import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.util.getAppName
+import com.braincorp.githandbook.util.getAppVersion
 import com.braincorp.githandbook.util.loadAnnoyingAds
 import com.braincorp.githandbook.viewmodel.CommandViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,6 +34,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     private val adapter = CommandAdapter(onItemClickListener = this)
 
     private var commands: List<Command> = emptyList()
+    private var searchView: SearchView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +47,24 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     override fun onDestroy() {
         job.cancel()
         super.onDestroy()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        menu?.run {
+            findItem(R.id.item_search)?.actionView?.let { actionView ->
+                searchView = actionView as SearchView
+            }
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.item_privacy -> showPrivacyPolicy()
+            R.id.item_about -> showAppInfo()
+            else -> false
+        }
     }
 
     override fun onItemClick(command: Command) {
@@ -57,10 +83,31 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     }
 
     private fun observeData(data: LiveData<List<Command>>) {
-        data.observe(this, Observer {
-            commands = it
-            adapter.submitList(it)
+        data.observe(this, Observer { allCommands ->
+            commands = allCommands
+            val distinctCommands = commands.distinctBy {
+                command -> command.name
+            }
+            adapter.submitLists(allCommands, distinctCommands)
+            searchView?.setOnQueryTextListener(QueryListener(adapter, distinctCommands))
         })
+    }
+
+    private fun showPrivacyPolicy(): Boolean {
+        AlertDialog.Builder(this).setView(R.layout.dialogue_privacy_terms)
+                .setNeutralButton(R.string.ok, null)
+                .show()
+        return true
+    }
+
+    private fun showAppInfo(): Boolean {
+        val title = getString(R.string.app_info, getAppName(), getAppVersion())
+        AlertDialog.Builder(this).setTitle(title)
+                .setMessage(R.string.developer_info)
+                .setNeutralButton(R.string.ok, null)
+                .setIcon(R.mipmap.ic_launcher)
+                .show()
+        return true
     }
 
 }

@@ -13,10 +13,17 @@ class CommandAdapter(
     private var allCommands: List<Command> = emptyList()
     private var data: List<Command> = emptyList()
 
-    fun submitList(commands: List<Command>) {
-        this.allCommands = commands
-        data = commands.distinctBy { it.name }
+    fun submitLists(allCommands: List<Command>, distinctCommands: List<Command>) {
+        this.allCommands = allCommands
+        data = distinctCommands
         notifyDataSetChanged()
+    }
+
+    fun filter(commands: List<Command>, searchTerm: String?) {
+        searchTerm?.let { query ->
+            data = commands.filter { it.name.contains(query, ignoreCase = true) }
+            notifyDataSetChanged()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommandViewHolder {

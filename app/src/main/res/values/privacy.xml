@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="privacy_terms_title">Privacy terms</string>
+    <string name="privacy_terms">
+        I don\'t track any of your or your device\'s data. The only tracking is done by Google
+        to provide ads for the intent of monetising this app.
+        The service that collects that information is Google Firebase. If one day any information
+        beyond the one previously mentioned is collected, it\'s Google\'s responsibility, not mine.
+    </string>
+</resources>

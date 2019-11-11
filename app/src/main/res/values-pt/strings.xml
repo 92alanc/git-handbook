@@ -4,7 +4,7 @@
     <string name="about">Sobre</string>
     <string name="search">Pesquisar</string>
     <string name="reference">Referência</string>
-    <string name="about_text">Aplicativo desenvolvido por Braincorp Apps\ne-mail: alcam.ukdev@gmail.com</string>
+    <string name="developer_info">Aplicativo desenvolvido por Alan Camargo.</string>
     <string name="parameters">Parâmetros (clique para selecionar)</string>
     <string name="example">Exemplo</string>
     <string name="git_url">https://git-scm.com/documentation</string>

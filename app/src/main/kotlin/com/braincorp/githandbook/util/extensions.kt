@@ -1,6 +1,7 @@
 package com.braincorp.githandbook.util
 
 import android.content.Context
+import com.braincorp.githandbook.R
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 
@@ -17,3 +18,7 @@ fun Context.getString(resourceName: String?): String? {
         null
     }
 }
+
+fun Context.getAppName(): String = getString(R.string.app_name)
+
+fun Context.getAppVersion(): String = packageManager.getPackageInfo(packageName, 0).versionName
