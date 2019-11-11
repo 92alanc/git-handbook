@@ -8,6 +8,7 @@
     <string name="reference">Reference</string>
     <string name="search">Search</string>
     <string name="git_url">https://git-scm.com/documentation</string>
+    <string name="description">Description</string>
 
     <plurals name="params_plural">
         <item quantity="one">%d parameter</item>

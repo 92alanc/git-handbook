@@ -9,6 +9,7 @@
     <string name="example">Exemplo</string>
     <string name="git_url">https://git-scm.com/documentation</string>
     <string name="ok">OK</string>
+    <string name="description">Descrição</string>
 
     <plurals name="params_plural">
         <item quantity="one">%d parâmetro</item>

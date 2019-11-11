@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "name": "git commit",
+      "description": "Opens the commit editor to create a new commit",
+      "example": "git commit"
+    },
+    {
+      "name": "git commit -m \"[commit_message]\"",
+      "description": "Creates a commit with a message",
+      "example": "git commit -m \"Implement repository layer\""
+    },
+    {
+      "name": "git commit -a -m \"[commit_message]\"",
+      "description": "Stages and commits all files, with a message",
+      "example": "git commit -a -m \"Committing loads of files\""
+    },
+    {
+      "name": "git commit -i",
+      "description": "Opens an interactive screen to pick the files to be committed",
+      "example": "git commit -i"
+    }
+  ]
+}
