@@ -35,6 +35,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+            applicationIdSuffix '.debug'
+        }
+
         release {
             debuggable false
             minifyEnabled true
