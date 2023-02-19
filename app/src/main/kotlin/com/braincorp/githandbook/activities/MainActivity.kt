@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.item_reference -> showReference()
             R.id.item_privacy -> showPrivacyPolicy()
             R.id.item_about -> showAppInfo()
