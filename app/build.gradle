@@ -21,11 +21,11 @@ android {
     }
 
     signingConfigs {
-        config {
-            keyAlias System.getenv("KEY_ALIAS_GIT_HANDBOOK")
-            keyPassword System.getenv("KEY_PASSWORD_GIT_HANDBOOK")
-            storeFile file(System.getenv("STORE_FILE_GIT_HANDBOOK"))
-            storePassword System.getenv("STORE_PASSWORD_GIT_HANDBOOK")
+        release {
+            keyAlias "$git_handbook_key_alias"
+            keyPassword "$git_handbook_key_password"
+            storeFile file("$git_handbook_store_file")
+            storePassword "$git_handbook_store_password"
         }
     }
 
@@ -35,7 +35,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
     }
 

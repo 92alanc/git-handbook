@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "748453673547",
+    "firebase_url": "https://git-handbook.firebaseio.com",
+    "project_id": "git-handbook",
+    "storage_bucket": "git-handbook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748453673547:android:dd27c54a2064de2b",
+        "android_client_info": {
+          "package_name": "com.braincorp.githandbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748453673547-8aoemprtq12qivpelh3hne0cvf6h588c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfiLR4E32FHgyspn58-QG7JOsIc5U7Yf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748453673547-8aoemprtq12qivpelh3hne0cvf6h588c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
