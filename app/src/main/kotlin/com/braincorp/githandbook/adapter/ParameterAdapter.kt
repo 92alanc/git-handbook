@@ -3,11 +3,11 @@ package com.braincorp.githandbook.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.braincorp.githandbook.R
+import com.braincorp.githandbook.databinding.ItemParameterBinding
 import com.braincorp.githandbook.model.Command
 
 class ParameterAdapter(
-        private val onItemClickListener: OnItemClickListener
+    private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<ParameterViewHolder>() {
 
     private var commands: List<Command> = emptyList()
@@ -19,8 +19,8 @@ class ParameterAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParameterViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val itemView = inflater.inflate(R.layout.item_parameter, parent, false)
-        return ParameterViewHolder(itemView, onItemClickListener)
+        val binding = ItemParameterBinding.inflate(inflater, parent, false)
+        return ParameterViewHolder(binding, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: ParameterViewHolder, position: Int) {

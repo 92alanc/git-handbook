@@ -1,28 +1,24 @@
 package com.braincorp.githandbook.adapter
 
-import android.view.View
-import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.braincorp.githandbook.R
+import com.braincorp.githandbook.databinding.ItemCommandBinding
 import com.braincorp.githandbook.model.Command
 
 class CommandViewHolder(
-        itemView: View,
-        private val onItemClickListener: OnItemClickListener
-) : ViewHolder<Command>(itemView) {
-
-    private val txtName by bindView<TextView>(R.id.txt_name)
-    private val txtParams by bindView<TextView>(R.id.txt_params)
+    private val binding: ItemCommandBinding,
+    private val onItemClickListener: OnItemClickListener
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindTo(item: Command, paramsCount: Int) {
-        txtName.text = item.name
-        txtParams.text = context.resources.getQuantityString(
-                R.plurals.params_plural,
-                paramsCount,
-                paramsCount
+        binding.txtName.text = item.name
+        binding.txtParams.text = binding.root.context.resources.getQuantityString(
+            R.plurals.params_plural,
+            paramsCount,
+            paramsCount
         )
-        itemView.setOnClickListener {
+        binding.root.setOnClickListener {
             onItemClickListener.onItemClick(item)
         }
     }
-
 }

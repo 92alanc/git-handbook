@@ -9,24 +9,27 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.braincorp.githandbook.R
 import com.braincorp.githandbook.adapter.CommandAdapter
 import com.braincorp.githandbook.adapter.OnItemClickListener
 import com.braincorp.githandbook.adapter.QueryListener
+import com.braincorp.githandbook.databinding.ActivityMainBinding
 import com.braincorp.githandbook.model.Command
 import com.braincorp.githandbook.util.getAppName
 import com.braincorp.githandbook.util.getAppVersion
 import com.braincorp.githandbook.util.loadAnnoyingAds
 import com.braincorp.githandbook.viewmodel.CommandViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.coroutines.CoroutineContext
 
-class MainActivity : AppCompatActivity(R.layout.activity_main),
-        CoroutineScope,
-        OnItemClickListener {
+class MainActivity : AppCompatActivity(),
+    CoroutineScope,
+    OnItemClickListener {
+
+    private var _binding: ActivityMainBinding? = null
+    private val binding: ActivityMainBinding
+        get() = _binding!!
 
     private val job = Job()
 
@@ -40,9 +43,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setSupportActionBar(toolbar)
-        ad_view.loadAnnoyingAds()
-        recycler_view.adapter = adapter
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        binding.adView.loadAnnoyingAds()
+        binding.recyclerView.adapter = adapter
         fetchData()
     }
 
@@ -86,43 +91,43 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
     }
 
     private fun observeData(data: LiveData<List<Command>>) {
-        data.observe(this, Observer { allCommands ->
+        data.observe(this) { allCommands ->
             commands = allCommands
-            val distinctCommands = commands.distinctBy {
-                command -> command.name
+            val distinctCommands = commands.distinctBy { command ->
+                command.name
             }
             adapter.submitLists(allCommands, distinctCommands)
             searchView?.setOnQueryTextListener(QueryListener(adapter, distinctCommands))
-        })
+        }
     }
 
     private fun showReference(): Boolean {
         AlertDialog.Builder(this)
-                .setTitle(R.string.reference)
-                .setMessage(R.string.reference_message)
-                .setPositiveButton(R.string.ok) { _, _ ->
-                    openGitReferencePage()
-                }.setNegativeButton(R.string.cancel, null)
-                .show()
+            .setTitle(R.string.reference)
+            .setMessage(R.string.reference_message)
+            .setPositiveButton(R.string.ok) { _, _ ->
+                openGitReferencePage()
+            }.setNegativeButton(R.string.cancel, null)
+            .show()
         return true
     }
 
     private fun showPrivacyPolicy(): Boolean {
         AlertDialog.Builder(this)
-                .setView(R.layout.dialogue_privacy_terms)
-                .setNeutralButton(R.string.ok, null)
-                .show()
+            .setView(R.layout.dialogue_privacy_terms)
+            .setNeutralButton(R.string.ok, null)
+            .show()
         return true
     }
 
     private fun showAppInfo(): Boolean {
         val title = getString(R.string.app_info, getAppName(), getAppVersion())
         AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(R.string.developer_info)
-                .setNeutralButton(R.string.ok, null)
-                .setIcon(R.mipmap.ic_launcher)
-                .show()
+            .setTitle(title)
+            .setMessage(R.string.developer_info)
+            .setNeutralButton(R.string.ok, null)
+            .setIcon(R.mipmap.ic_launcher)
+            .show()
         return true
     }
 

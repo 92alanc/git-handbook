@@ -3,11 +3,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
-}
-
-androidExtensions {
-    experimental true
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -18,8 +14,8 @@ android {
         applicationId "com.braincorp.githandbook"
         minSdk 19
         targetSdk 33
-        versionCode 15
-        versionName "2.0"
+        versionCode 16
+        versionName "3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
