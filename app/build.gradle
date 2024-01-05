@@ -14,8 +14,8 @@ android {
         applicationId "com.braincorp.githandbook"
         minSdk 19
         targetSdk 34
-        versionCode 16
-        versionName "3.0"
+        versionCode 17
+        versionName "2024.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
