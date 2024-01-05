@@ -10,23 +10,14 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 class CommandRepositoryImpl(
-        private val context: Context,
-        private val database: CommandDao
+    private val context: Context,
+    private val database: CommandDao
 ) : CommandRepository {
 
     override suspend fun getCommandsAsync() = withContext(Dispatchers.IO) {
         async {
             MutableLiveData<List<Command>>().apply {
                 val commands = database.select().map(::buildCommandFromDb)
-                postValue(commands)
-            }
-        }
-    }
-
-    override suspend fun getCommandsByNameAsync(name: String) = withContext(Dispatchers.IO) {
-        async {
-            MutableLiveData<List<Command>>().apply {
-                val commands = database.select(name).map(::buildCommandFromDb)
                 postValue(commands)
             }
         }

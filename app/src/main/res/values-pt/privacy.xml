@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="privacy_settings">Configurações de privacidade</string>
     <string name="privacy_terms_title">Termos de privacidade</string>
     <string name="privacy_terms">
         Eu não rastreio nenhum dado seu nem do seu celular. O único rastreamento é feito pelo Google

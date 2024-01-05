@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="privacy_settings">Privacy settings</string>
     <string name="privacy_terms_title">Privacy terms</string>
     <string name="privacy_terms">
         I don\'t track any of your or your device\'s data. The only tracking is done by Google

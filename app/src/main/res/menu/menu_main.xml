@@ -14,6 +14,9 @@
     <item android:id="@+id/item_privacy"
         android:title="@string/privacy_terms_title"
         app:showAsAction="never"/>
+    <item android:id="@+id/item_privacy_settings"
+        android:title="@string/privacy_settings"
+        app:showAsAction="never"/>
     <item android:id="@+id/item_about"
         android:title="@string/about"
         app:showAsAction="never"/>

@@ -13,23 +13,29 @@ import com.braincorp.githandbook.R
 import com.braincorp.githandbook.adapter.CommandAdapter
 import com.braincorp.githandbook.adapter.OnItemClickListener
 import com.braincorp.githandbook.adapter.QueryListener
+import com.braincorp.githandbook.consent.UserConsentManager
 import com.braincorp.githandbook.databinding.ActivityMainBinding
 import com.braincorp.githandbook.model.Command
 import com.braincorp.githandbook.util.getAppName
 import com.braincorp.githandbook.util.getAppVersion
 import com.braincorp.githandbook.util.loadAnnoyingAds
 import com.braincorp.githandbook.viewmodel.CommandViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.coroutines.CoroutineContext
 
-class MainActivity : AppCompatActivity(),
-    CoroutineScope,
-    OnItemClickListener {
+class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
 
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding
         get() = _binding!!
+
+    private val userConsentManager by inject<UserConsentManager>()
 
     private val job = Job()
 
@@ -46,7 +52,9 @@ class MainActivity : AppCompatActivity(),
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        binding.adView.loadAnnoyingAds()
+        userConsentManager.getConsentIfRequired(activity = this) {
+            binding.adView.loadAnnoyingAds()
+        }
         binding.recyclerView.adapter = adapter
         fetchData()
     }
@@ -62,6 +70,10 @@ class MainActivity : AppCompatActivity(),
             findItem(R.id.item_search)?.actionView?.let { actionView ->
                 searchView = actionView as SearchView
             }
+
+            findItem(R.id.item_privacy_settings)?.run {
+                isVisible = userConsentManager.isPrivacyOptionsRequired()
+            }
         }
         return super.onCreateOptionsMenu(menu)
     }
@@ -71,6 +83,10 @@ class MainActivity : AppCompatActivity(),
             R.id.item_reference -> showReference()
             R.id.item_privacy -> showPrivacyPolicy()
             R.id.item_about -> showAppInfo()
+            R.id.item_privacy_settings -> {
+                userConsentManager.showPrivacyOptions(activity = this)
+                true
+            }
             else -> false
         }
     }

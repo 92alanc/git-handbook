@@ -1,16 +1,9 @@
 package com.braincorp.githandbook.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.braincorp.githandbook.repository.CommandRepository
 
-class CommandViewModel(
-        application: Application,
-        private val repository: CommandRepository
-) : AndroidViewModel(application) {
+class CommandViewModel(private val repository: CommandRepository) : ViewModel() {
 
     suspend fun getCommandsAsync() = repository.getCommandsAsync()
-
-    suspend fun getCommandsByNameAsync(name: String) = repository.getCommandsByNameAsync(name)
-
 }
