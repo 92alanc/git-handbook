@@ -15,6 +15,7 @@ kotlinPlugin = "1.8.10"
 kspPlugin = "1.8.10-1.0.9"
 room = "2.5.2"
 truth = "1.1.5"
+org-jetbrains-kotlin-jvm = "1.8.10"
 
 [libraries]
 android-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidAppcompat" }
@@ -39,3 +40,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPlu
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinPlugin" }
 kotlin-parcelise = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlinPlugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }

@@ -7,18 +7,17 @@ plugins {
 }
 
 android {
-    namespace = "com.braincorp.githandbook"
-    compileSdk = 34
+    namespace = Config.App.PACKAGE_NAME
+    compileSdk = Config.Build.TARGET_SDK
 
     defaultConfig {
-        applicationId = "com.braincorp.githandbook"
-        minSdk = 19
-        targetSdk = 34
-        versionCode = 17
-        versionName = "2024.1.0"
+        applicationId = Config.App.PACKAGE_NAME
+        minSdk = Config.Build.MIN_SDK
+        targetSdk = Config.Build.TARGET_SDK
+        versionCode = Config.App.VERSION_CODE
+        versionName = Config.App.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled = true
+        testInstrumentationRunner = Config.Testing.TEST_RUNNER_NAME
     }
 
     signingConfigs {
@@ -49,7 +48,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
+        viewBinding = Config.Build.ENABLE_VIEW_BINDING
     }
 
     @Suppress("UnstableApiUsage")
@@ -59,12 +58,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = Config.Build.javaVersion
+        targetCompatibility = Config.Build.javaVersion
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = Config.Build.javaVersionString
     }
 }
 
