@@ -1,0 +1,41 @@
+[versions]
+androidAppcompat = "1.6.1"
+androidCardView = "1.0.0"
+androidConstraintLayout = "2.1.4"
+androidEspresso = "3.5.1"
+androidGradlePlugin = "8.2.1"
+androidMaterial = "1.11.0"
+androidTestRunner = "1.5.2"
+androidUmp = "2.1.0"
+googleAds = "22.6.0"
+googleServices = "4.4.0"
+junit = "4.13.2"
+koin = "3.1.0"
+kotlinPlugin = "1.8.10"
+kspPlugin = "1.8.10-1.0.9"
+room = "2.5.2"
+truth = "1.1.5"
+
+[libraries]
+android-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidAppcompat" }
+android-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "androidCardView" }
+android-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidConstraintLayout" }
+android-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidEspresso" }
+android-material = { group = "com.google.android.material", name = "material", version.ref = "androidMaterial" }
+android-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidTestRunner" }
+android-ump = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "androidUmp" }
+google-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "googleAds" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPlugin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinPlugin" }
+kotlin-parcelise = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlinPlugin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
