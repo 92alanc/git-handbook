@@ -1,7 +1,7 @@
-package com.braincorp.githandbook.commands
+package com.braincorp.githandbook.commands.di
 
-import com.braincorp.githandbook.repository.CommandRepository
-import com.braincorp.githandbook.repository.CommandRepositoryImpl
+import com.braincorp.githandbook.commands.domain.CommandRepository
+import com.braincorp.githandbook.commands.data.repository.CommandRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

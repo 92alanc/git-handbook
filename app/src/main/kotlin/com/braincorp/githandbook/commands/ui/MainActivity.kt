@@ -1,4 +1,4 @@
-package com.braincorp.githandbook.activities
+package com.braincorp.githandbook.commands.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -10,16 +10,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LiveData
 import com.braincorp.githandbook.R
-import com.braincorp.githandbook.adapter.CommandAdapter
-import com.braincorp.githandbook.adapter.OnItemClickListener
-import com.braincorp.githandbook.adapter.QueryListener
+import com.braincorp.githandbook.commands.ui.adapter.CommandAdapter
+import com.braincorp.githandbook.commands.ui.adapter.OnItemClickListener
+import com.braincorp.githandbook.commands.ui.adapter.QueryListener
 import com.braincorp.githandbook.core.ads.AdLoader
 import com.braincorp.githandbook.core.consent.UserConsentManager
 import com.braincorp.githandbook.core.dialogue.DialogueHelper
 import com.braincorp.githandbook.core.util.getAppVersion
 import com.braincorp.githandbook.databinding.ActivityMainBinding
-import com.braincorp.githandbook.model.Command
-import com.braincorp.githandbook.viewmodel.CommandViewModel
+import com.braincorp.githandbook.commands.data.model.Command
+import com.braincorp.githandbook.commands.ui.viewmodel.CommandViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

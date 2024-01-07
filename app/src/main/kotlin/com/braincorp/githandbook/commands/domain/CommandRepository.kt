@@ -1,7 +1,7 @@
-package com.braincorp.githandbook.repository
+package com.braincorp.githandbook.commands.domain
 
 import androidx.lifecycle.LiveData
-import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.commands.data.model.Command
 import kotlinx.coroutines.Deferred
 
 interface CommandRepository {

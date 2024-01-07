@@ -1,7 +1,7 @@
-package com.braincorp.githandbook.adapter
+package com.braincorp.githandbook.commands.ui.adapter
 
 import androidx.appcompat.widget.SearchView
-import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.commands.data.model.Command
 
 class QueryListener(
     private val adapter: CommandAdapter,

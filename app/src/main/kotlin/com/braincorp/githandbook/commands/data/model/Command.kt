@@ -1,4 +1,4 @@
-package com.braincorp.githandbook.model
+package com.braincorp.githandbook.commands.data.model
 
 import android.os.Parcelable
 import androidx.room.Entity

@@ -1,9 +1,9 @@
-package com.braincorp.githandbook.adapter
+package com.braincorp.githandbook.commands.ui.adapter
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import com.braincorp.githandbook.databinding.ItemParameterBinding
-import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.commands.data.model.Command
 
 class ParameterViewHolder(
     private val binding: ItemParameterBinding,

@@ -1,10 +1,10 @@
-package com.braincorp.githandbook.adapter
+package com.braincorp.githandbook.commands.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.braincorp.githandbook.databinding.ItemParameterBinding
-import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.commands.data.model.Command
 
 class ParameterAdapter(
     private val onItemClickListener: OnItemClickListener

@@ -1,8 +1,8 @@
-package com.braincorp.githandbook.database
+package com.braincorp.githandbook.commands.data.database
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.commands.data.model.Command
 
 @Dao
 interface CommandDao {

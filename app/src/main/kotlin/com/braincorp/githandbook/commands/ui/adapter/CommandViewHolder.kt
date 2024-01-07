@@ -1,9 +1,9 @@
-package com.braincorp.githandbook.adapter
+package com.braincorp.githandbook.commands.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.braincorp.githandbook.R
 import com.braincorp.githandbook.databinding.ItemCommandBinding
-import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.commands.data.model.Command
 
 class CommandViewHolder(
     private val binding: ItemCommandBinding,

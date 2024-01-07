@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activities.MainActivity"
+        <activity android:name=".commands.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +24,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.CommandDetailsActivity"
-            android:parentActivityName=".activities.MainActivity" />
+            android:name=".commands.ui.CommandDetailsActivity"
+            android:parentActivityName=".commands.ui.MainActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

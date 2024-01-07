@@ -1,8 +1,8 @@
-package com.braincorp.githandbook.commands
+package com.braincorp.githandbook.commands.di
 
 import com.braincorp.githandbook.core.database.DatabaseProvider
-import com.braincorp.githandbook.database.CommandDao
-import com.braincorp.githandbook.database.CommandDatabase
+import com.braincorp.githandbook.commands.data.database.CommandDao
+import com.braincorp.githandbook.commands.data.database.CommandDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

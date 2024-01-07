@@ -1,15 +1,15 @@
-package com.braincorp.githandbook.activities
+package com.braincorp.githandbook.commands.ui
 
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.braincorp.githandbook.adapter.OnItemClickListener
-import com.braincorp.githandbook.adapter.ParameterAdapter
+import com.braincorp.githandbook.commands.ui.adapter.OnItemClickListener
+import com.braincorp.githandbook.commands.ui.adapter.ParameterAdapter
 import com.braincorp.githandbook.core.ads.AdLoader
 import com.braincorp.githandbook.databinding.ActivityCommandDetailsBinding
-import com.braincorp.githandbook.model.Command
+import com.braincorp.githandbook.commands.data.model.Command
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
