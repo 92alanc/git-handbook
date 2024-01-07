@@ -7,15 +7,21 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.braincorp.githandbook.adapter.OnItemClickListener
 import com.braincorp.githandbook.adapter.ParameterAdapter
+import com.braincorp.githandbook.core.ads.AdLoader
 import com.braincorp.githandbook.databinding.ActivityCommandDetailsBinding
 import com.braincorp.githandbook.model.Command
-import com.braincorp.githandbook.util.loadAnnoyingAds
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CommandDetailsActivity : AppCompatActivity(), OnItemClickListener {
 
     private var _binding: ActivityCommandDetailsBinding? = null
     private val binding: ActivityCommandDetailsBinding
         get() = _binding!!
+
+    @Inject
+    lateinit var adLoader: AdLoader
 
     private val adapter = ParameterAdapter(onItemClickListener = this)
 
@@ -29,7 +35,7 @@ class CommandDetailsActivity : AppCompatActivity(), OnItemClickListener {
         configureToolbar()
         configureRecyclerView()
         configureTexts(commands.first())
-        binding.adView.loadAnnoyingAds()
+        adLoader.loadBannerAds(binding.adView)
     }
 
     override fun onItemClick(command: Command) {

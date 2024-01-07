@@ -5,7 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LiveData
@@ -13,35 +13,43 @@ import com.braincorp.githandbook.R
 import com.braincorp.githandbook.adapter.CommandAdapter
 import com.braincorp.githandbook.adapter.OnItemClickListener
 import com.braincorp.githandbook.adapter.QueryListener
-import com.braincorp.githandbook.consent.UserConsentManager
+import com.braincorp.githandbook.core.ads.AdLoader
+import com.braincorp.githandbook.core.consent.UserConsentManager
+import com.braincorp.githandbook.core.dialogue.DialogueHelper
+import com.braincorp.githandbook.core.util.getAppVersion
 import com.braincorp.githandbook.databinding.ActivityMainBinding
 import com.braincorp.githandbook.model.Command
-import com.braincorp.githandbook.util.getAppName
-import com.braincorp.githandbook.util.getAppVersion
-import com.braincorp.githandbook.util.loadAnnoyingAds
 import com.braincorp.githandbook.viewmodel.CommandViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
 
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding
         get() = _binding!!
 
-    private val userConsentManager by inject<UserConsentManager>()
+    @Inject
+    lateinit var userConsentManager: UserConsentManager
+
+    @Inject
+    lateinit var adLoader: AdLoader
+
+    @Inject
+    lateinit var dialogueHelper: DialogueHelper
 
     private val job = Job()
 
     override val coroutineContext: CoroutineContext = job + Dispatchers.Main
 
-    private val viewModel by viewModel<CommandViewModel>()
+    private val viewModel by viewModels<CommandViewModel>()
     private val adapter = CommandAdapter(onItemClickListener = this)
 
     private var commands: List<Command> = emptyList()
@@ -51,12 +59,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        userConsentManager.getConsentIfRequired(activity = this) {
-            binding.adView.loadAnnoyingAds()
-        }
-        binding.recyclerView.adapter = adapter
+        setUpUi()
         fetchData()
+        userConsentManager.getConsentIfRequired(activity = this) {
+            adLoader.loadBannerAds(binding.adView)
+        }
     }
 
     override fun onDestroy() {
@@ -97,6 +104,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
         startActivity(intent)
     }
 
+    private fun setUpUi() {
+        setSupportActionBar(binding.toolbar)
+        binding.recyclerView.adapter = adapter
+    }
+
     private fun fetchData() {
         launch {
             val commands = withContext(Dispatchers.IO) {
@@ -118,32 +130,24 @@ class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
     }
 
     private fun showReference(): Boolean {
-        AlertDialog.Builder(this)
-            .setTitle(R.string.reference)
-            .setMessage(R.string.reference_message)
-            .setPositiveButton(R.string.ok) { _, _ ->
-                openGitReferencePage()
-            }.setNegativeButton(R.string.cancel, null)
-            .show()
+        dialogueHelper.showDialogue(
+            titleRes = R.string.reference,
+            messageRes = R.string.reference_message,
+            onPositiveButtonClicked = ::openGitReferencePage
+        )
         return true
     }
 
     private fun showPrivacyPolicy(): Boolean {
-        AlertDialog.Builder(this)
-            .setView(R.layout.dialogue_privacy_terms)
-            .setNeutralButton(R.string.ok, null)
-            .show()
+        dialogueHelper.showDialogue(R.layout.dialogue_privacy_terms)
         return true
     }
 
     private fun showAppInfo(): Boolean {
-        val title = getString(R.string.app_info, getAppName(), getAppVersion())
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setMessage(R.string.developer_info)
-            .setNeutralButton(R.string.ok, null)
-            .setIcon(R.mipmap.ic_launcher)
-            .show()
+        val appName = getString(R.string.app_name)
+        val appVersion = getAppVersion()
+        val title = getString(R.string.app_info, appName, appVersion)
+        dialogueHelper.showDialogue(title, R.string.developer_info)
         return true
     }
 
@@ -152,5 +156,4 @@ class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
         val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))
         startActivity(intent)
     }
-
 }

@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelise)
     alias(libs.plugins.ksp)
 }
@@ -18,6 +20,7 @@ android {
         versionName = Config.App.VERSION_NAME
 
         testInstrumentationRunner = Config.Testing.TEST_RUNNER_NAME
+        multiDexEnabled = true
     }
 
     signingConfigs {
@@ -68,16 +71,17 @@ android {
 }
 
 dependencies {
+    implementation(libs.android.activity)
     implementation(libs.android.appcompat)
     implementation(libs.android.cardview)
     implementation(libs.android.material)
     implementation(libs.android.constraintlayout)
     implementation(libs.android.ump)
     implementation(libs.google.ads)
-    implementation(libs.koin.android)
-    implementation(libs.koin.core)
+    implementation(libs.hilt.android)
     implementation(libs.room.ktx)
 
+    kapt(libs.hilt.compiler)
     ksp(libs.room.compiler)
 
     androidTestImplementation(libs.android.espresso.core)

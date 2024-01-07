@@ -1,18 +1,12 @@
-package com.braincorp.githandbook.util
+package com.braincorp.githandbook.core.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import com.braincorp.githandbook.R
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 
-fun AdView.loadAnnoyingAds() {
-    val adRequest = AdRequest.Builder().build()
-    loadAd(adRequest)
-}
-
-fun Context.getString(resourceName: String?): String? {
+@SuppressLint("DiscouragedApi")
+fun Context.getStringFromResourceName(resourceName: String?): String? {
     return try {
         val resId = resources.getIdentifier(resourceName, "string", packageName)
         getString(resId)
@@ -21,8 +15,6 @@ fun Context.getString(resourceName: String?): String? {
     }
 }
 
-fun Context.getAppName(): String = getString(R.string.app_name)
-
 fun Context.getAppVersion(): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         packageManager.getPackageInfo(
@@ -30,7 +22,6 @@ fun Context.getAppVersion(): String {
             PackageManager.PackageInfoFlags.of(0)
         ).versionName
     } else {
-        @Suppress("DEPRECATION")
         packageManager.getPackageInfo(packageName, 0).versionName
     }
 }

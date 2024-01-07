@@ -2,15 +2,17 @@ package com.braincorp.githandbook.repository
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import com.braincorp.githandbook.core.util.getStringFromResourceName
 import com.braincorp.githandbook.database.CommandDao
 import com.braincorp.githandbook.model.Command
-import com.braincorp.githandbook.util.getString
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class CommandRepositoryImpl(
-    private val context: Context,
+class CommandRepositoryImpl @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val database: CommandDao
 ) : CommandRepository {
 
@@ -24,9 +26,9 @@ class CommandRepositoryImpl(
     }
 
     private fun buildCommandFromDb(dbCommand: Command): Command {
-        val parameter = context.getString(dbCommand.parameter)
-        val description = context.getString(dbCommand.description) ?: ""
-        val example = context.getString(dbCommand.example) ?: ""
+        val parameter = context.getStringFromResourceName(dbCommand.parameter)
+        val description = context.getStringFromResourceName(dbCommand.description).orEmpty()
+        val example = context.getStringFromResourceName(dbCommand.example).orEmpty()
 
         return dbCommand.copy(parameter = parameter, description = description, example = example)
     }

@@ -1,4 +1,4 @@
-package com.braincorp.githandbook.consent
+package com.braincorp.githandbook.core.consent
 
 import androidx.appcompat.app.AppCompatActivity
 

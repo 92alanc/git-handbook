@@ -1,4 +1,4 @@
-package com.braincorp.githandbook.consent
+package com.braincorp.githandbook.core.consent
 
 import android.content.Context
 import android.util.Log
@@ -8,11 +8,15 @@ import com.google.android.ump.ConsentDebugSettings
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.atomic.AtomicBoolean
+import javax.inject.Inject
 
 private const val TAG = "LOG_ALAN"
 
-class UserConsentManagerImpl (private val context: Context) : UserConsentManager {
+class UserConsentManagerImpl @Inject constructor(
+    @ApplicationContext private val context: Context
+) : UserConsentManager {
 
     private val consentInformation = UserMessagingPlatform.getConsentInformation(context)
     private val hasInitialisedMobileAds = AtomicBoolean(false)
