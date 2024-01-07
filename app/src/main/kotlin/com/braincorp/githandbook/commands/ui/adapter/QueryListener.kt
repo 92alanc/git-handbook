@@ -1,11 +1,11 @@
 package com.braincorp.githandbook.commands.ui.adapter
 
 import androidx.appcompat.widget.SearchView
-import com.braincorp.githandbook.commands.data.model.Command
+import com.braincorp.githandbook.commands.ui.model.UiCommand
 
 class QueryListener(
     private val adapter: CommandAdapter,
-    private val media: List<Command>
+    private val media: List<UiCommand>
 ) : SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?) = false

@@ -3,16 +3,16 @@ package com.braincorp.githandbook.commands.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.braincorp.githandbook.commands.ui.model.UiCommand
 import com.braincorp.githandbook.databinding.ItemParameterBinding
-import com.braincorp.githandbook.commands.data.model.Command
 
 class ParameterAdapter(
     private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<ParameterViewHolder>() {
 
-    private var commands: List<Command> = emptyList()
+    private var commands: List<UiCommand> = emptyList()
 
-    fun submitList(commands: List<Command>) {
+    fun submitList(commands: List<UiCommand>) {
         this.commands = commands
         notifyDataSetChanged()
     }

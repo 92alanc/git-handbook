@@ -3,23 +3,23 @@ package com.braincorp.githandbook.commands.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.braincorp.githandbook.commands.ui.model.UiCommand
 import com.braincorp.githandbook.databinding.ItemCommandBinding
-import com.braincorp.githandbook.commands.data.model.Command
 
 class CommandAdapter(
-    private val onItemClickListener: OnItemClickListener
+    private val onItemClicked: (UiCommand) -> Unit
 ) : RecyclerView.Adapter<CommandViewHolder>() {
 
-    private var allCommands: List<Command> = emptyList()
-    private var data: List<Command> = emptyList()
+    private var allCommands: List<UiCommand> = emptyList()
+    private var data: List<UiCommand> = emptyList()
 
-    fun submitLists(allCommands: List<Command>, distinctCommands: List<Command>) {
+    fun submitLists(allCommands: List<UiCommand>, distinctCommands: List<UiCommand>) {
         this.allCommands = allCommands
         data = distinctCommands
         notifyDataSetChanged()
     }
 
-    fun filter(commands: List<Command>, searchTerm: String?) {
+    fun filter(commands: List<UiCommand>, searchTerm: String?) {
         searchTerm?.let { query ->
             data = commands.filter { it.name.contains(query, ignoreCase = true) }
             notifyDataSetChanged()
@@ -29,7 +29,7 @@ class CommandAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommandViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemCommandBinding.inflate(inflater, parent, false)
-        return CommandViewHolder(binding, onItemClickListener)
+        return CommandViewHolder(binding, onItemClicked)
     }
 
     override fun onBindViewHolder(holder: CommandViewHolder, position: Int) {
@@ -39,5 +39,4 @@ class CommandAdapter(
     }
 
     override fun getItemCount() = data.size
-
 }

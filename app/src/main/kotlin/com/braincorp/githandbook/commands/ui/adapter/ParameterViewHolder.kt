@@ -2,8 +2,8 @@ package com.braincorp.githandbook.commands.ui.adapter
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
+import com.braincorp.githandbook.commands.ui.model.UiCommand
 import com.braincorp.githandbook.databinding.ItemParameterBinding
-import com.braincorp.githandbook.commands.data.model.Command
 
 class ParameterViewHolder(
     private val binding: ItemParameterBinding,
@@ -11,7 +11,7 @@ class ParameterViewHolder(
 ) : RecyclerView.ViewHolder(binding.txtParameter) {
 
     @SuppressLint("SetTextI18n")
-    fun bindTo(command: Command) {
+    fun bindTo(command: UiCommand) {
         binding.txtParameter.text = if (command.parameter == null) {
             command.name
         } else {

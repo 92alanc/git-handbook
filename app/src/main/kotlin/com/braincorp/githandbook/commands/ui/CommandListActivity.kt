@@ -8,32 +8,27 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.LiveData
 import com.braincorp.githandbook.R
 import com.braincorp.githandbook.commands.ui.adapter.CommandAdapter
-import com.braincorp.githandbook.commands.ui.adapter.OnItemClickListener
 import com.braincorp.githandbook.commands.ui.adapter.QueryListener
+import com.braincorp.githandbook.commands.ui.model.UiCommand
+import com.braincorp.githandbook.commands.ui.viewmodel.CommandListUiAction
+import com.braincorp.githandbook.commands.ui.viewmodel.CommandListUiState
+import com.braincorp.githandbook.commands.ui.viewmodel.CommandViewModel
 import com.braincorp.githandbook.core.ads.AdLoader
 import com.braincorp.githandbook.core.consent.UserConsentManager
 import com.braincorp.githandbook.core.dialogue.DialogueHelper
 import com.braincorp.githandbook.core.util.getAppVersion
-import com.braincorp.githandbook.databinding.ActivityMainBinding
-import com.braincorp.githandbook.commands.data.model.Command
-import com.braincorp.githandbook.commands.ui.viewmodel.CommandViewModel
+import com.braincorp.githandbook.core.util.observeFlow
+import com.braincorp.githandbook.databinding.ActivityCommandListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
+class CommandListActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding: ActivityMainBinding
+    private var _binding: ActivityCommandListBinding? = null
+    private val binding: ActivityCommandListBinding
         get() = _binding!!
 
     @Inject
@@ -45,30 +40,22 @@ class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
     @Inject
     lateinit var dialogueHelper: DialogueHelper
 
-    private val job = Job()
-
-    override val coroutineContext: CoroutineContext = job + Dispatchers.Main
-
     private val viewModel by viewModels<CommandViewModel>()
-    private val adapter = CommandAdapter(onItemClickListener = this)
+    private val adapter by lazy { CommandAdapter(viewModel::onCommandClicked) }
 
-    private var commands: List<Command> = emptyList()
+    private var commands: List<UiCommand> = emptyList()
     private var searchView: SearchView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityCommandListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        observeViewModelFlows()
         setUpUi()
-        fetchData()
         userConsentManager.getConsentIfRequired(activity = this) {
             adLoader.loadBannerAds(binding.adView)
         }
-    }
-
-    override fun onDestroy() {
-        job.cancel()
-        super.onDestroy()
+        viewModel.getAllCommands()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -98,28 +85,19 @@ class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
         }
     }
 
-    override fun onItemClick(command: Command) {
-        val commands = this.commands.filter { it.name == command.name }.toTypedArray()
-        val intent = CommandDetailsActivity.newIntent(this, commands)
-        startActivity(intent)
-    }
-
     private fun setUpUi() {
         setSupportActionBar(binding.toolbar)
         binding.recyclerView.adapter = adapter
     }
 
-    private fun fetchData() {
-        launch {
-            val commands = withContext(Dispatchers.IO) {
-                viewModel.getCommandsAsync()
-            }.await()
-            observeData(commands)
-        }
+    private fun observeViewModelFlows() {
+        observeFlow(viewModel.state, ::onStateChanged)
+        observeFlow(viewModel.action, ::onAction)
     }
 
-    private fun observeData(data: LiveData<List<Command>>) {
-        data.observe(this) { allCommands ->
+    private fun onStateChanged(state: CommandListUiState) {
+        state.commands?.let { allCommands ->
+            // TODO: optimise logic
             commands = allCommands
             val distinctCommands = commands.distinctBy { command ->
                 command.name
@@ -127,6 +105,15 @@ class MainActivity : AppCompatActivity(), CoroutineScope, OnItemClickListener {
             adapter.submitLists(allCommands, distinctCommands)
             searchView?.setOnQueryTextListener(QueryListener(adapter, distinctCommands))
         }
+    }
+
+    private fun onAction(action: CommandListUiAction) = when (action) {
+        is CommandListUiAction.ShowCommandDetails -> showCommandDetails(action.command)
+    }
+
+    private fun showCommandDetails(command: UiCommand) {
+        val intent = CommandDetailsActivity.getIntent(context = this, command)
+        startActivity(intent)
     }
 
     private fun showReference(): Boolean {

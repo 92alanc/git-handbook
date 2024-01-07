@@ -7,10 +7,10 @@ import kotlinx.parcelize.Parcelize
 
 @Entity
 @Parcelize
-data class Command(
-    @PrimaryKey var id: Int,
-    var name: String,
-    var parameter: String?,
-    var description: String,
-    var example: String
+data class DbCommand(
+    @PrimaryKey val id: Int,
+    val name: String,
+    val parameter: String?,
+    val description: String,
+    val example: String
 ) : Parcelable

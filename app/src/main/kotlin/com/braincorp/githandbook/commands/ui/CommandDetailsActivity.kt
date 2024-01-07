@@ -4,13 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import com.braincorp.githandbook.commands.ui.adapter.OnItemClickListener
 import com.braincorp.githandbook.commands.ui.adapter.ParameterAdapter
+import com.braincorp.githandbook.commands.ui.model.UiCommand
 import com.braincorp.githandbook.core.ads.AdLoader
 import com.braincorp.githandbook.databinding.ActivityCommandDetailsBinding
-import com.braincorp.githandbook.commands.data.model.Command
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,35 +27,29 @@ class CommandDetailsActivity : AppCompatActivity(), OnItemClickListener {
 
     private val adapter = ParameterAdapter(onItemClickListener = this)
 
-    private lateinit var commands: List<Command>
+    private val command by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(EXTRA_COMMAND, UiCommand::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra(EXTRA_COMMAND)
+        }
+    }
+
+    private lateinit var commands: List<UiCommand>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityCommandDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        parseIntent()
         configureToolbar()
         configureRecyclerView()
         configureTexts(commands.first())
         adLoader.loadBannerAds(binding.adView)
     }
 
-    override fun onItemClick(command: Command) {
+    override fun onItemClick(command: UiCommand) {
         configureTexts(command)
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun parseIntent() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableArrayExtra(EXTRA_COMMANDS, Command::class.java)?.let {
-                commands = it.toList()
-            }
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableArrayExtra(EXTRA_COMMANDS)?.let {
-                commands = it.toList() as List<Command>
-            }
-        }
     }
 
     private fun configureToolbar() {
@@ -67,17 +63,17 @@ class CommandDetailsActivity : AppCompatActivity(), OnItemClickListener {
         adapter.submitList(commands)
     }
 
-    private fun configureTexts(command: Command) = with(binding) {
+    private fun configureTexts(command: UiCommand) = with(binding) {
         txtDescription.text = command.description
         txtExample.text = command.example
     }
 
     companion object {
-        private const val EXTRA_COMMANDS = "commands"
+        private const val EXTRA_COMMAND = "command"
 
-        fun newIntent(context: Context, commands: Array<Command>): Intent {
+        fun getIntent(context: Context, command: UiCommand): Intent {
             return Intent(context, CommandDetailsActivity::class.java)
-                    .putExtra(EXTRA_COMMANDS, commands)
+                .putExtra(EXTRA_COMMAND, command)
         }
     }
 
