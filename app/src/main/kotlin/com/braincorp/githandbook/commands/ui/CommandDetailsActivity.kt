@@ -4,19 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
-import com.braincorp.githandbook.commands.ui.adapter.OnItemClickListener
 import com.braincorp.githandbook.commands.ui.adapter.ParameterAdapter
 import com.braincorp.githandbook.commands.ui.model.UiCommand
+import com.braincorp.githandbook.commands.ui.model.UiParameter
 import com.braincorp.githandbook.core.ads.AdLoader
 import com.braincorp.githandbook.databinding.ActivityCommandDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CommandDetailsActivity : AppCompatActivity(), OnItemClickListener {
+class CommandDetailsActivity : AppCompatActivity() {
 
     private var _binding: ActivityCommandDetailsBinding? = null
     private val binding: ActivityCommandDetailsBinding
@@ -25,7 +23,7 @@ class CommandDetailsActivity : AppCompatActivity(), OnItemClickListener {
     @Inject
     lateinit var adLoader: AdLoader
 
-    private val adapter = ParameterAdapter(onItemClickListener = this)
+    private val adapter by lazy { ParameterAdapter(::configureTexts) }
 
     private val command by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -33,10 +31,8 @@ class CommandDetailsActivity : AppCompatActivity(), OnItemClickListener {
         } else {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra(EXTRA_COMMAND)
-        }
+        } ?: error("Command not provided")
     }
-
-    private lateinit var commands: List<UiCommand>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,28 +40,24 @@ class CommandDetailsActivity : AppCompatActivity(), OnItemClickListener {
         setContentView(binding.root)
         configureToolbar()
         configureRecyclerView()
-        configureTexts(commands.first())
+        configureTexts(command.parameters.first())
         adLoader.loadBannerAds(binding.adView)
-    }
-
-    override fun onItemClick(command: UiCommand) {
-        configureTexts(command)
     }
 
     private fun configureToolbar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = commands.first().name
+        title = command.name
     }
 
     private fun configureRecyclerView() {
         binding.recyclerView.adapter = adapter
-        adapter.submitList(commands)
+        adapter.submitList(command.parameters)
     }
 
-    private fun configureTexts(command: UiCommand) = with(binding) {
-        txtDescription.text = command.description
-        txtExample.text = command.example
+    private fun configureTexts(parameter: UiParameter) = with(binding) {
+        txtDescription.text = parameter.description
+        txtExample.text = parameter.example
     }
 
     companion object {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="param_1">[nome_do_remoto] [nome_do_branch]</string>
+    <string name="param_3">[nome_do_arquivo]</string>
     <string name="param_12">add [nome_do_remoto] [url/ssh]</string>
     <string name="param_13">[nome_do_branch]</string>
     <string name="param_14">-b [nome_do_novo_branch]</string>

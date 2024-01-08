@@ -14,7 +14,12 @@ class CommandRepositoryImpl @Inject constructor(
 ) : CommandRepository {
 
     override fun getAllCommands(): Flow<List<Command>> = flow {
-        val commands = mapper.map(database.getAllCommands())
+        val map = database.getAllCommands().associateWith { command ->
+            database.getParametersByCommandId(command.id).associateWith { parameter ->
+                database.getDescriptionById(parameter.descriptionId)
+            }
+        }
+        val commands = mapper.map(map)
         emit(commands)
     }
 }

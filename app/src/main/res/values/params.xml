@@ -2,6 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="param_1">[remote_name] [branch_name]</string>
     <string name="param_2">.</string>
+    <string name="param_3">[file_name]</string>
     <string name="param_4">-m \"Your commit message\"</string>
     <string name="param_5">-i</string>
     <string name="param_6">-a</string>
