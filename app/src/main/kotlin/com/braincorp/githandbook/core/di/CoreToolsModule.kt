@@ -6,6 +6,8 @@ import com.braincorp.githandbook.core.consent.UserConsentManager
 import com.braincorp.githandbook.core.consent.UserConsentManagerImpl
 import com.braincorp.githandbook.core.dialogue.DialogueHelper
 import com.braincorp.githandbook.core.dialogue.DialogueHelperImpl
+import com.braincorp.githandbook.core.web.WebPageViewer
+import com.braincorp.githandbook.core.web.WebPageViewerImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -29,4 +31,8 @@ abstract class CoreToolsModule {
     @Binds
     @ActivityScoped
     abstract fun bindDialogueHelper(impl: DialogueHelperImpl): DialogueHelper
+
+    @Binds
+    @ActivityScoped
+    abstract fun bindWebPageViewer(impl: WebPageViewerImpl): WebPageViewer
 }

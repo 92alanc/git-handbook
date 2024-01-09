@@ -23,7 +23,7 @@ import javax.inject.Inject
 private const val TAG = "LOG_ALAN"
 
 @HiltViewModel
-class CommandViewModel @Inject constructor(
+class CommandListViewModel @Inject constructor(
     private val repository: CommandRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
@@ -53,8 +53,18 @@ class CommandViewModel @Inject constructor(
     }
 
     fun onCommandClicked(command: UiCommand) {
+        val action = CommandListUiAction.ShowCommandDetails(command)
+        sendAction(action)
+    }
+
+    fun onReferenceDialogueButtonClicked() {
+        val url = "https://git-scm.com/documentation"
+        val action = CommandListUiAction.ViewWebPage(url)
+        sendAction(action)
+    }
+
+    private fun sendAction(action: CommandListUiAction) {
         viewModelScope.launch(dispatcher) {
-            val action = CommandListUiAction.ShowCommandDetails(command)
             _action.emit(action)
         }
     }

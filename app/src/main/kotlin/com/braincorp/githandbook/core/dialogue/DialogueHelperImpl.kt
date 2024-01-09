@@ -3,14 +3,12 @@ package com.braincorp.githandbook.core.dialogue
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
 import com.braincorp.githandbook.R
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class DialogueHelperImpl @Inject constructor(
-    @ApplicationContext private val context: Context
-) : DialogueHelper {
+class DialogueHelperImpl @Inject constructor() : DialogueHelper {
 
     override fun showDialogue(
+        context: Context,
         titleRes: Int,
         messageRes: Int,
         onPositiveButtonClicked: () -> Unit
@@ -24,7 +22,7 @@ class DialogueHelperImpl @Inject constructor(
             .show()
     }
 
-    override fun showDialogue(title: String, messageRes: Int) {
+    override fun showDialogue(context: Context, title: String, messageRes: Int) {
         AlertDialog.Builder(context)
             .setTitle(title)
             .setMessage(messageRes)
@@ -33,7 +31,7 @@ class DialogueHelperImpl @Inject constructor(
             .show()
     }
 
-    override fun showDialogue(layoutRes: Int) {
+    override fun showDialogue(context: Context, layoutRes: Int) {
         AlertDialog.Builder(context)
             .setView(layoutRes)
             .setNeutralButton(R.string.ok, null)

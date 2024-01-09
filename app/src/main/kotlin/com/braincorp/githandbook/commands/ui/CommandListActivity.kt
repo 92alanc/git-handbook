@@ -1,7 +1,5 @@
 package com.braincorp.githandbook.commands.ui
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,12 +12,13 @@ import com.braincorp.githandbook.commands.ui.adapter.QueryListener
 import com.braincorp.githandbook.commands.ui.model.UiCommand
 import com.braincorp.githandbook.commands.ui.viewmodel.CommandListUiAction
 import com.braincorp.githandbook.commands.ui.viewmodel.CommandListUiState
-import com.braincorp.githandbook.commands.ui.viewmodel.CommandViewModel
+import com.braincorp.githandbook.commands.ui.viewmodel.CommandListViewModel
 import com.braincorp.githandbook.core.ads.AdLoader
 import com.braincorp.githandbook.core.consent.UserConsentManager
 import com.braincorp.githandbook.core.dialogue.DialogueHelper
 import com.braincorp.githandbook.core.util.getAppVersion
 import com.braincorp.githandbook.core.util.observeFlow
+import com.braincorp.githandbook.core.web.WebPageViewer
 import com.braincorp.githandbook.databinding.ActivityCommandListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -40,7 +39,10 @@ class CommandListActivity : AppCompatActivity() {
     @Inject
     lateinit var dialogueHelper: DialogueHelper
 
-    private val viewModel by viewModels<CommandViewModel>()
+    @Inject
+    lateinit var webPageViewer: WebPageViewer
+
+    private val viewModel by viewModels<CommandListViewModel>()
     private val adapter by lazy { CommandAdapter(viewModel::onCommandClicked) }
 
     private var searchView: SearchView? = null
@@ -103,6 +105,7 @@ class CommandListActivity : AppCompatActivity() {
 
     private fun onAction(action: CommandListUiAction) = when (action) {
         is CommandListUiAction.ShowCommandDetails -> showCommandDetails(action.command)
+        is CommandListUiAction.ViewWebPage -> webPageViewer.viewWebPage(context = this, action.url)
     }
 
     private fun showCommandDetails(command: UiCommand) {
@@ -112,15 +115,16 @@ class CommandListActivity : AppCompatActivity() {
 
     private fun showReference(): Boolean {
         dialogueHelper.showDialogue(
+            context = this,
             titleRes = R.string.reference,
             messageRes = R.string.reference_message,
-            onPositiveButtonClicked = ::openGitReferencePage
+            onPositiveButtonClicked = viewModel::onReferenceDialogueButtonClicked
         )
         return true
     }
 
     private fun showPrivacyPolicy(): Boolean {
-        dialogueHelper.showDialogue(R.layout.dialogue_privacy_terms)
+        dialogueHelper.showDialogue(context = this, R.layout.dialogue_privacy_terms)
         return true
     }
 
@@ -128,13 +132,7 @@ class CommandListActivity : AppCompatActivity() {
         val appName = getString(R.string.app_name)
         val appVersion = getAppVersion()
         val title = getString(R.string.app_info, appName, appVersion)
-        dialogueHelper.showDialogue(title, R.string.developer_info)
+        dialogueHelper.showDialogue(context = this, title, R.string.developer_info)
         return true
-    }
-
-    private fun openGitReferencePage() {
-        val url = getString(R.string.git_url)
-        val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))
-        startActivity(intent)
     }
 }

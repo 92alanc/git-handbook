@@ -5,4 +5,6 @@ import com.braincorp.githandbook.commands.ui.model.UiCommand
 sealed class CommandListUiAction {
 
     data class ShowCommandDetails(val command: UiCommand) : CommandListUiAction()
+
+    data class ViewWebPage(val url: String) : CommandListUiAction()
 }

@@ -8,13 +8,13 @@
     <string name="developer_info">Aplicativo desenvolvido por Alan Camargo.</string>
     <string name="parameters">Parâmetros (clique para selecionar)</string>
     <string name="example">Exemplo</string>
-    <string name="git_url">https://git-scm.com/documentation</string>
     <string name="ok">OK</string>
     <string name="description">Descrição</string>
 
     <plurals name="params_plural">
         <item quantity="one">%d parâmetro</item>
         <item quantity="other">%d parâmetros</item>
+        <item quantity="many">%d parâmetros</item>
     </plurals>
     <string name="cancel">Cancelar</string>
 </resources>
