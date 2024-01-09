@@ -2,19 +2,20 @@ package com.braincorp.githandbook.commands.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
+import com.braincorp.githandbook.commands.ui.model.UiCommand
 import com.braincorp.githandbook.commands.ui.model.UiParameter
 import com.braincorp.githandbook.databinding.ItemParameterBinding
 
 class ParameterAdapter(
     private val onItemClicked: (UiParameter) -> Unit
-) : RecyclerView.Adapter<ParameterViewHolder>() {
+) : ListAdapter<UiParameter, ParameterViewHolder>(ParameterDiffCallback) {
 
-    private var parameters: List<UiParameter> = emptyList()
+    private var parentCommand: UiCommand? = null
 
-    fun submitList(parameters: List<UiParameter>) {
-        this.parameters = parameters
-        notifyDataSetChanged()
+    fun submitList(command: UiCommand) {
+        submitList(command.parameters)
+        parentCommand = command
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParameterViewHolder {
@@ -24,9 +25,9 @@ class ParameterAdapter(
     }
 
     override fun onBindViewHolder(holder: ParameterViewHolder, position: Int) {
-        val command = parameters[position]
-        holder.bindTo(command)
+        parentCommand?.let {
+            val parameter = getItem(position)
+            holder.bindTo(parameter, it)
+        }
     }
-
-    override fun getItemCount() = parameters.size
 }

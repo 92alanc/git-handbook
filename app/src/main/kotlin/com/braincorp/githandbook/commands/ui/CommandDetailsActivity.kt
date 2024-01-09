@@ -52,7 +52,7 @@ class CommandDetailsActivity : AppCompatActivity() {
 
     private fun configureRecyclerView() {
         binding.recyclerView.adapter = adapter
-        adapter.submitList(command.parameters)
+        adapter.submitList(command)
     }
 
     private fun configureTexts(parameter: UiParameter) = with(binding) {
