@@ -2,27 +2,18 @@ package com.braincorp.githandbook.commands.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.braincorp.githandbook.commands.ui.model.UiCommand
 import com.braincorp.githandbook.databinding.ItemCommandBinding
 
 class CommandAdapter(
     private val onItemClicked: (UiCommand) -> Unit
-) : RecyclerView.Adapter<CommandViewHolder>() {
-
-    private var allCommands: List<UiCommand> = emptyList()
-    private var data: List<UiCommand> = emptyList()
-
-    fun submitLists(allCommands: List<UiCommand>, distinctCommands: List<UiCommand>) {
-        this.allCommands = allCommands
-        data = distinctCommands
-        notifyDataSetChanged()
-    }
+) : ListAdapter<UiCommand, CommandViewHolder>(CommandDiffCallback) {
 
     fun filter(commands: List<UiCommand>, searchTerm: String?) {
         searchTerm?.let { query ->
-            data = commands.filter { it.name.contains(query, ignoreCase = true) }
-            notifyDataSetChanged()
+            val filteredList = commands.filter { it.name.contains(query, ignoreCase = true) }
+            submitList(filteredList)
         }
     }
 
@@ -33,10 +24,8 @@ class CommandAdapter(
     }
 
     override fun onBindViewHolder(holder: CommandViewHolder, position: Int) {
-        val command = data[position]
-        val paramsCount = allCommands.count { it.name == command.name }
+        val command = getItem(position)
+        val paramsCount = command.parameters.size
         holder.bindTo(command, paramsCount)
     }
-
-    override fun getItemCount() = data.size
 }

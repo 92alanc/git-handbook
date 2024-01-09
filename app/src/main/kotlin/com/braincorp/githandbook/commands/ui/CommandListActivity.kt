@@ -43,7 +43,6 @@ class CommandListActivity : AppCompatActivity() {
     private val viewModel by viewModels<CommandViewModel>()
     private val adapter by lazy { CommandAdapter(viewModel::onCommandClicked) }
 
-    private var commands: List<UiCommand> = emptyList()
     private var searchView: SearchView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,14 +95,9 @@ class CommandListActivity : AppCompatActivity() {
     }
 
     private fun onStateChanged(state: CommandListUiState) {
-        state.commands?.let { allCommands ->
-            // TODO: optimise logic
-            commands = allCommands
-            val distinctCommands = commands.distinctBy { command ->
-                command.name
-            }
-            adapter.submitLists(allCommands, distinctCommands)
-            searchView?.setOnQueryTextListener(QueryListener(adapter, distinctCommands))
+        state.commands?.let {
+            adapter.submitList(it)
+            searchView?.setOnQueryTextListener(QueryListener(adapter, it))
         }
     }
 

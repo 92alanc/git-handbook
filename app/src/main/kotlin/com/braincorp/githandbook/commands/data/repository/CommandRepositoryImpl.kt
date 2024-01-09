@@ -19,7 +19,7 @@ class CommandRepositoryImpl @Inject constructor(
                 database.getDescriptionById(parameter.descriptionId)
             }
         }
-        val commands = mapper.map(map)
+        val commands = mapper.map(map).distinctBy { it.name }
         emit(commands)
     }
 }
