@@ -61,6 +61,7 @@ class CommandListActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+
         menu?.run {
             findItem(R.id.item_search)?.actionView?.let { actionView ->
                 searchView = actionView as SearchView
@@ -70,18 +71,32 @@ class CommandListActivity : AppCompatActivity() {
                 isVisible = userConsentManager.isPrivacyOptionsRequired()
             }
         }
+
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.item_reference -> showReference()
-            R.id.item_privacy -> showPrivacyPolicy()
-            R.id.item_about -> showAppInfo()
-            R.id.item_privacy_settings -> {
-                userConsentManager.showPrivacyOptions(activity = this)
+            R.id.item_reference -> {
+                viewModel.onReferenceMenuItemClicked()
                 true
             }
+
+            R.id.item_privacy -> {
+                viewModel.onPrivacyPolicyMenuItemClicked()
+                true
+            }
+
+            R.id.item_about -> {
+                viewModel.onAppInfoMenuItemClicked()
+                true
+            }
+
+            R.id.item_privacy_settings -> {
+                viewModel.onPrivacySettingsMenuItemClicked()
+                true
+            }
+
             else -> false
         }
     }
@@ -105,7 +120,21 @@ class CommandListActivity : AppCompatActivity() {
 
     private fun onAction(action: CommandListUiAction) = when (action) {
         is CommandListUiAction.ShowCommandDetails -> showCommandDetails(action.command)
-        is CommandListUiAction.ViewWebPage -> webPageViewer.viewWebPage(context = this, action.url)
+
+        is CommandListUiAction.ShowReference -> showReference()
+
+        is CommandListUiAction.ShowPrivacyPolicy -> showPrivacyPolicy()
+
+        is CommandListUiAction.ShowAppInfo -> showAppInfo()
+
+        is CommandListUiAction.ShowPrivacySettings -> userConsentManager.showPrivacyOptions(
+            activity = this
+        )
+
+        is CommandListUiAction.ViewWebPage -> webPageViewer.viewWebPage(
+            context = this,
+            action.url
+        )
     }
 
     private fun showCommandDetails(command: UiCommand) {
@@ -113,26 +142,23 @@ class CommandListActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun showReference(): Boolean {
+    private fun showReference() {
         dialogueHelper.showDialogue(
             context = this,
             titleRes = R.string.reference,
             messageRes = R.string.reference_message,
             onPositiveButtonClicked = viewModel::onReferenceDialogueButtonClicked
         )
-        return true
     }
 
-    private fun showPrivacyPolicy(): Boolean {
+    private fun showPrivacyPolicy() {
         dialogueHelper.showDialogue(context = this, R.layout.dialogue_privacy_terms)
-        return true
     }
 
-    private fun showAppInfo(): Boolean {
+    private fun showAppInfo() {
         val appName = getString(R.string.app_name)
         val appVersion = getAppVersion()
         val title = getString(R.string.app_info, appName, appVersion)
         dialogueHelper.showDialogue(context = this, title, R.string.developer_info)
-        return true
     }
 }

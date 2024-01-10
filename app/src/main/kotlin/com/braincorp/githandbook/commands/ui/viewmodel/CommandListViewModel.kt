@@ -57,6 +57,26 @@ class CommandListViewModel @Inject constructor(
         sendAction(action)
     }
 
+    fun onReferenceMenuItemClicked() {
+        val action = CommandListUiAction.ShowReference
+        sendAction(action)
+    }
+
+    fun onPrivacyPolicyMenuItemClicked() {
+        val action = CommandListUiAction.ShowPrivacyPolicy
+        sendAction(action)
+    }
+
+    fun onAppInfoMenuItemClicked() {
+        val action = CommandListUiAction.ShowAppInfo
+        sendAction(action)
+    }
+
+    fun onPrivacySettingsMenuItemClicked() {
+        val action = CommandListUiAction.ShowPrivacySettings
+        sendAction(action)
+    }
+
     fun onReferenceDialogueButtonClicked() {
         val url = "https://git-scm.com/documentation"
         val action = CommandListUiAction.ViewWebPage(url)
