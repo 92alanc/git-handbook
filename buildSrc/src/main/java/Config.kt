@@ -15,8 +15,8 @@ object Config {
     object App {
 
         const val PACKAGE_NAME = "com.braincorp.githandbook"
-        const val VERSION_CODE = 17
-        const val VERSION_NAME = "2024.1.0"
+        const val VERSION_CODE = 18
+        const val VERSION_NAME = "2024.1.1"
     }
 
     object Testing {
