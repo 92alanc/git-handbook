@@ -7,7 +7,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".commands.ui.CommandDetailsActivity">
+    tools:context=".commands.details.ui.CommandDetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
