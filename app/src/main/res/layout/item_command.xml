@@ -10,7 +10,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_name"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
+        style="@style/TextAppearance.Material3.HeadlineSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
@@ -18,7 +18,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_params"
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/TextAppearance.Material3.BodyMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"

@@ -5,11 +5,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import com.braincorp.githandbook.R
 import com.braincorp.githandbook.commands.details.ui.CommandDetailsActivity
 import com.braincorp.githandbook.commands.list.ui.adapter.CommandAdapter
-import com.braincorp.githandbook.commands.list.ui.tools.QueryListener
 import com.braincorp.githandbook.commands.list.ui.model.UiCommand
 import com.braincorp.githandbook.commands.list.ui.viewmodel.CommandListUiAction
 import com.braincorp.githandbook.commands.list.ui.viewmodel.CommandListUiState
@@ -46,8 +44,6 @@ class CommandListActivity : AppCompatActivity() {
     private val viewModel by viewModels<CommandListViewModel>()
     private val adapter by lazy { CommandAdapter(viewModel::onCommandClicked) }
 
-    private var searchView: SearchView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityCommandListBinding.inflate(layoutInflater)
@@ -63,14 +59,8 @@ class CommandListActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
 
-        menu?.run {
-            findItem(R.id.item_search)?.actionView?.let { actionView ->
-                searchView = actionView as SearchView
-            }
-
-            findItem(R.id.item_privacy_settings)?.run {
-                isVisible = userConsentManager.isPrivacyOptionsRequired()
-            }
+        menu?.findItem(R.id.item_privacy_settings)?.run {
+            isVisible = userConsentManager.isPrivacyOptionsRequired()
         }
 
         return super.onCreateOptionsMenu(menu)
@@ -113,10 +103,7 @@ class CommandListActivity : AppCompatActivity() {
     }
 
     private fun onStateChanged(state: CommandListUiState) {
-        state.commands?.let {
-            adapter.submitList(it)
-            searchView?.setOnQueryTextListener(QueryListener(adapter, it))
-        }
+        state.commands?.let(adapter::submitList)
     }
 
     private fun onAction(action: CommandListUiAction) = when (action) {

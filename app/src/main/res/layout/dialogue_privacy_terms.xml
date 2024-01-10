@@ -7,7 +7,7 @@
     android:padding="@dimen/padding_default"
     android:orientation="vertical">
     <com.google.android.material.textview.MaterialTextView
-        style="@style/TextAppearance.MaterialComponents.Headline5"
+        style="@style/TextAppearance.Material3.HeadlineMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -19,7 +19,7 @@
         android:layout_marginTop="@dimen/margin_large">
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txt_privacy"
-            style="@style/TextAppearance.MaterialComponents.Body1"
+            style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/privacy_terms" />

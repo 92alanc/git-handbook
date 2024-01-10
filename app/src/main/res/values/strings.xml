@@ -9,7 +9,6 @@
     <string name="parameters">Parameters (tap to select)</string>
     <string name="reference">Reference</string>
     <string name="reference_message">You will be redirected to the official Git reference web page</string>
-    <string name="search">Search</string>
     <string name="description">Description</string>
 
     <plurals name="params_plural">

@@ -1,8 +1,8 @@
 package com.braincorp.githandbook.core.dialogue
 
 import android.content.Context
-import androidx.appcompat.app.AlertDialog
 import com.braincorp.githandbook.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 
 class DialogueHelperImpl @Inject constructor() : DialogueHelper {
@@ -13,7 +13,7 @@ class DialogueHelperImpl @Inject constructor() : DialogueHelper {
         messageRes: Int,
         onPositiveButtonClicked: () -> Unit
     ) {
-        AlertDialog.Builder(context)
+        MaterialAlertDialogBuilder(context)
             .setTitle(titleRes)
             .setMessage(messageRes)
             .setPositiveButton(R.string.ok) { _, _ ->
@@ -23,7 +23,7 @@ class DialogueHelperImpl @Inject constructor() : DialogueHelper {
     }
 
     override fun showDialogue(context: Context, title: String, messageRes: Int) {
-        AlertDialog.Builder(context)
+        MaterialAlertDialogBuilder(context)
             .setTitle(title)
             .setMessage(messageRes)
             .setNeutralButton(R.string.ok, null)
@@ -32,7 +32,7 @@ class DialogueHelperImpl @Inject constructor() : DialogueHelper {
     }
 
     override fun showDialogue(context: Context, layoutRes: Int) {
-        AlertDialog.Builder(context)
+        MaterialAlertDialogBuilder(context)
             .setView(layoutRes)
             .setNeutralButton(R.string.ok, null)
             .show()

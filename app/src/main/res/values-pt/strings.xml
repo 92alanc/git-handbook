@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Manual do Git</string>
     <string name="about">Sobre</string>
-    <string name="search">Pesquisar</string>
     <string name="reference">Referência</string>
     <string name="reference_message">Você será redirecionado à página oficial de referência do Git</string>
     <string name="developer_info">Aplicativo desenvolvido por Alan Camargo.</string>
