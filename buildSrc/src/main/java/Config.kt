@@ -5,7 +5,7 @@ object Config {
     object Build {
 
         const val ENABLE_VIEW_BINDING = true
-        const val MIN_SDK = 19
+        const val MIN_SDK = 21
         const val TARGET_SDK = 34
 
         val javaVersion = JavaVersion.VERSION_17

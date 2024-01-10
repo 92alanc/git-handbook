@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:theme="@style/AppTheme.AppBarOverlay">
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             tools:title="git commit" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/label_parameters"
         style="@style/AppStyle.TextAppearance.Label"
         android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/label_description"
         style="@style/AppStyle.TextAppearance.Label"
         android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_description"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="0dp"
@@ -89,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="@sample/command_details.json/data/description" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/label_example"
         style="@style/AppStyle.TextAppearance.Label"
         android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@id/txt_description"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_example"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="0dp"

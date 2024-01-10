@@ -8,17 +8,17 @@
     android:orientation="vertical"
     android:padding="@dimen/padding_default">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_name"
-        style="@style/TextAppearance.AppCompat.Title"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
         tools:text="@sample/commands.json/data/title"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_params"
-        style="@style/TextAppearance.AppCompat.Body1"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
