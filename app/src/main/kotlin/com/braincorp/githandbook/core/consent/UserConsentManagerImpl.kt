@@ -1,8 +1,8 @@
 package com.braincorp.githandbook.core.consent
 
 import android.content.Context
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.braincorp.githandbook.core.log.Logger
 import com.google.android.gms.ads.MobileAds
 import com.google.android.ump.ConsentDebugSettings
 import com.google.android.ump.ConsentInformation
@@ -12,10 +12,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
-private const val TAG = "LOG_ALAN"
-
 class UserConsentManagerImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val logger: Logger
 ) : UserConsentManager {
 
     private val consentInformation = UserMessagingPlatform.getConsentInformation(context)
@@ -36,7 +35,7 @@ class UserConsentManagerImpl @Inject constructor(
             params,
             {
                 UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) { formError ->
-                    formError?.let { Log.d(TAG, it.message) }
+                    formError?.let { logger.debug(it.message) }
 
                     if (consentInformation.canRequestAds()) {
                         initialiseMobileAds()
@@ -45,7 +44,7 @@ class UserConsentManagerImpl @Inject constructor(
                 }
             },
             { formError ->
-                Log.d(TAG, formError.message)
+                logger.debug(formError.message)
             }
         )
 
@@ -62,7 +61,7 @@ class UserConsentManagerImpl @Inject constructor(
 
     override fun showPrivacyOptions(activity: AppCompatActivity) {
         UserMessagingPlatform.showPrivacyOptionsForm(activity) { formError ->
-            formError?.let { Log.d(TAG, it.message) }
+            formError?.let { logger.debug(it.message) }
         }
     }
 

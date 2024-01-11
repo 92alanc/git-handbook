@@ -1,12 +1,12 @@
 package com.braincorp.githandbook.commands.list.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.braincorp.githandbook.commands.list.domain.repository.CommandRepository
 import com.braincorp.githandbook.commands.list.ui.mapping.toUi
 import com.braincorp.githandbook.commands.list.ui.model.UiCommand
 import com.braincorp.githandbook.core.di.IoDispatcher
+import com.braincorp.githandbook.core.log.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,6 +25,7 @@ private const val TAG = "LOG_ALAN"
 @HiltViewModel
 class CommandListViewModel @Inject constructor(
     private val repository: CommandRepository,
+    private val logger: Logger,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
@@ -41,12 +42,9 @@ class CommandListViewModel @Inject constructor(
             }.onCompletion {
                 _state.update { it.onFinishedLoading() }
             }.catch {
-                Log.e(TAG, "Error getting commands", it)
+                logger.error(message = "Error getting commands", it)
             }.collect { commands ->
-                val uiCommands = commands.map {
-                    it.toUi()
-                }
-
+                val uiCommands = commands.map { it.toUi() }
                 _state.update { it.onCommandsReceived(uiCommands) }
             }
         }

@@ -8,14 +8,17 @@ androidGradlePlugin = "8.2.1"
 androidMaterial = "1.11.0"
 androidTestRunner = "1.5.2"
 androidUmp = "2.1.0"
+coroutines = "1.7.3"
 googleAds = "22.6.0"
 googleServices = "4.4.0"
 hilt = "2.48"
 junit = "4.13.2"
 kotlinPlugin = "1.8.10"
 kspPlugin = "1.8.10-1.0.9"
+mockk = "1.13.9"
 room = "2.5.2"
 truth = "1.1.5"
+turbine = "1.0.0"
 
 [libraries]
 android-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidActivity" }
@@ -26,14 +29,18 @@ android-espresso-core = { group = "androidx.test.espresso", name = "espresso-cor
 android-material = { group = "com.google.android.material", name = "material", version.ref = "androidMaterial" }
 android-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidTestRunner" }
 android-ump = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "androidUmp" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 google-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "googleAds" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

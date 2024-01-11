@@ -3,6 +3,8 @@ package com.braincorp.githandbook.core.di
 import android.content.Context
 import com.braincorp.githandbook.core.database.DatabaseProvider
 import com.braincorp.githandbook.core.database.DatabaseProviderImpl
+import com.braincorp.githandbook.core.log.Logger
+import com.braincorp.githandbook.core.log.LoggerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,4 +21,8 @@ object CoreModule {
     fun provideDatabaseProvider(
         @ApplicationContext context: Context
     ): DatabaseProvider = DatabaseProviderImpl(context)
+
+    @Provides
+    @Singleton
+    fun provideLogger(): Logger = LoggerImpl()
 }
