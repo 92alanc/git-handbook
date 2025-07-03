@@ -88,6 +88,10 @@ dependencies {
     androidTestImplementation(libs.android.test.runner)
     androidTestImplementation(libs.truth)
 
+    testImplementation(libs.coroutines.test)
     testImplementation(libs.junit)
+    testImplementation(libs.mockk.agent)
+    testImplementation(libs.mockk.android)
     testImplementation(libs.truth)
+    testImplementation(libs.turbine)
 }

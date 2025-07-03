@@ -10,7 +10,7 @@ fun Context.getStringFromResourceName(resourceName: String?): String? {
     return try {
         val resId = resources.getIdentifier(resourceName, "string", packageName)
         getString(resId)
-    } catch (ex: Exception) {
+    } catch (_: Exception) {
         null
     }
 }
@@ -23,5 +23,5 @@ fun Context.getAppVersion(): String {
         ).versionName
     } else {
         packageManager.getPackageInfo(packageName, 0).versionName
-    }
+    }.orEmpty()
 }
