@@ -1,23 +1,23 @@
 [versions]
-androidActivity = "1.10.1"
+androidActivity = "1.13.0"
 androidAppcompat = "1.7.1"
 androidCardView = "1.0.0"
 androidConstraintLayout = "2.2.1"
-androidEspresso = "3.6.1"
-androidGradlePlugin = "8.11.0"
-androidMaterial = "1.12.0"
-androidTestRunner = "1.6.2"
-androidUmp = "3.2.0"
-coroutines = "1.10.2"
-googleAds = "24.4.0"
-googleServices = "4.4.3"
-hilt = "2.56.2"
+androidEspresso = "3.7.0"
+androidGradlePlugin = "9.3.1"
+androidMaterial = "1.14.0"
+androidTestRunner = "1.7.0"
+androidUmp = "4.0.0"
+coroutines = "1.11.0"
+googleAds = "25.4.0"
+googleServices = "4.5.0"
+hilt = "2.60.1"
 junit = "4.13.2"
-kotlinPlugin = "2.0.20"
-kspPlugin = "2.0.20-1.0.24"
-mockk = "1.14.4"
-room = "2.7.2"
-truth = "1.4.4"
+kotlinPlugin = "2.4.10"
+kspPlugin = "2.3.10"
+mockk = "1.14.11"
+room = "2.8.4"
+truth = "1.4.5"
 turbine = "1.2.1"
 
 [libraries]
@@ -45,8 +45,6 @@ turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinPlugin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinPlugin" }
 kotlin-parcelise = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlinPlugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }

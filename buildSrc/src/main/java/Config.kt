@@ -6,7 +6,7 @@ object Config {
 
         const val ENABLE_VIEW_BINDING = true
         const val MIN_SDK = 23
-        const val TARGET_SDK = 35
+        const val TARGET_SDK = 37
 
         val javaVersion = JavaVersion.VERSION_17
         val javaVersionString = javaVersion.majorVersion
@@ -15,8 +15,8 @@ object Config {
     object App {
 
         const val PACKAGE_NAME = "com.braincorp.githandbook"
-        const val VERSION_CODE = 19
-        const val VERSION_NAME = "2025.3.0"
+        const val VERSION_CODE = 20
+        const val VERSION_NAME = "2026.3.0"
     }
 
     object Testing {

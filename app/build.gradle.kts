@@ -2,8 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.services)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelise)
     alias(libs.plugins.ksp)
 }
@@ -25,10 +23,10 @@ android {
 
     signingConfigs {
         create("release") {
-            keyAlias = properties["git_handbook_key_alias"] as String
-            keyPassword = properties["git_handbook_key_password"] as String
-            storeFile = file(path = properties["git_handbook_store_file"] as String)
-            storePassword = properties["git_handbook_store_password"] as String
+            keyAlias = property("git_handbook_key_alias") as String
+            keyPassword = property("git_handbook_key_password") as String
+            storeFile = file(path = property("git_handbook_store_file") as String)
+            storePassword = property("git_handbook_store_password") as String
         }
     }
 
@@ -43,7 +41,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
@@ -54,7 +52,6 @@ android {
         viewBinding = Config.Build.ENABLE_VIEW_BINDING
     }
 
-    @Suppress("UnstableApiUsage")
     testOptions {
         unitTests.isIncludeAndroidResources = true
         unitTests.isReturnDefaultValues = true
@@ -63,10 +60,6 @@ android {
     compileOptions {
         sourceCompatibility = Config.Build.javaVersion
         targetCompatibility = Config.Build.javaVersion
-    }
-
-    kotlinOptions {
-        jvmTarget = Config.Build.javaVersionString
     }
 }
 
@@ -81,7 +74,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.room.ktx)
 
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     ksp(libs.room.compiler)
 
     androidTestImplementation(libs.android.espresso.core)
